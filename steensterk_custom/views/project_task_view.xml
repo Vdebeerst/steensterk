@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="steensterk_project_task_form" model="ir.ui.view">
+            <field name="name">steensterk.project.task.form</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="planned_weeks"/>
+                </field>
+                <field name="depend_on_ids" position="before">
+                    <group colspan="4" col="2">
+                        <group>
+                            <field name="weeks_delay"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>

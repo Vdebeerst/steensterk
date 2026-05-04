@@ -18,6 +18,7 @@ class project_task(models.Model):
 	@api.onchange('depend_on_ids', 'weeks_delay', 'planned_weeks', 'planned_date_begin')
 	def _onchange_schedule_from_dependencies(self):
 		for task in self:
+			print ('***', task.id, task.name)
 
 			# -----------------------------
 			# 1. STARTDATUM bepalen
@@ -38,14 +39,15 @@ class project_task(models.Model):
 			if not start_date:
 				start_date = fields.Datetime.now()
 
-			task.planned_date_begin = start_date
+			if task.planned_date_begin != start_date: task.planned_date_begin = start_date
 
 			# -----------------------------
 			# 2. DUUR toepassen (ALTIJD)
 			# -----------------------------
 			if task.planned_weeks:
 				duration_days = (task.planned_weeks * 7) + 1
-				task.date_deadline = start_date + timedelta(days=duration_days)
+				if task.date_deadline != start_date + timedelta(days=duration_days):
+					task.date_deadline = start_date + timedelta(days=duration_days)
 
 	@api.onchange(
 		"depend_on_ids",
@@ -56,6 +58,7 @@ class project_task(models.Model):
 	)
 	def _onchange_schedule_from_dependencies(self):
 		for task in self:
+			print ('*****', task.id, task.name)
 
 			duration_days = int((task.planned_weeks or 0.0) * 7)
 
@@ -72,8 +75,8 @@ class project_task(models.Model):
 					max_date = max(dates)
 					start_date = max_date + timedelta(weeks=task.weeks_delay)
 
-					task.planned_date_begin = start_date
-					task.date_deadline = start_date + timedelta(days=duration_days)
+					if task.planned_date_begin != start_date: task.planned_date_begin = start_date
+					if task.date_deadline != start_date + timedelta(days=duration_days): task.date_deadline = start_date + timedelta(days=duration_days)
 					continue
 
 			# ----------------------------------
@@ -82,24 +85,18 @@ class project_task(models.Model):
 
 			# 👉 CASE A: start bestaat → bereken einde
 			if task.planned_date_begin and duration_days:
-				task.date_deadline = task.planned_date_begin + timedelta(days=duration_days)
+				if task.date_deadline != task.planned_date_begin + timedelta(days=duration_days): 
+					task.date_deadline = task.planned_date_begin + timedelta(days=duration_days)
 
 			# 👉 CASE B: einde bestaat → bereken start (JOUW PROBLEEM)
 			elif task.date_deadline and duration_days:
-				task.planned_date_begin = task.date_deadline - timedelta(days=duration_days)
+				if task.planned_date_begin != task.date_deadline - timedelta(days=duration_days): 
+					task.planned_date_begin = task.date_deadline - timedelta(days=duration_days)
 
 	def write(self, vals):
 		res = super().write(vals)
 
-		if any(k in vals for k in [
-			'date_deadline',
-			'planned_date_begin',
-			'planned_weeks'
-		]):
-			dependent_tasks = self.search([
-				('depend_on_ids', 'in', self.ids)
-			])
-			dependent_tasks._onchange_schedule_from_dependencies()
+		self.dependent_ids._onchange_schedule_from_dependencies()
 
 		return res
 		

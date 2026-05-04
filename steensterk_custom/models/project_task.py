@@ -11,7 +11,8 @@ from datetime import timedelta
 class project_task(models.Model):
 	_inherit = "project.task"
 
-	planned_weeks = fields.Integer('Geplande tijd (weken)', default=1, help="Aantal weken die voorzien worden voor deze taak")
+	department_id = fields.Many2one('hr.department', 'Afdeling', tracking=True, help="De afdeling die deze taak uitvoert", index=True)
+	planned_weeks = fields.Integer('Geplande tijd (weken)', default=1, tracking=True, help="Aantal weken die voorzien worden voor deze taak")
 	weeks_delay = fields.Integer('Weken Uitsel', default=0, tracking=True, help="Aantal weken tussen deze taak en zijn afhankelijkheden")
 
 	@api.onchange('depend_on_ids', 'weeks_delay', 'planned_weeks', 'planned_date_begin')

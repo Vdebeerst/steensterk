@@ -8,7 +8,7 @@
     'author': 'Ucamco NV',
     'version': '19.0.9.9.9',
     'depends': [
-        'base','project'
+        'base','project','project_enterprise'
     ],
     'data': [
        'security/ir.model.access.csv',

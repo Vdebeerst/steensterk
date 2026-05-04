@@ -32,7 +32,7 @@ class project_task(models.Model):
 
 				if dates:
 					max_date = max(dates)
-					start_date = max_date + timedelta(weeks=task.weeks_delay)
+					start_date = max_date + timedelta(weeks=task.weeks_delay) + timedelta(days=1)
 
 			# fallback indien leeg
 			if not start_date:
@@ -44,7 +44,7 @@ class project_task(models.Model):
 			# 2. DUUR toepassen (ALTIJD)
 			# -----------------------------
 			if task.planned_weeks:
-				duration_days = task.planned_weeks * 7
+				duration_days = (task.planned_weeks * 7) + 1
 				task.date_deadline = start_date + timedelta(days=duration_days)
 
 	@api.onchange(

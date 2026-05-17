@@ -3,18 +3,16 @@
 {
     'name': 'Steensterk Custom Module',
     'category': 'Base',
-    'summary': 'Ucamco Attentia Module',
+    'summary': 'Steensterk Custom Module',
     'description': "",
-    'author': 'Ucamco NV',
+    'author': 'Wim Audenaert',
     'version': '19.0.9.9.9',
     'depends': [
         'base','project','project_enterprise'
     ],
     'data': [
-       'security/ir.model.access.csv',
-        "views/res_partner_view.xml",
+        'security/ir.model.access.csv',
         "views/project_task_view.xml",
-        # "data/cron.xml",
     ],
     'installable': True,
     'auto_install': True,

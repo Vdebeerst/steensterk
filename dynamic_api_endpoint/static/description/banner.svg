@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="440" viewBox="0 0 880 440">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#f8f4ff;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ab4be6;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#00A09D;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="tealFade" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#00A09D;stop-opacity:0.12"/>
+      <stop offset="100%" style="stop-color:#00A09D;stop-opacity:0"/>
+    </linearGradient>
+    <linearGradient id="purpleFade" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ab4be6;stop-opacity:0.1"/>
+      <stop offset="100%" style="stop-color:#ab4be6;stop-opacity:0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="880" height="440" fill="url(#bg)"/>
+
+  <!-- Top accent bar -->
+  <rect width="880" height="5" fill="url(#accent)"/>
+
+  <!-- Decorative background shapes -->
+  <circle cx="720" cy="100" r="180" fill="url(#tealFade)"/>
+  <circle cx="830" cy="350" r="140" fill="url(#purpleFade)"/>
+  <circle cx="60" cy="400" r="120" fill="url(#tealFade)"/>
+
+  <!-- Right side: API server illustration -->
+  <!-- Main server box -->
+  <rect x="610" y="80" width="200" height="240" rx="16" ry="16" fill="#ffffff" stroke="#e0e0e0" stroke-width="2"/>
+
+  <!-- Server header bar -->
+  <rect x="610" y="80" width="200" height="50" rx="16" ry="16" fill="#ab4be6"/>
+  <rect x="610" y="110" width="200" height="20" fill="#ab4be6"/>
+  <text x="710" y="112" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="3">API</text>
+
+  <!-- Server rack lines -->
+  <rect x="635" y="148" width="150" height="22" rx="6" ry="6" fill="#ab4be6" opacity="0.12"/>
+  <circle cx="652" cy="159" r="5" fill="#00A09D"/>
+  <circle cx="668" cy="159" r="5" fill="#00A09D"/>
+  <rect x="690" y="155" width="70" height="8" rx="4" fill="#ab4be6" opacity="0.15"/>
+  <circle cx="775" cy="159" r="4" fill="#ab4be6" opacity="0.3"/>
+
+  <rect x="635" y="182" width="150" height="22" rx="6" ry="6" fill="#00A09D" opacity="0.12"/>
+  <circle cx="652" cy="193" r="5" fill="#ab4be6"/>
+  <circle cx="668" cy="193" r="5" fill="#ab4be6"/>
+  <rect x="690" y="189" width="70" height="8" rx="4" fill="#00A09D" opacity="0.15"/>
+  <circle cx="775" cy="193" r="4" fill="#00A09D" opacity="0.3"/>
+
+  <rect x="635" y="216" width="150" height="22" rx="6" ry="6" fill="#ab4be6" opacity="0.12"/>
+  <circle cx="652" cy="227" r="5" fill="#00A09D"/>
+  <circle cx="668" cy="227" r="5" fill="#00A09D"/>
+  <rect x="690" y="223" width="70" height="8" rx="4" fill="#ab4be6" opacity="0.15"/>
+  <circle cx="775" cy="227" r="4" fill="#ab4be6" opacity="0.3"/>
+
+  <!-- Connection arrows coming out right side -->
+  <line x1="810" y1="159" x2="845" y2="159" stroke="#00A09D" stroke-width="2.5" stroke-linecap="round"/>
+  <polyline points="838,153 845,159 838,165" fill="none" stroke="#00A09D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <line x1="810" y1="193" x2="845" y2="193" stroke="#ab4be6" stroke-width="2.5" stroke-linecap="round"/>
+  <polyline points="838,187 845,193 838,199" fill="none" stroke="#ab4be6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <line x1="810" y1="227" x2="845" y2="227" stroke="#00A09D" stroke-width="2.5" stroke-linecap="round"/>
+  <polyline points="838,221 845,227 838,233" fill="none" stroke="#00A09D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Webhook label below server -->
+  <rect x="635" y="260" width="150" height="22" rx="6" ry="6" fill="#ab4be6" opacity="0.06"/>
+  <text x="710" y="276" font-family="Arial,Helvetica,sans-serif" font-size="11" font-weight="700" fill="#ab4be6" text-anchor="middle" letter-spacing="1">WEBHOOKS</text>
+
+  <!-- Status dots under server -->
+  <circle cx="670" cy="340" r="12" fill="#00A09D" opacity="0.9"/>
+  <text x="670" y="345" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="900" fill="#fff" text-anchor="middle">G</text>
+  <circle cx="710" cy="340" r="12" fill="#ab4be6" opacity="0.9"/>
+  <text x="710" y="345" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="900" fill="#fff" text-anchor="middle">P</text>
+  <circle cx="750" cy="340" r="12" fill="#1a1a1a" opacity="0.8"/>
+  <text x="750" y="345" font-family="Arial,Helvetica,sans-serif" font-size="12" font-weight="900" fill="#fff" text-anchor="middle">D</text>
+
+  <!-- Small floating dots -->
+  <circle cx="590" cy="110" r="5" fill="#ab4be6" opacity="0.3"/>
+  <circle cx="575" cy="260" r="3" fill="#00A09D" opacity="0.4"/>
+  <circle cx="855" cy="120" r="4" fill="#00A09D" opacity="0.25"/>
+  <circle cx="620" cy="370" r="4" fill="#ab4be6" opacity="0.2"/>
+
+  <!-- Category pill -->
+  <rect x="50" y="50" width="130" height="38" rx="19" ry="19" fill="#ab4be6" opacity="0.1"/>
+  <rect x="50" y="50" width="130" height="38" rx="19" ry="19" fill="none" stroke="#ab4be6" stroke-width="1.5" opacity="0.3"/>
+  <text x="75" y="75" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="800" fill="#ab4be6" letter-spacing="2">TECHNICAL</text>
+
+  <!-- Main title -->
+  <text x="50" y="150" font-family="Arial,Helvetica,sans-serif" font-size="44" font-weight="900" fill="#1a1a1a" letter-spacing="-1.5">Dynamic API</text>
+  <text x="50" y="200" font-family="Arial,Helvetica,sans-serif" font-size="44" font-weight="900" fill="#ab4be6" letter-spacing="-1.5">Endpoints</text>
+
+  <!-- Subtitle -->
+  <text x="50" y="245" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="400" fill="#666666">REST APIs &amp; Webhooks for any</text>
+  <text x="50" y="273" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="400" fill="#666666">Odoo model — no code required</text>
+
+  <!-- Feature tags -->
+  <rect x="50" y="300" width="104" height="34" rx="17" ry="17" fill="#00A09D" opacity="0.12"/>
+  <text x="71" y="322" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#00A09D">REST API</text>
+
+  <rect x="168" y="300" width="116" height="34" rx="17" ry="17" fill="#ab4be6" opacity="0.1"/>
+  <text x="186" y="322" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#ab4be6">Webhooks</text>
+
+  <rect x="298" y="300" width="120" height="34" rx="17" ry="17" fill="none" stroke="#ddd" stroke-width="1.5"/>
+  <text x="318" y="322" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#888">API Keys</text>
+
+  <rect x="432" y="300" width="110" height="34" rx="17" ry="17" fill="#00A09D" opacity="0.08"/>
+  <text x="453" y="322" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" fill="#00A09D">Logging</text>
+
+  <!-- Company branding -->
+  <text x="50" y="385" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="900" fill="#1a1a1a">Developers Pro</text>
+  <text x="50" y="408" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="400" fill="#999">Odoo Solutions &amp; Custom Development</text>
+
+  <!-- Bottom accent bar -->
+  <rect y="435" width="880" height="5" fill="url(#accent)"/>
+</svg>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="ziggu_project_project_form" model="ir.ui.view">
+            <field name="name">ziggu.res.partner.form</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Ziggu" name="ziggu">
+                        <group colspan="4" col="2">
+                            <group string="Id/Address">
+                                <field name="ziggu_id" readonly="True"/>
+                                <field name="ziggu_address_street" readonly="True"/>
+                                <field name="ziggu_address_number" readonly="True"/>
+                                <field name="ziggu_address_zip" readonly="True"/>
+                                <field name="ziggu_address_city" readonly="True"/>
+                                <field name="ziggu_country_id" readonly="True"/>
+                                <field name="ziggu_currency_id" readonly="True"/>
+                            </group>
+                            <group string="Dates">
+                                <field name="ziggu_start_date" readonly="True"/>
+                                <field name="ziggu_delivery_date_actual" readonly="True"/>
+                                <field name="ziggu_delivery_date_contractual" readonly="True"/>
+                                <field name="ziggu_timezone" readonly="True"/>
+                                <field name="ziggu_created_at" readonly="True"/>
+                                <field name="ziggu_updated_at" readonly="True"/>
+                            </group>
+                        </group>
+                        <group colspan="4" col="2">
+                            <group string="Project Information">
+                                <field name="ziggu_is_template" readonly="True"/>
+                                <field name="ziggu_measurement" readonly="True"/>
+                                <field name="ziggu_quotity_total" readonly="True"/>
+                                <field name="ziggu_skip_building" readonly="True"/>
+                                <field name="ziggu_skip_lot" readonly="True"/>
+                                <field name="ziggu_skip_phase" readonly="True"/>
+                                <field name="ziggu_units_active_count" readonly="True"/>
+                                <field name="ziggu_units_count_max" readonly="True"/>
+                                <field name="ziggu_vat_percentage" readonly="True"/>
+                                <field name="ziggu_status" readonly="True"/>
+                            </group>
+                            <group string="Url's">
+                                <field name="ziggu_picture_login_url" readonly="True" widget="url"/>
+                                <field name="ziggu_website_url" readonly="True" widget="url"/>
+                            </group>
+                        </group>
+                        <field name="ziggu_description" readonly="True"/>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+    </data>
+</odoo>

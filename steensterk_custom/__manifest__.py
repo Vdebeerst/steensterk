@@ -13,6 +13,7 @@
     'data': [
         'security/ir.model.access.csv',
         "views/project_task_view.xml",
+        "views/sale_order_view.xml",
     ],
     'installable': True,
     'auto_install': True,

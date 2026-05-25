@@ -40,4 +40,47 @@ class project_project(models.Model):
     ziggu_vat_percentage = fields.Float('VAT %')
     ziggu_website_url = fields.Char('Website URL')
 
+    ziggu_documents_folder_id = fields.Many2one(
+        'documents.document',
+        string='Ziggu Documents Folder',
+        copy=False,
+    )
+
+    def _get_or_create_ziggu_documents_folder(self):
+        self.ensure_one()
+        Document = self.env['documents.document'].sudo()
+
+        root_domain = [('name', '=', 'Ziggu')]
+        if 'type' in Document._fields:
+            root_domain.append(('type', '=', 'folder'))
+        if 'folder_id' in Document._fields:
+            root_domain.append(('folder_id', '=', False))
+        root = Document.search(root_domain, limit=1)
+        if not root:
+            vals = {'name': 'Ziggu'}
+            if 'type' in Document._fields:
+                vals['type'] = 'folder'
+            root = Document.create(vals)
+
+        if self.ziggu_documents_folder_id:
+            return self.ziggu_documents_folder_id
+
+        folder_name = self.name or self.ziggu_id or 'Project'
+        folder_domain = [('name', '=', folder_name)]
+        if 'type' in Document._fields:
+            folder_domain.append(('type', '=', 'folder'))
+        if 'folder_id' in Document._fields:
+            folder_domain.append(('folder_id', '=', root.id))
+        folder = Document.search(folder_domain, limit=1)
+        if not folder:
+            vals = {'name': folder_name}
+            if 'type' in Document._fields:
+                vals['type'] = 'folder'
+            if 'folder_id' in Document._fields:
+                vals['folder_id'] = root.id
+            folder = Document.create(vals)
+
+        self.sudo().write({'ziggu_documents_folder_id': folder.id})
+        return folder
+
     

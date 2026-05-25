@@ -101,6 +101,31 @@ class ZigguProjectsSync(models.AbstractModel):
             "ziggu_currency_id": currency_id,
         }
 
+
+    def _get_project_template(self):
+        ICP = self.env["ir.config_parameter"].sudo()
+        template_id = ICP.get_param("ziggu.project_template_id")
+        template = self.env["project.project"].sudo()
+
+        if template_id:
+            try:
+                template = template.browse(int(template_id)).exists()
+            except (TypeError, ValueError):
+                template = self.env["project.project"].sudo()
+
+        if not template:
+            template = self.env["project.project"].sudo().search([
+                ("name", "=", "Project Template Steensterk")
+            ], limit=1)
+
+        return template
+
+    def _create_project_from_template(self, vals):
+        template = self._get_project_template()
+        if template:
+            return template.copy(default=vals)
+        return self.env["project.project"].sudo().create(vals)
+
     @api.model
     def sync_projects_from_ziggu(self):
         Project = self.env["project.project"].sudo()
@@ -123,7 +148,7 @@ class ZigguProjectsSync(models.AbstractModel):
                     project_rec.write(vals)
                     updated += 1
                 else:
-                    Project.create(vals)
+                    self._create_project_from_template(vals)
                     created += 1
 
         _logger.info(

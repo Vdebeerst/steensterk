@@ -8,6 +8,13 @@ class ResConfigSettings(models.TransientModel):
     ziggu_client_id = fields.Char(string="Ziggu Client ID", config_parameter="ziggu.client_id") # 8027
     ziggu_access_token = fields.Char(string="Ziggu Access Token", config_parameter="ziggu.access_token") # odoo-steensterk db9e7d7e-5cea-4500-9233-38a82f2621f0
 
+    ziggu_project_template_id = fields.Many2one(
+        "project.project",
+        string="Project Template",
+        config_parameter="ziggu.project_template_id",
+        help="Template project used when creating new Odoo projects from Ziggu.",
+    )
+
     ziggu_get_attachment_categories = fields.Boolean(string="API Attachment Categories", config_parameter="ziggu.get_attachment_categories")
     ziggu_get_buildings = fields.Boolean(string="API Buildings", config_parameter="ziggu.get_buildings")
     ziggu_get_companies = fields.Boolean(string="API Companies", config_parameter="ziggu.get_companies")

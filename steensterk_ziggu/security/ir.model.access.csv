@@ -1,2 +1,13 @@
 id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
-
+access_ziggu_attachment_category_user,ziggu.attachment.category user,model_ziggu_attachment_category,base.group_user,1,1,1,1
+access_ziggu_lot_user,ziggu.lot user,model_ziggu_lot,base.group_user,1,1,1,1
+access_ziggu_building_user,ziggu.building user,model_ziggu_building,base.group_user,1,1,1,1
+access_ziggu_decision_type_category_user,ziggu.decision.type.category user,model_ziggu_decision_type_category,base.group_user,1,1,1,1
+access_ziggu_decision_type_user,ziggu.decision.type user,model_ziggu_decision_type,base.group_user,1,1,1,1
+access_ziggu_decision_user,ziggu.decision user,model_ziggu_decision,base.group_user,1,1,1,1
+access_ziggu_unit_user,ziggu.unit user,model_ziggu_unit,base.group_user,1,1,1,1
+access_ziggu_unit_customer_user,ziggu.unit.customer user,model_ziggu_unit_customer,base.group_user,1,1,1,1
+access_ziggu_fraction_user,ziggu.fraction user,model_ziggu_fraction,base.group_user,1,1,1,1
+access_ziggu_installment_user,ziggu.installment user,model_ziggu_installment,base.group_user,1,1,1,1
+access_ziggu_proposal_user,ziggu.proposal user,model_ziggu_proposal,base.group_user,1,1,1,1
+access_ziggu_space_user,ziggu.space user,model_ziggu_space,base.group_user,1,1,1,1

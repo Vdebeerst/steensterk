@@ -1,0 +1,939 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<odoo>
+    <data>
+        <menuitem id="menu_ziggu_root" name="Ziggu" sequence="80" web_icon="steensterk_ziggu,static/description/icon.png"/>
+        <menuitem id="menu_ziggu_project_data" name="Project Data" parent="menu_ziggu_root" sequence="10"/>
+        <menuitem id="menu_ziggu_sales_data" name="Sales/Customers" parent="menu_ziggu_root" sequence="20"/>
+        <menuitem id="menu_ziggu_issues_data" name="Issues/Tickets" parent="menu_ziggu_root" sequence="30"/>
+        <menuitem id="menu_ziggu_documents_data" name="Documents/Messages" parent="menu_ziggu_root" sequence="40"/>
+        <menuitem id="menu_ziggu_config_data" name="Configuration" parent="menu_ziggu_root" sequence="90"/>
+
+        <record id="view_ziggu_attachment_category_list" model="ir.ui.view">
+            <field name="name">ziggu.attachment.category.list</field>
+            <field name="model">ziggu.attachment.category</field>
+            <field name="arch" type="xml">
+                <list string="Attachment Category">
+                    <field name="name"/>
+                    <field name="ziggu_id"/>
+                    <field name="ziggu_type"/>
+                    <field name="ziggu_created_at"/>
+                    <field name="ziggu_updated_at"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_ziggu_attachment_category_form" model="ir.ui.view">
+            <field name="name">ziggu.attachment.category.form</field>
+            <field name="model">ziggu.attachment.category</field>
+            <field name="arch" type="xml">
+                <form string="Attachment Category">
+                    <sheet>
+                        <group colspan="4" col="2">
+                            <group string="Basis">
+                                <field name="name"/>
+                                <field name="ziggu_id"/>
+                                <field name="ziggu_type"/>
+                            </group>
+                            <group string="Ziggu">
+                                <field name="ziggu_active"/>
+                                <field name="ziggu_sequence"/>
+                                <field name="ziggu_created_at"/>
+                                <field name="ziggu_updated_at"/>
+                            </group>
+                        </group>
+                        <group string="ziggu_description"><field name="ziggu_description"/></group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_ziggu_attachment_category" model="ir.actions.act_window">
+            <field name="name">Attachment Category</field>
+            <field name="res_model">ziggu.attachment.category</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <menuitem id="menu_ziggu_attachment_category" name="Attachment Category" parent="menu_ziggu_config_data" action="action_ziggu_attachment_category" sequence="10"/>
+
+        <record id="view_ziggu_lot_list" model="ir.ui.view">
+            <field name="name">ziggu.lot.list</field>
+            <field name="model">ziggu.lot</field>
+            <field name="arch" type="xml">
+                <list string="Lot">
+                    <field name="name"/>
+                    <field name="ziggu_id"/>
+                    <field name="ziggu_type"/>
+                    <field name="ziggu_project_id"/>
+                    <field name="ziggu_created_at"/>
+                    <field name="ziggu_updated_at"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_ziggu_lot_form" model="ir.ui.view">
+            <field name="name">ziggu.lot.form</field>
+            <field name="model">ziggu.lot</field>
+            <field name="arch" type="xml">
+                <form string="Lot">
+                    <sheet>
+                        <group colspan="4" col="2">
+                            <group string="Basis">
+                                <field name="name"/>
+                                <field name="ziggu_id"/>
+                                <field name="ziggu_type"/>
+                                <field name="ziggu_project_id"/>
+                                <field name="ziggu_phase_id"/>
+                                <field name="ziggu_start_date"/>
+                                <field name="ziggu_end_date"/>
+                                <field name="ziggu_land_register"/>
+                            </group>
+                            <group string="Ziggu">
+                                <field name="ziggu_surface"/>
+                                <field name="ziggu_units_count"/>
+                                <field name="ziggu_units_active_count"/>
+                                <field name="ziggu_created_at"/>
+                                <field name="ziggu_updated_at"/>
+                                <field name="active"/>
+                                <field name="sequence"/>
+                            </group>
+                        </group>
+                        <group string="ziggu_description"><field name="ziggu_description"/></group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_ziggu_lot" model="ir.actions.act_window">
+            <field name="name">Lot</field>
+            <field name="res_model">ziggu.lot</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <menuitem id="menu_ziggu_lot" name="Lot" parent="menu_ziggu_project_data" action="action_ziggu_lot" sequence="20"/>
+
+        <record id="view_ziggu_building_list" model="ir.ui.view">
+            <field name="name">ziggu.building.list</field>
+            <field name="model">ziggu.building</field>
+            <field name="arch" type="xml">
+                <list string="Building">
+                    <field name="name"/>
+                    <field name="ziggu_id"/>
+                    <field name="ziggu_type"/>
+                    <field name="ziggu_project_id"/>
+                    <field name="ziggu_created_at"/>
+                    <field name="ziggu_updated_at"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_ziggu_building_form" model="ir.ui.view">
+            <field name="name">ziggu.building.form</field>
+            <field name="model">ziggu.building</field>
+            <field name="arch" type="xml">
+                <form string="Building">
+                    <sheet>
+                        <group colspan="4" col="2">
+                            <group string="Basis">
+                                <field name="name"/>
+                                <field name="ziggu_id"/>
+                                <field name="ziggu_type"/>
+                                <field name="ziggu_project_id"/>
+                                <field name="ziggu_phase_id"/>
+                                <field name="ziggu_lot_id"/>
+                                <field name="ziggu_start_date"/>
+                                <field name="ziggu_end_date"/>
+                            </group>
+                            <group string="Ziggu">
+                                <field name="ziggu_elevators"/>
+                                <field name="ziggu_floors"/>
+                                <field name="ziggu_surface_shared"/>
+                                <field name="ziggu_units_count"/>
+                                <field name="ziggu_units_active_count"/>
+                                <field name="ziggu_created_at"/>
+                                <field name="ziggu_updated_at"/>
+                                <field name="active"/>
+                                <field name="sequence"/>
+                            </group>
+                        </group>
+                        <group string="ziggu_internal_note_html"><field name="ziggu_internal_note_html"/></group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_ziggu_building" model="ir.actions.act_window">
+            <field name="name">Building</field>
+            <field name="res_model">ziggu.building</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <menuitem id="menu_ziggu_building" name="Building" parent="menu_ziggu_project_data" action="action_ziggu_building" sequence="30"/>
+
+        <record id="view_ziggu_decision_type_category_list" model="ir.ui.view">
+            <field name="name">ziggu.decision.type.category.list</field>
+            <field name="model">ziggu.decision.type.category</field>
+            <field name="arch" type="xml">
+                <list string="Decision Type Category">
+                    <field name="name"/>
+                    <field name="ziggu_id"/>
+                    <field name="ziggu_type"/>
+                    <field name="ziggu_created_at"/>
+                    <field name="ziggu_updated_at"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_ziggu_decision_type_category_form" model="ir.ui.view">
+            <field name="name">ziggu.decision.type.category.form</field>
+            <field name="model">ziggu.decision.type.category</field>
+            <field name="arch" type="xml">
+                <form string="Decision Type Category">
+                    <sheet>
+                        <group colspan="4" col="2">
+                            <group string="Basis">
+                                <field name="name"/>
+                                <field name="ziggu_id"/>
+                                <field name="ziggu_type"/>
+                            </group>
+                            <group string="Ziggu">
+                                <field name="ziggu_created_at"/>
+                                <field name="ziggu_updated_at"/>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_ziggu_decision_type_category" model="ir.actions.act_window">
+            <field name="name">Decision Type Category</field>
+            <field name="res_model">ziggu.decision.type.category</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <menuitem id="menu_ziggu_decision_type_category" name="Decision Type Category" parent="menu_ziggu_config_data" action="action_ziggu_decision_type_category" sequence="40"/>
+
+        <record id="view_ziggu_decision_type_list" model="ir.ui.view">
+            <field name="name">ziggu.decision.type.list</field>
+            <field name="model">ziggu.decision.type</field>
+            <field name="arch" type="xml">
+                <list string="Decision Type">
+                    <field name="name"/>
+                    <field name="ziggu_id"/>
+                    <field name="ziggu_type"/>
+                    <field name="ziggu_project_id"/>
+                    <field name="ziggu_created_at"/>
+                    <field name="ziggu_updated_at"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_ziggu_decision_type_form" model="ir.ui.view">
+            <field name="name">ziggu.decision.type.form</field>
+            <field name="model">ziggu.decision.type</field>
+            <field name="arch" type="xml">
+                <form string="Decision Type">
+                    <sheet>
+                        <group colspan="4" col="2">
+                            <group string="Basis">
+                                <field name="name"/>
+                                <field name="ziggu_id"/>
+                                <field name="ziggu_type"/>
+                                <field name="ziggu_project_id"/>
+                                <field name="ziggu_decision_type_category_id"/>
+                            </group>
+                            <group string="Ziggu">
+                                <field name="ziggu_decisions_count"/>
+                                <field name="ziggu_created_at"/>
+                                <field name="ziggu_updated_at"/>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                        <group string="ziggu_description_html"><field name="ziggu_description_html"/></group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_ziggu_decision_type" model="ir.actions.act_window">
+            <field name="name">Decision Type</field>
+            <field name="res_model">ziggu.decision.type</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <menuitem id="menu_ziggu_decision_type" name="Decision Type" parent="menu_ziggu_config_data" action="action_ziggu_decision_type" sequence="50"/>
+
+        <record id="view_ziggu_decision_list" model="ir.ui.view">
+            <field name="name">ziggu.decision.list</field>
+            <field name="model">ziggu.decision</field>
+            <field name="arch" type="xml">
+                <list string="Decision">
+                    <field name="name"/>
+                    <field name="ziggu_id"/>
+                    <field name="ziggu_type"/>
+                    <field name="ziggu_project_id"/>
+                    <field name="ziggu_unit_id"/>
+                    <field name="ziggu_created_at"/>
+                    <field name="ziggu_updated_at"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_ziggu_decision_form" model="ir.ui.view">
+            <field name="name">ziggu.decision.form</field>
+            <field name="model">ziggu.decision</field>
+            <field name="arch" type="xml">
+                <form string="Decision">
+                    <sheet>
+                        <group colspan="4" col="2">
+                            <group string="Basis">
+                                <field name="name"/>
+                                <field name="ziggu_id"/>
+                                <field name="ziggu_type"/>
+                                <field name="ziggu_project_id"/>
+                                <field name="ziggu_decision_type_id"/>
+                                <field name="ziggu_employee_id"/>
+                                <field name="ziggu_unit_id"/>
+                                <field name="ziggu_approved_at"/>
+                                <field name="ziggu_due_date"/>
+                                <field name="ziggu_published_customer"/>
+                                <field name="ziggu_published_partners"/>
+                            </group>
+                            <group string="Ziggu">
+                                <field name="ziggu_price_approved"/>
+                                <field name="ziggu_price_approved_net"/>
+                                <field name="ziggu_price_budget"/>
+                                <field name="ziggu_price_budget_extra"/>
+                                <field name="ziggu_price_surcharge"/>
+                                <field name="ziggu_margin_price_budget"/>
+                                <field name="ziggu_margin_price_surcharge"/>
+                                <field name="ziggu_margin_total"/>
+                                <field name="ziggu_created_at"/>
+                                <field name="ziggu_updated_at"/>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                        <group string="ziggu_note_employee"><field name="ziggu_note_employee"/></group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_ziggu_decision" model="ir.actions.act_window">
+            <field name="name">Decision</field>
+            <field name="res_model">ziggu.decision</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <menuitem id="menu_ziggu_decision" name="Decision" parent="menu_ziggu_sales_data" action="action_ziggu_decision" sequence="60"/>
+
+        <record id="view_ziggu_unit_list" model="ir.ui.view">
+            <field name="name">ziggu.unit.list</field>
+            <field name="model">ziggu.unit</field>
+            <field name="arch" type="xml">
+                <list string="Unit">
+                    <field name="name"/>
+                    <field name="ziggu_id"/>
+                    <field name="ziggu_type"/>
+                    <field name="ziggu_project_id"/>
+                    <field name="ziggu_created_at"/>
+                    <field name="ziggu_updated_at"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_ziggu_unit_form" model="ir.ui.view">
+            <field name="name">ziggu.unit.form</field>
+            <field name="model">ziggu.unit</field>
+            <field name="arch" type="xml">
+                <form string="Unit">
+                    <sheet>
+                        <group colspan="4" col="2">
+                            <group string="Basis">
+                                <field name="name"/>
+                                <field name="ziggu_id"/>
+                                <field name="ziggu_type"/>
+                                <field name="ziggu_project_id"/>
+                                <field name="ziggu_phase_id"/>
+                                <field name="ziggu_lot_id"/>
+                                <field name="ziggu_building_id"/>
+                                <field name="ziggu_status"/>
+                                <field name="ziggu_number"/>
+                                <field name="ziggu_reference"/>
+                            </group>
+                            <group string="Ziggu">
+                                <field name="ziggu_surface"/>
+                                <field name="ziggu_price"/>
+                                <field name="ziggu_price_net"/>
+                                <field name="ziggu_vat_percentage"/>
+                                <field name="ziggu_delivery_date_actual"/>
+                                <field name="ziggu_delivery_date_contractual"/>
+                                <field name="ziggu_created_at"/>
+                                <field name="ziggu_updated_at"/>
+                                <field name="active"/>
+                                <field name="sequence"/>
+                            </group>
+                        </group>
+                        <group string="ziggu_description"><field name="ziggu_description"/></group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_ziggu_unit" model="ir.actions.act_window">
+            <field name="name">Unit</field>
+            <field name="res_model">ziggu.unit</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <menuitem id="menu_ziggu_unit" name="Unit" parent="menu_ziggu_project_data" action="action_ziggu_unit" sequence="70"/>
+
+        <record id="view_ziggu_unit_customer_list" model="ir.ui.view">
+            <field name="name">ziggu.unit.customer.list</field>
+            <field name="model">ziggu.unit.customer</field>
+            <field name="arch" type="xml">
+                <list string="Unit Customer">
+                    <field name="name"/>
+                    <field name="ziggu_id"/>
+                    <field name="ziggu_type"/>
+                    <field name="ziggu_project_id"/>
+                    <field name="ziggu_unit_id"/>
+                    <field name="ziggu_customer_id"/>
+                    <field name="ziggu_created_at"/>
+                    <field name="ziggu_updated_at"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_ziggu_unit_customer_form" model="ir.ui.view">
+            <field name="name">ziggu.unit.customer.form</field>
+            <field name="model">ziggu.unit.customer</field>
+            <field name="arch" type="xml">
+                <form string="Unit Customer">
+                    <sheet>
+                        <group colspan="4" col="2">
+                            <group string="Basis">
+                                <field name="name"/>
+                                <field name="ziggu_id"/>
+                                <field name="ziggu_type"/>
+                                <field name="ziggu_project_id"/>
+                                <field name="ziggu_unit_id"/>
+                                <field name="ziggu_customer_id"/>
+                            </group>
+                            <group string="Ziggu">
+                                <field name="ziggu_role"/>
+                                <field name="ziggu_start_date"/>
+                                <field name="ziggu_end_date"/>
+                                <field name="ziggu_created_at"/>
+                                <field name="ziggu_updated_at"/>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_ziggu_unit_customer" model="ir.actions.act_window">
+            <field name="name">Unit Customer</field>
+            <field name="res_model">ziggu.unit.customer</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <menuitem id="menu_ziggu_unit_customer" name="Unit Customer" parent="menu_ziggu_sales_data" action="action_ziggu_unit_customer" sequence="80"/>
+
+        <record id="view_ziggu_fraction_list" model="ir.ui.view">
+            <field name="name">ziggu.fraction.list</field>
+            <field name="model">ziggu.fraction</field>
+            <field name="arch" type="xml">
+                <list string="Fraction">
+                    <field name="name"/>
+                    <field name="ziggu_id"/>
+                    <field name="ziggu_type"/>
+                    <field name="ziggu_project_id"/>
+                    <field name="ziggu_unit_id"/>
+                    <field name="ziggu_created_at"/>
+                    <field name="ziggu_updated_at"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_ziggu_fraction_form" model="ir.ui.view">
+            <field name="name">ziggu.fraction.form</field>
+            <field name="model">ziggu.fraction</field>
+            <field name="arch" type="xml">
+                <form string="Fraction">
+                    <sheet>
+                        <group colspan="4" col="2">
+                            <group string="Basis">
+                                <field name="name"/>
+                                <field name="ziggu_id"/>
+                                <field name="ziggu_type"/>
+                                <field name="ziggu_project_id"/>
+                                <field name="ziggu_unit_id"/>
+                                <field name="ziggu_quotity"/>
+                            </group>
+                            <group string="Ziggu">
+                                <field name="ziggu_value"/>
+                                <field name="ziggu_created_at"/>
+                                <field name="ziggu_updated_at"/>
+                                <field name="active"/>
+                                <field name="sequence"/>
+                            </group>
+                        </group>
+                        <group string="ziggu_description"><field name="ziggu_description"/></group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_ziggu_fraction" model="ir.actions.act_window">
+            <field name="name">Fraction</field>
+            <field name="res_model">ziggu.fraction</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <menuitem id="menu_ziggu_fraction" name="Fraction" parent="menu_ziggu_project_data" action="action_ziggu_fraction" sequence="100"/>
+
+        <record id="view_ziggu_installment_list" model="ir.ui.view">
+            <field name="name">ziggu.installment.list</field>
+            <field name="model">ziggu.installment</field>
+            <field name="arch" type="xml">
+                <list string="Installment">
+                    <field name="name"/>
+                    <field name="ziggu_id"/>
+                    <field name="ziggu_type"/>
+                    <field name="ziggu_project_id"/>
+                    <field name="ziggu_unit_id"/>
+                    <field name="ziggu_customer_id"/>
+                    <field name="ziggu_created_at"/>
+                    <field name="ziggu_updated_at"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_ziggu_installment_form" model="ir.ui.view">
+            <field name="name">ziggu.installment.form</field>
+            <field name="model">ziggu.installment</field>
+            <field name="arch" type="xml">
+                <form string="Installment">
+                    <sheet>
+                        <group colspan="4" col="2">
+                            <group string="Basis">
+                                <field name="name"/>
+                                <field name="ziggu_id"/>
+                                <field name="ziggu_type"/>
+                                <field name="ziggu_project_id"/>
+                                <field name="ziggu_unit_id"/>
+                                <field name="ziggu_customer_id"/>
+                                <field name="ziggu_due_date"/>
+                                <field name="ziggu_invoice_date"/>
+                            </group>
+                            <group string="Ziggu">
+                                <field name="ziggu_percentage"/>
+                                <field name="ziggu_amount"/>
+                                <field name="ziggu_amount_net"/>
+                                <field name="ziggu_vat_amount"/>
+                                <field name="ziggu_status"/>
+                                <field name="ziggu_created_at"/>
+                                <field name="ziggu_updated_at"/>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                        <group string="ziggu_description"><field name="ziggu_description"/></group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_ziggu_installment" model="ir.actions.act_window">
+            <field name="name">Installment</field>
+            <field name="res_model">ziggu.installment</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <menuitem id="menu_ziggu_installment" name="Installment" parent="menu_ziggu_sales_data" action="action_ziggu_installment" sequence="110"/>
+
+        <record id="view_ziggu_issue_category_list" model="ir.ui.view">
+            <field name="name">ziggu.issue.category.list</field>
+            <field name="model">ziggu.issue.category</field>
+            <field name="arch" type="xml">
+                <list string="Issue Category">
+                    <field name="name"/>
+                    <field name="ziggu_id"/>
+                    <field name="ziggu_type"/>
+                    <field name="ziggu_project_id"/>
+                    <field name="ziggu_created_at"/>
+                    <field name="ziggu_updated_at"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_ziggu_issue_category_form" model="ir.ui.view">
+            <field name="name">ziggu.issue.category.form</field>
+            <field name="model">ziggu.issue.category</field>
+            <field name="arch" type="xml">
+                <form string="Issue Category">
+                    <sheet>
+                        <group colspan="4" col="2">
+                            <group string="Basis">
+                                <field name="name"/>
+                                <field name="ziggu_id"/>
+                                <field name="ziggu_type"/>
+                                <field name="ziggu_project_id"/>
+                            </group>
+                            <group string="Ziggu">
+                                <field name="ziggu_created_at"/>
+                                <field name="ziggu_updated_at"/>
+                                <field name="active"/>
+                                <field name="sequence"/>
+                            </group>
+                        </group>
+                        <group string="ziggu_description"><field name="ziggu_description"/></group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_ziggu_issue_category" model="ir.actions.act_window">
+            <field name="name">Issue Category</field>
+            <field name="res_model">ziggu.issue.category</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <menuitem id="menu_ziggu_issue_category" name="Issue Category" parent="menu_ziggu_config_data" action="action_ziggu_issue_category" sequence="120"/>
+
+        <record id="view_ziggu_issue_list_type_list" model="ir.ui.view">
+            <field name="name">ziggu.issue.list.type.list</field>
+            <field name="model">ziggu.issue.list.type</field>
+            <field name="arch" type="xml">
+                <list string="Issue List Type">
+                    <field name="name"/>
+                    <field name="ziggu_id"/>
+                    <field name="ziggu_type"/>
+                    <field name="ziggu_created_at"/>
+                    <field name="ziggu_updated_at"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_ziggu_issue_list_type_form" model="ir.ui.view">
+            <field name="name">ziggu.issue.list.type.form</field>
+            <field name="model">ziggu.issue.list.type</field>
+            <field name="arch" type="xml">
+                <form string="Issue List Type">
+                    <sheet>
+                        <group colspan="4" col="2">
+                            <group string="Basis">
+                                <field name="name"/>
+                                <field name="ziggu_id"/>
+                                <field name="ziggu_type"/>
+                            </group>
+                            <group string="Ziggu">
+                                <field name="ziggu_created_at"/>
+                                <field name="ziggu_updated_at"/>
+                                <field name="active"/>
+                                <field name="sequence"/>
+                            </group>
+                        </group>
+                        <group string="ziggu_description"><field name="ziggu_description"/></group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_ziggu_issue_list_type" model="ir.actions.act_window">
+            <field name="name">Issue List Type</field>
+            <field name="res_model">ziggu.issue.list.type</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <menuitem id="menu_ziggu_issue_list_type" name="Issue List Type" parent="menu_ziggu_config_data" action="action_ziggu_issue_list_type" sequence="130"/>
+
+        <record id="view_ziggu_issue_list_list" model="ir.ui.view">
+            <field name="name">ziggu.issue.list.list</field>
+            <field name="model">ziggu.issue.list</field>
+            <field name="arch" type="xml">
+                <list string="Issue List">
+                    <field name="name"/>
+                    <field name="ziggu_id"/>
+                    <field name="ziggu_type"/>
+                    <field name="ziggu_project_id"/>
+                    <field name="ziggu_unit_id"/>
+                    <field name="ziggu_created_at"/>
+                    <field name="ziggu_updated_at"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_ziggu_issue_list_form" model="ir.ui.view">
+            <field name="name">ziggu.issue.list.form</field>
+            <field name="model">ziggu.issue.list</field>
+            <field name="arch" type="xml">
+                <form string="Issue List">
+                    <sheet>
+                        <group colspan="4" col="2">
+                            <group string="Basis">
+                                <field name="name"/>
+                                <field name="ziggu_id"/>
+                                <field name="ziggu_type"/>
+                                <field name="ziggu_project_id"/>
+                                <field name="ziggu_unit_id"/>
+                            </group>
+                            <group string="Ziggu">
+                                <field name="ziggu_issue_list_type_id"/>
+                                <field name="ziggu_created_at"/>
+                                <field name="ziggu_updated_at"/>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                        <group string="ziggu_description"><field name="ziggu_description"/></group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_ziggu_issue_list" model="ir.actions.act_window">
+            <field name="name">Issue List</field>
+            <field name="res_model">ziggu.issue.list</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <menuitem id="menu_ziggu_issue_list" name="Issue List" parent="menu_ziggu_issues_data" action="action_ziggu_issue_list" sequence="140"/>
+
+        <record id="view_ziggu_issue_status_list" model="ir.ui.view">
+            <field name="name">ziggu.issue.status.list</field>
+            <field name="model">ziggu.issue.status</field>
+            <field name="arch" type="xml">
+                <list string="Issue Status">
+                    <field name="name"/>
+                    <field name="ziggu_id"/>
+                    <field name="ziggu_type"/>
+                    <field name="ziggu_created_at"/>
+                    <field name="ziggu_updated_at"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_ziggu_issue_status_form" model="ir.ui.view">
+            <field name="name">ziggu.issue.status.form</field>
+            <field name="model">ziggu.issue.status</field>
+            <field name="arch" type="xml">
+                <form string="Issue Status">
+                    <sheet>
+                        <group colspan="4" col="2">
+                            <group string="Basis">
+                                <field name="name"/>
+                                <field name="ziggu_id"/>
+                                <field name="ziggu_type"/>
+                                <field name="ziggu_color"/>
+                            </group>
+                            <group string="Ziggu">
+                                <field name="ziggu_created_at"/>
+                                <field name="ziggu_updated_at"/>
+                                <field name="active"/>
+                                <field name="sequence"/>
+                            </group>
+                        </group>
+                        <group string="ziggu_description"><field name="ziggu_description"/></group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_ziggu_issue_status" model="ir.actions.act_window">
+            <field name="name">Issue Status</field>
+            <field name="res_model">ziggu.issue.status</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <menuitem id="menu_ziggu_issue_status" name="Issue Status" parent="menu_ziggu_config_data" action="action_ziggu_issue_status" sequence="150"/>
+
+        <record id="view_ziggu_proposal_list" model="ir.ui.view">
+            <field name="name">ziggu.proposal.list</field>
+            <field name="model">ziggu.proposal</field>
+            <field name="arch" type="xml">
+                <list string="Proposal">
+                    <field name="name"/>
+                    <field name="ziggu_id"/>
+                    <field name="ziggu_type"/>
+                    <field name="ziggu_project_id"/>
+                    <field name="ziggu_unit_id"/>
+                    <field name="ziggu_customer_id"/>
+                    <field name="ziggu_created_at"/>
+                    <field name="ziggu_updated_at"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_ziggu_proposal_form" model="ir.ui.view">
+            <field name="name">ziggu.proposal.form</field>
+            <field name="model">ziggu.proposal</field>
+            <field name="arch" type="xml">
+                <form string="Proposal">
+                    <sheet>
+                        <group colspan="4" col="2">
+                            <group string="Basis">
+                                <field name="name"/>
+                                <field name="ziggu_id"/>
+                                <field name="ziggu_type"/>
+                                <field name="ziggu_project_id"/>
+                                <field name="ziggu_unit_id"/>
+                                <field name="ziggu_customer_id"/>
+                                <field name="ziggu_status"/>
+                            </group>
+                            <group string="Ziggu">
+                                <field name="ziggu_price"/>
+                                <field name="ziggu_price_net"/>
+                                <field name="ziggu_margin"/>
+                                <field name="ziggu_approved_at"/>
+                                <field name="ziggu_created_at"/>
+                                <field name="ziggu_updated_at"/>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                        <group string="ziggu_description"><field name="ziggu_description"/></group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_ziggu_proposal" model="ir.actions.act_window">
+            <field name="name">Proposal</field>
+            <field name="res_model">ziggu.proposal</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <menuitem id="menu_ziggu_proposal" name="Proposal" parent="menu_ziggu_sales_data" action="action_ziggu_proposal" sequence="180"/>
+
+        <record id="view_ziggu_space_list" model="ir.ui.view">
+            <field name="name">ziggu.space.list</field>
+            <field name="model">ziggu.space</field>
+            <field name="arch" type="xml">
+                <list string="Space">
+                    <field name="name"/>
+                    <field name="ziggu_id"/>
+                    <field name="ziggu_type"/>
+                    <field name="ziggu_project_id"/>
+                    <field name="ziggu_unit_id"/>
+                    <field name="ziggu_created_at"/>
+                    <field name="ziggu_updated_at"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_ziggu_space_form" model="ir.ui.view">
+            <field name="name">ziggu.space.form</field>
+            <field name="model">ziggu.space</field>
+            <field name="arch" type="xml">
+                <form string="Space">
+                    <sheet>
+                        <group colspan="4" col="2">
+                            <group string="Basis">
+                                <field name="name"/>
+                                <field name="ziggu_id"/>
+                                <field name="ziggu_type"/>
+                                <field name="ziggu_project_id"/>
+                                <field name="ziggu_building_id"/>
+                                <field name="ziggu_lot_id"/>
+                            </group>
+                            <group string="Ziggu">
+                                <field name="ziggu_unit_id"/>
+                                <field name="ziggu_surface"/>
+                                <field name="ziggu_created_at"/>
+                                <field name="ziggu_updated_at"/>
+                                <field name="active"/>
+                                <field name="sequence"/>
+                            </group>
+                        </group>
+                        <group string="ziggu_description"><field name="ziggu_description"/></group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_ziggu_space" model="ir.actions.act_window">
+            <field name="name">Space</field>
+            <field name="res_model">ziggu.space</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <menuitem id="menu_ziggu_space" name="Space" parent="menu_ziggu_project_data" action="action_ziggu_space" sequence="190"/>
+
+        <record id="view_ziggu_ticket_category_list" model="ir.ui.view">
+            <field name="name">ziggu.ticket.category.list</field>
+            <field name="model">ziggu.ticket.category</field>
+            <field name="arch" type="xml">
+                <list string="Ticket Category">
+                    <field name="name"/>
+                    <field name="ziggu_id"/>
+                    <field name="ziggu_type"/>
+                    <field name="ziggu_project_id"/>
+                    <field name="ziggu_created_at"/>
+                    <field name="ziggu_updated_at"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_ziggu_ticket_category_form" model="ir.ui.view">
+            <field name="name">ziggu.ticket.category.form</field>
+            <field name="model">ziggu.ticket.category</field>
+            <field name="arch" type="xml">
+                <form string="Ticket Category">
+                    <sheet>
+                        <group colspan="4" col="2">
+                            <group string="Basis">
+                                <field name="name"/>
+                                <field name="ziggu_id"/>
+                                <field name="ziggu_type"/>
+                                <field name="ziggu_project_id"/>
+                            </group>
+                            <group string="Ziggu">
+                                <field name="ziggu_created_at"/>
+                                <field name="ziggu_updated_at"/>
+                                <field name="active"/>
+                                <field name="sequence"/>
+                            </group>
+                        </group>
+                        <group string="ziggu_description"><field name="ziggu_description"/></group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_ziggu_ticket_category" model="ir.actions.act_window">
+            <field name="name">Ticket Category</field>
+            <field name="res_model">ziggu.ticket.category</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <menuitem id="menu_ziggu_ticket_category" name="Ticket Category" parent="menu_ziggu_config_data" action="action_ziggu_ticket_category" sequence="200"/>
+
+
+        <!-- Direct links to Odoo records imported from Ziggu -->
+        <record id="action_ziggu_project_project" model="ir.actions.act_window">
+            <field name="name">Ziggu Projects</field>
+            <field name="res_model">project.project</field>
+            <field name="view_mode">list,form</field>
+            <field name="domain">[('ziggu_id', '!=', False)]</field>
+            <field name="context">{'search_default_ziggu_projects': 1}</field>
+        </record>
+        <menuitem id="menu_ziggu_project_project" name="Projects" parent="menu_ziggu_project_data" action="action_ziggu_project_project" sequence="5"/>
+
+        <record id="action_ziggu_helpdesk_issues" model="ir.actions.act_window">
+            <field name="name">Ziggu Issues</field>
+            <field name="res_model">helpdesk.ticket</field>
+            <field name="view_mode">list,form</field>
+            <field name="domain">[('ziggu_id', '!=', False), ('ziggu_source', '=', 'issue')]</field>
+        </record>
+        <menuitem id="menu_ziggu_helpdesk_issues" name="Issues" parent="menu_ziggu_issues_data" action="action_ziggu_helpdesk_issues" sequence="5"/>
+
+        <record id="action_ziggu_helpdesk_tickets" model="ir.actions.act_window">
+            <field name="name">Ziggu Tickets</field>
+            <field name="res_model">helpdesk.ticket</field>
+            <field name="view_mode">list,form</field>
+            <field name="domain">[('ziggu_id', '!=', False), ('ziggu_source', '=', 'ticket')]</field>
+        </record>
+        <menuitem id="menu_ziggu_helpdesk_tickets" name="Tickets" parent="menu_ziggu_issues_data" action="action_ziggu_helpdesk_tickets" sequence="10"/>
+    </data>
+</odoo>

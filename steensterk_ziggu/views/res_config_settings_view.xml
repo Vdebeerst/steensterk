@@ -12,6 +12,7 @@
                             <field name="ziggu_base_url" placeholder="https://api.ziggu.io/v1"/>
                             <field name="ziggu_client_id"/>
                             <field name="ziggu_access_token" password="True"/>
+                            <field name="ziggu_project_template_id"/>
                         </group>
                         <group colspan="4" col="2">
                             <group>

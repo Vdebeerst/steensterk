@@ -7,3 +7,10 @@ from . import ziggu_partners_sync
 from . import ziggu_projects_sync
 from . import ziggu_api
 
+
+from . import ziggu_generic_sync
+
+from . import ziggu_documents_sync
+from . import ziggu_issues_sync
+from . import ziggu_messages_sync
+from . import ziggu_tickets_sync

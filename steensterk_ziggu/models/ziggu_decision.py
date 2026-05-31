@@ -6,9 +6,9 @@ from odoo import fields, models
 class ziggu_decision(models.Model):
     _name = "ziggu.decision"
     _description = "Ziggu Decision"
-    _order = "ziggu_due_date desc, id desc"
+    _order = "ziggu_project_id, ziggu_decision_type_id, ziggu_due_date, id"
 
-    ziggu_id = fields.Char("Ziggu Id", required=True, index=True)
+    ziggu_id = fields.Char("Ziggu Id", index=True)
     ziggu_type = fields.Char("Type")
 
     name = fields.Char("Naam", compute="_compute_name", store=True)
@@ -19,8 +19,8 @@ class ziggu_decision(models.Model):
     ziggu_employee_id = fields.Many2one("hr.employee", "Employee", index=True)
     ziggu_project_id = fields.Many2one("project.project", "Project", index=True)
 
-    ziggu_published_customer = fields.Boolean("Published Customer")
-    ziggu_published_partners = fields.Boolean("Published Partners")
+    ziggu_published_customer = fields.Boolean("Published Customer", default=False)
+    ziggu_published_partners = fields.Boolean("Published Partners", default=False)
 
     ziggu_price_approved = fields.Float("Price Approved")
     ziggu_price_approved_net = fields.Float("Price Approved Net")
@@ -40,6 +40,41 @@ class ziggu_decision(models.Model):
 
     active = fields.Boolean("Active", default=True)
 
+    steensterk_decision_type_id = fields.Many2one('steensterk.decision.type', 'Steensterk Decision Type', index=True)
+
     def _compute_name(self):
         for rec in self:
-            rec.name = rec.ziggu_decision_type_id.name or rec.ziggu_id
+            if rec.steensterk_decision_type_id:
+                rec.name = rec.steensterk_decision_type_id.name
+            else:
+                rec.name = rec.ziggu_decision_type_id.name or rec.ziggu_id or False
+
+    def sync_to_ziggu(self):
+        api = self.env["ziggu.api"]
+
+        for rec in self:
+            payload = rec._prepare_ziggu_payload()
+
+            if rec.ziggu_id:
+                result = api.call(
+                    "PUT",
+                    f"/decisions/{rec.ziggu_id}",
+                    payload,
+                )
+            else:
+                result = api.call(
+                    "POST",
+                    "/decisions",
+                    payload,
+                )
+
+                rec.ziggu_id = result.get("id")
+
+    def _prepare_ziggu_payload(self):
+        self.ensure_one()
+
+        return {
+            "decisionTypeId": self.ziggu_decision_type_id.ziggu_id,
+            "title": self.name,
+            "description": self.description or "",
+        }

@@ -8,7 +8,7 @@ class ziggu_decision_type(models.Model):
     _description = "Ziggu Decision Type"
     _order = "name"
 
-    ziggu_id = fields.Char("Ziggu Id", required=True, index=True)
+    ziggu_id = fields.Char("Ziggu Id", index=True)
     ziggu_type = fields.Char("Type")
 
     name = fields.Char("Naam", required=True)
@@ -22,3 +22,34 @@ class ziggu_decision_type(models.Model):
     ziggu_updated_at = fields.Datetime("Ziggu Update Date")
 
     active = fields.Boolean("Active", default=True)
+
+    steensterk_decision_type_id = fields.Many2one('steensterk.decision.type', 'Steensterk Decision Type', index=True)
+
+    def sync_to_ziggu(self):
+        api = self.env["ziggu.api"]
+
+        for rec in self:
+            payload = rec._prepare_ziggu_payload()
+
+            if rec.ziggu_id:
+                result = api.call(
+                    "PUT",
+                    f"/decision-types/{rec.ziggu_id}",
+                    payload,
+                )
+            else:
+                result = api.call(
+                    "POST",
+                    "/decision-types",
+                    payload,
+                )
+
+                rec.ziggu_id = result.get("id")
+
+    def _prepare_ziggu_payload(self):
+        self.ensure_one()
+
+        return {
+            "name": self.name,
+            "description": self.description or "",
+        }

@@ -14,10 +14,10 @@
             <field name="arch" type="xml">
                 <list string="Attachment Category">
                     <field name="name"/>
-                    <field name="ziggu_id"/>
+                    <field name="ziggu_id" optional="hide"/>
                     <field name="ziggu_type"/>
-                    <field name="ziggu_created_at"/>
-                    <field name="ziggu_updated_at"/>
+                    <field name="ziggu_created_at" optional="hide"/>
+                    <field name="ziggu_updated_at" optional="hide"/>
                 </list>
             </field>
         </record>
@@ -60,11 +60,11 @@
             <field name="arch" type="xml">
                 <list string="Lot">
                     <field name="name"/>
-                    <field name="ziggu_id"/>
+                    <field name="ziggu_id" optional="hide"/>
                     <field name="ziggu_type"/>
                     <field name="ziggu_project_id"/>
-                    <field name="ziggu_created_at"/>
-                    <field name="ziggu_updated_at"/>
+                    <field name="ziggu_created_at" optional="hide"/>
+                    <field name="ziggu_updated_at" optional="hide"/>
                     <field name="active"/>
                 </list>
             </field>
@@ -116,11 +116,11 @@
             <field name="arch" type="xml">
                 <list string="Building">
                     <field name="name"/>
-                    <field name="ziggu_id"/>
+                    <field name="ziggu_id" optional="hide"/>
                     <field name="ziggu_type"/>
                     <field name="ziggu_project_id"/>
-                    <field name="ziggu_created_at"/>
-                    <field name="ziggu_updated_at"/>
+                    <field name="ziggu_created_at" optional="hide"/>
+                    <field name="ziggu_updated_at" optional="hide"/>
                     <field name="active"/>
                 </list>
             </field>
@@ -174,10 +174,10 @@
             <field name="arch" type="xml">
                 <list string="Decision Type Category">
                     <field name="name"/>
-                    <field name="ziggu_id"/>
+                    <field name="ziggu_id" optional="hide"/>
                     <field name="ziggu_type"/>
-                    <field name="ziggu_created_at"/>
-                    <field name="ziggu_updated_at"/>
+                    <field name="ziggu_created_at" optional="hide"/>
+                    <field name="ziggu_updated_at" optional="hide"/>
                     <field name="active"/>
                 </list>
             </field>
@@ -219,11 +219,11 @@
             <field name="arch" type="xml">
                 <list string="Decision Type">
                     <field name="name"/>
-                    <field name="ziggu_id"/>
+                    <field name="ziggu_id" optional="hide"/>
                     <field name="ziggu_type"/>
                     <field name="ziggu_project_id"/>
-                    <field name="ziggu_created_at"/>
-                    <field name="ziggu_updated_at"/>
+                    <field name="ziggu_created_at" optional="hide"/>
+                    <field name="ziggu_updated_at" optional="hide"/>
                     <field name="active"/>
                 </list>
             </field>
@@ -263,18 +263,64 @@
         </record>
         <menuitem id="menu_ziggu_decision_type" name="Decision Type" parent="menu_ziggu_config_data" action="action_ziggu_decision_type" sequence="50"/>
 
+<!-- Steensterk decision type-->
+
+        <record id="view_steensterk_decision_type_list" model="ir.ui.view">
+            <field name="name">steensterk.decision.type.list</field>
+            <field name="model">steensterk.decision.type</field>
+            <field name="arch" type="xml">
+                <list string="Decision Type">
+                    <field name="name"/>
+                    <field name="ziggu_decision_type_category_id"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_steensterk_decision_type_form" model="ir.ui.view">
+            <field name="name">steensterk.decision.type.form</field>
+            <field name="model">steensterk.decision.type</field>
+            <field name="arch" type="xml">
+                <form string="Decision Type">
+                    <sheet>
+                        <group colspan="4" col="2">
+                            <group string="Basis">
+                                <field name="name"/>
+                                <field name="ziggu_decision_type_category_id"/>
+                                <field name="active"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_steensterk_decision_type" model="ir.actions.act_window">
+            <field name="name">Steensterk Decision Type</field>
+            <field name="res_model">steensterk.decision.type</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <menuitem id="menu_steensterk_decision_type" name="Steensterk Decision Type" parent="menu_ziggu_config_data" action="action_steensterk_decision_type" sequence="51"/>
+
+<!-- End Steensterk decision type-->
+
         <record id="view_ziggu_decision_list" model="ir.ui.view">
             <field name="name">ziggu.decision.list</field>
             <field name="model">ziggu.decision</field>
             <field name="arch" type="xml">
                 <list string="Decision">
-                    <field name="name"/>
-                    <field name="ziggu_id"/>
-                    <field name="ziggu_type"/>
+                    <!-- <field name="name"/> -->
+                    <field name="ziggu_id" optional="hide"/>
+                    <field name="ziggu_decision_type_id"/>
                     <field name="ziggu_project_id"/>
+                    <field name="ziggu_employee_id"/>
+                    <field name="ziggu_due_date"/>
+                    <field name="ziggu_approved_at"/>
                     <field name="ziggu_unit_id"/>
-                    <field name="ziggu_created_at"/>
-                    <field name="ziggu_updated_at"/>
+                    <field name="ziggu_created_at" optional="hide"/>
+                    <field name="ziggu_updated_at" optional="hide"/>
                     <field name="active"/>
                 </list>
             </field>
@@ -288,9 +334,9 @@
                     <sheet>
                         <group colspan="4" col="2">
                             <group string="Basis">
-                                <field name="name"/>
-                                <field name="ziggu_id"/>
-                                <field name="ziggu_type"/>
+                                <!-- <field name="name"/> -->
+                                <field name="ziggu_id" readonly="True"/>
+                                <field name="ziggu_type" readonly="True"/>
                                 <field name="ziggu_project_id"/>
                                 <field name="ziggu_decision_type_id"/>
                                 <field name="ziggu_employee_id"/>
@@ -309,8 +355,8 @@
                                 <field name="ziggu_margin_price_budget"/>
                                 <field name="ziggu_margin_price_surcharge"/>
                                 <field name="ziggu_margin_total"/>
-                                <field name="ziggu_created_at"/>
-                                <field name="ziggu_updated_at"/>
+                                <field name="ziggu_created_at" readonly="True"/>
+                                <field name="ziggu_updated_at" readonly="True"/>
                                 <field name="active"/>
                             </group>
                         </group>
@@ -333,11 +379,11 @@
             <field name="arch" type="xml">
                 <list string="Unit">
                     <field name="name"/>
-                    <field name="ziggu_id"/>
+                    <field name="ziggu_id" optional="hide"/>
                     <field name="ziggu_type"/>
                     <field name="ziggu_project_id"/>
-                    <field name="ziggu_created_at"/>
-                    <field name="ziggu_updated_at"/>
+                    <field name="ziggu_created_at" optional="hide"/>
+                    <field name="ziggu_updated_at" optional="hide"/>
                     <field name="active"/>
                 </list>
             </field>
@@ -394,13 +440,13 @@
             <field name="arch" type="xml">
                 <list string="Unit Customer">
                     <field name="name"/>
-                    <field name="ziggu_id"/>
+                    <field name="ziggu_id" optional="hide"/>
                     <field name="ziggu_type"/>
                     <field name="ziggu_project_id"/>
                     <field name="ziggu_unit_id"/>
                     <field name="ziggu_customer_id"/>
-                    <field name="ziggu_created_at"/>
-                    <field name="ziggu_updated_at"/>
+                    <field name="ziggu_created_at" optional="hide"/>
+                    <field name="ziggu_updated_at" optional="hide"/>
                     <field name="active"/>
                 </list>
             </field>
@@ -448,12 +494,12 @@
             <field name="arch" type="xml">
                 <list string="Fraction">
                     <field name="name"/>
-                    <field name="ziggu_id"/>
+                    <field name="ziggu_id" optional="hide"/>
                     <field name="ziggu_type"/>
                     <field name="ziggu_project_id"/>
                     <field name="ziggu_unit_id"/>
-                    <field name="ziggu_created_at"/>
-                    <field name="ziggu_updated_at"/>
+                    <field name="ziggu_created_at" optional="hide"/>
+                    <field name="ziggu_updated_at" optional="hide"/>
                     <field name="active"/>
                 </list>
             </field>
@@ -501,13 +547,13 @@
             <field name="arch" type="xml">
                 <list string="Installment">
                     <field name="name"/>
-                    <field name="ziggu_id"/>
+                    <field name="ziggu_id" optional="hide"/>
                     <field name="ziggu_type"/>
                     <field name="ziggu_project_id"/>
                     <field name="ziggu_unit_id"/>
                     <field name="ziggu_customer_id"/>
-                    <field name="ziggu_created_at"/>
-                    <field name="ziggu_updated_at"/>
+                    <field name="ziggu_created_at" optional="hide"/>
+                    <field name="ziggu_updated_at" optional="hide"/>
                     <field name="active"/>
                 </list>
             </field>
@@ -560,11 +606,11 @@
             <field name="arch" type="xml">
                 <list string="Issue Category">
                     <field name="name"/>
-                    <field name="ziggu_id"/>
+                    <field name="ziggu_id" optional="hide"/>
                     <field name="ziggu_type"/>
                     <field name="ziggu_project_id"/>
-                    <field name="ziggu_created_at"/>
-                    <field name="ziggu_updated_at"/>
+                    <field name="ziggu_created_at" optional="hide"/>
+                    <field name="ziggu_updated_at" optional="hide"/>
                     <field name="active"/>
                 </list>
             </field>
@@ -609,10 +655,10 @@
             <field name="arch" type="xml">
                 <list string="Issue List Type">
                     <field name="name"/>
-                    <field name="ziggu_id"/>
+                    <field name="ziggu_id" optional="hide"/>
                     <field name="ziggu_type"/>
-                    <field name="ziggu_created_at"/>
-                    <field name="ziggu_updated_at"/>
+                    <field name="ziggu_created_at" optional="hide"/>
+                    <field name="ziggu_updated_at" optional="hide"/>
                     <field name="active"/>
                 </list>
             </field>
@@ -656,12 +702,12 @@
             <field name="arch" type="xml">
                 <list string="Issue List">
                     <field name="name"/>
-                    <field name="ziggu_id"/>
+                    <field name="ziggu_id" optional="hide"/>
                     <field name="ziggu_type"/>
                     <field name="ziggu_project_id"/>
                     <field name="ziggu_unit_id"/>
-                    <field name="ziggu_created_at"/>
-                    <field name="ziggu_updated_at"/>
+                    <field name="ziggu_created_at" optional="hide"/>
+                    <field name="ziggu_updated_at" optional="hide"/>
                     <field name="active"/>
                 </list>
             </field>
@@ -707,10 +753,10 @@
             <field name="arch" type="xml">
                 <list string="Issue Status">
                     <field name="name"/>
-                    <field name="ziggu_id"/>
+                    <field name="ziggu_id" optional="hide"/>
                     <field name="ziggu_type"/>
-                    <field name="ziggu_created_at"/>
-                    <field name="ziggu_updated_at"/>
+                    <field name="ziggu_created_at" optional="hide"/>
+                    <field name="ziggu_updated_at" optional="hide"/>
                     <field name="active"/>
                 </list>
             </field>
@@ -755,13 +801,13 @@
             <field name="arch" type="xml">
                 <list string="Proposal">
                     <field name="name"/>
-                    <field name="ziggu_id"/>
+                    <field name="ziggu_id" optional="hide"/>
                     <field name="ziggu_type"/>
                     <field name="ziggu_project_id"/>
                     <field name="ziggu_unit_id"/>
                     <field name="ziggu_customer_id"/>
-                    <field name="ziggu_created_at"/>
-                    <field name="ziggu_updated_at"/>
+                    <field name="ziggu_created_at" optional="hide"/>
+                    <field name="ziggu_updated_at" optional="hide"/>
                     <field name="active"/>
                 </list>
             </field>
@@ -812,12 +858,12 @@
             <field name="arch" type="xml">
                 <list string="Space">
                     <field name="name"/>
-                    <field name="ziggu_id"/>
+                    <field name="ziggu_id" optional="hide"/>
                     <field name="ziggu_type"/>
                     <field name="ziggu_project_id"/>
                     <field name="ziggu_unit_id"/>
-                    <field name="ziggu_created_at"/>
-                    <field name="ziggu_updated_at"/>
+                    <field name="ziggu_created_at" optional="hide"/>
+                    <field name="ziggu_updated_at" optional="hide"/>
                     <field name="active"/>
                 </list>
             </field>
@@ -866,11 +912,11 @@
             <field name="arch" type="xml">
                 <list string="Ticket Category">
                     <field name="name"/>
-                    <field name="ziggu_id"/>
+                    <field name="ziggu_id" optional="hide"/>
                     <field name="ziggu_type"/>
                     <field name="ziggu_project_id"/>
-                    <field name="ziggu_created_at"/>
-                    <field name="ziggu_updated_at"/>
+                    <field name="ziggu_created_at" optional="hide"/>
+                    <field name="ziggu_updated_at" optional="hide"/>
                     <field name="active"/>
                 </list>
             </field>

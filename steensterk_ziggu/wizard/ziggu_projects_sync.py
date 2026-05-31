@@ -148,7 +148,8 @@ class ZigguProjectsSync(models.AbstractModel):
                     project_rec.write(vals)
                     updated += 1
                 else:
-                    self._create_project_from_template(vals)
+                    new_project = self._create_project_from_template(vals)
+                    new_project.is_template = False 
                     created += 1
 
         _logger.info(

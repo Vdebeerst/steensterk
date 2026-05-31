@@ -27,3 +27,5 @@ from . import helpdesk_ticket
 from . import mail_message
 
 from . import ziggu_relations
+
+from . import steensterk_decision_type

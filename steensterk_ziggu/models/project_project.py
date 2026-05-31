@@ -11,7 +11,7 @@ from odoo import fields, models, _
 class project_project(models.Model):
     _inherit = "project.project"
 
-    ziggu_id = fields.Char('Ziggu Id')
+    ziggu_id = fields.Char('Ziggu Id', index=True)
 
     ziggu_created_at = fields.Datetime('Create Date')
     ziggu_updated_at = fields.Datetime('Update Date')
@@ -45,6 +45,12 @@ class project_project(models.Model):
         string='Ziggu Documents Folder',
         copy=False,
     )
+
+    ziggu_decision_type_ids = fields.One2many('ziggu.decision.type', 'ziggu_project_id', 'Decision Types')
+    ziggu_decision_ids = fields.One2many('ziggu.decision', 'ziggu_project_id', 'Decisions')
+    ziggu_unit_ids = fields.One2many('ziggu.unit', 'ziggu_project_id', 'Units')
+    ziggu_building_ids = fields.One2many('ziggu.building', 'ziggu_project_id', 'Buildings')
+    ziggu_lot_ids = fields.One2many('ziggu.lot', 'ziggu_project_id', 'Lots')
 
     def _get_or_create_ziggu_documents_folder(self):
         self.ensure_one()
@@ -83,4 +89,61 @@ class project_project(models.Model):
         self.sudo().write({'ziggu_documents_folder_id': folder.id})
         return folder
 
+    def action_fill_ziggu_decisions(self):
+        Decision = self.env["ziggu.decision"]
+        SteensterkType = self.env["steensterk.decision.type"]
+        DecisionType = self.env["ziggu.decision.type"]
+
+        for project in self:
+            for dtype in SteensterkType.search([]):
+                exists = DecisionType.search_count([
+                    ("ziggu_project_id", "=", project.id),
+                    ("steensterk_decision_type_id", "=", dtype.id),
+                ])
+                if not exists:
+                    dt = DecisionType.create({
+                        "ziggu_project_id": project.id,
+                        "steensterk_decision_type_id": dtype.id,
+                        "name": dtype.name,
+                    })
+                    
+            # for dtype in DecisionType.search([("ziggu_project_id", "=", project.id)]):
+            #     exists = Decision.search_count([
+            #         ("ziggu_project_id", "=", project.id),
+            #         ("decision_type_id", "=", dtype.id),
+            #     ])
+            #     if not exists:
+                    Decision.create({
+                        "ziggu_project_id": project.id,
+                        "ziggu_decision_type_id": dt.id,
+                        "steensterk_decision_type_id": dtype.id,
+                        "name": dtype.name,
+                    })
+
+        return {
+            "type": "ir.actions.client",
+            "tag": "display_notification",
+            "params": {
+                "title": _("Decisions aangemaakt"),
+                "message": _("De ontbrekende Ziggu decisions zijn toegevoegd."),
+                "type": "success",
+                "sticky": False,
+            },
+        }
+    
+    def action_push_ziggu_decisions(self):
+        self.ensure_one()
+
+        self.ziggu_decision_type_ids.sync_to_ziggu()
+        self.ziggu_decision_ids.sync_to_ziggu()
+
+        return {
+            "type": "ir.actions.client",
+            "tag": "display_notification",
+            "params": {
+                "title": _("Ziggu"),
+                "message": _("Decision types en decisions gesynchroniseerd."),
+                "type": "success",
+            }
+        }
     

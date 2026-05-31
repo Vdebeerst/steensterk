@@ -7,6 +7,10 @@
             <field name="model">project.project</field>
             <field name="inherit_id" ref="project.edit_project"/>
             <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button name="action_fill_ziggu_decisions" type="object" string="Vul decisions"/>
+                    <button name="action_push_ziggu_decisions" type="object" string="Update Ziggu" invisible="True"/>
+                </xpath>
                 <notebook position="inside">
                     <page string="Ziggu" name="ziggu">
                         <group colspan="4" col="2">
@@ -47,6 +51,50 @@
                             </group>
                         </group>
                         <field name="ziggu_description" readonly="True"/>
+                    </page>
+                    <page string="Buildings" name="buildings">
+                        <field name="ziggu_building_ids" readonly="True"/>
+                    </page>
+                    <page string="Units" name="units">
+                        <field name="ziggu_unit_ids" readonly="True"/>
+                    </page>
+                    <page string="Lots" name="lots">
+                        <field name="ziggu_lot_ids" readonly="True"/>
+                    </page>
+                    <page string="Decision Types" name="decision_types">
+                        <field name="ziggu_decision_type_ids" readonly="True"/>
+                    </page>
+                    <page string="Decisions" name="decisions">
+                        <field name="ziggu_decision_ids">
+                            <list string="Decision" editable="bottom">
+                                <field name="ziggu_decision_type_id" domain="[('ziggu_project_id', '=', ziggu_project_id)]"/>
+                                <field name="ziggu_project_id" column_invisible="True"/>
+                                <field name="ziggu_employee_id"/>
+                                <field name="ziggu_due_date"/>
+                                <field name="ziggu_approved_at"/>
+                                <field name="ziggu_unit_id" optional="hide"/>
+                                <field name="ziggu_published_customer"/>
+                                <field name="ziggu_published_partners"/>
+                                <field name="active"/>
+                            </list>
+                            <form string="Decision">
+                                <group>
+                                    <group>
+                                        <field name="ziggu_decision_type_id" domain="[('ziggu_project_id', '=', ziggu_project_id)]"/>
+                                        <field name="ziggu_project_id" invisible="True"/>
+                                        <field name="ziggu_employee_id"/>
+                                        <field name="ziggu_unit_id"/>
+                                    </group>
+                                    <group>
+                                        <field name="ziggu_due_date"/>
+                                        <field name="ziggu_approved_at"/>
+                                        <field name="ziggu_published_customer"/>
+                                        <field name="ziggu_published_partners"/>
+                                        <field name="active"/>
+                                    </group>
+                                </group>
+                            </form>
+                        </field>
                     </page>
                 </notebook>
             </field>

@@ -47,6 +47,33 @@
                             </group>
                             <group>
                                 <separator string="PUT"/><newline/>
+                                <field name="ziggu_put_attachment_categories"/>
+                                <field name="ziggu_put_buildings"/>
+                                <field name="ziggu_put_companies"/>
+                                <field name="ziggu_put_customers"/>
+                                <field name="ziggu_put_decision_type_categories"/>
+                                <field name="ziggu_put_decision_types"/>
+                                <field name="ziggu_put_decisions"/>
+                                <field name="ziggu_put_documents"/>
+                                <field name="ziggu_put_employees"/>
+                                <field name="ziggu_put_fractions"/>
+                                <field name="ziggu_put_installments"/>
+                                <field name="ziggu_put_issue_categories"/>
+                                <field name="ziggu_put_issue_list_types"/>
+                                <field name="ziggu_put_issue_lists"/>
+                                <field name="ziggu_put_issue_statuses"/>
+                                <field name="ziggu_put_issues"/>
+                                <field name="ziggu_put_lots"/>
+                                <field name="ziggu_put_messages"/>
+                                <field name="ziggu_put_partners"/>
+                                <field name="ziggu_put_phases"/>
+                                <field name="ziggu_put_projects"/>
+                                <field name="ziggu_put_proposals"/>
+                                <field name="ziggu_put_spaces"/>
+                                <field name="ziggu_put_ticket_categories"/>
+                                <field name="ziggu_put_tickets"/>
+                                <field name="ziggu_put_unit_customers"/>
+                                <field name="ziggu_put_units"/>
                             </group>
                         </group>
                     </block>

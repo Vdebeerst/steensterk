@@ -50,26 +50,26 @@ class ziggu_decision(models.Model):
 				rec.name = rec.ziggu_decision_type_id.name or rec.ziggu_id or False
 
 	def sync_to_ziggu(self):
-		api = self.env["ziggu.api"]
+		sync = self.env["ziggu.generic.sync"]
 
 		for rec in self:
 			payload = rec._prepare_ziggu_payload()
 
 			if rec.ziggu_id:
-				result = api.call(
+				result = sync._send_record(
 					"PUT",
-					f"/decisions/{rec.ziggu_id}",
+					f"decisions/{rec.ziggu_id}",
 					payload,
 				)
 			else:
-				result = api.call(
+				result = sync._send_record(
 					"POST",
-					"/decisions",
+					"decisions",
 					payload,
 				)
 
 			if result and result.get("id"):
-				rec.ziggu_id = result["id"]
+				rec.ziggu_id = str(result["id"])
 				
 	def _prepare_ziggu_payload(self):
 		self.ensure_one()
@@ -77,6 +77,6 @@ class ziggu_decision(models.Model):
 		return {
 			"decisionTypeId": self.ziggu_decision_type_id.ziggu_id,
 			"title": self.name,
-			"description": self.description or "",
-			"due_date": self.ziggu_due_date or False,
+			# "description": self.description or "",
+			"due_date": self.ziggu_due_date.strftime("%Y-%m-%d") if self.ziggu_due_date else None,
 		}

@@ -26,26 +26,26 @@ class ziggu_decision_type(models.Model):
 	steensterk_decision_type_id = fields.Many2one('steensterk.decision.type', 'Steensterk Decision Type', index=True)
 
 	def sync_to_ziggu(self):
-		api = self.env["ziggu.api"]
+		sync = self.env["ziggu.generic.sync"]
 
 		for rec in self:
 			payload = rec._prepare_ziggu_payload()
 
 			if rec.ziggu_id:
-				result = api.call(
+				result = sync._send_record(
 					"PUT",
-					f"/decision-types/{rec.ziggu_id}",
+					f"decision-types/{rec.ziggu_id}",
 					payload,
 				)
 			else:
-				result = api.call(
+				result = sync._send_record(
 					"POST",
-					"/decision-types",
+					"decision-types",
 					payload,
 				)
 
 			if result and result.get("id"):
-				rec.ziggu_id = result["id"]
+				rec.ziggu_id = str(result["id"])
 
 	def _prepare_ziggu_payload(self):
 		self.ensure_one()

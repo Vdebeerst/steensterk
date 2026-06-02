@@ -138,3 +138,25 @@ class ZigguGenericSync(models.AbstractModel):
 
         _logger.info("Ziggu sync %s -> %s klaar: %s aangemaakt, %s bijgewerkt", endpoint, model_name, created, updated)
         return {"created": created, "updated": updated}
+
+    def _send_record(self, method, endpoint, payload):
+        url = "%s/%s" % (
+            self._ziggu_base_url(),
+            endpoint.strip("/")
+        )
+
+        response = requests.request(
+            method,
+            url,
+            headers=self._ziggu_headers(),
+            json=payload,
+            timeout=30,
+            verify=False,
+        )
+
+        response.raise_for_status()
+
+        if response.content:
+            return response.json()
+
+        return {}

@@ -108,7 +108,7 @@
             <field name="res_model">ziggu.lot</field>
             <field name="view_mode">list,form</field>
         </record>
-        <menuitem id="menu_ziggu_lot" name="Lot" parent="menu_ziggu_project_data" action="action_ziggu_lot" sequence="20"/>
+        <!-- <menuitem id="menu_ziggu_lot" name="Lot" parent="menu_ziggu_project_data" action="action_ziggu_lot" sequence="20"/> -->
 
         <record id="view_ziggu_building_list" model="ir.ui.view">
             <field name="name">ziggu.building.list</field>
@@ -139,7 +139,7 @@
                                 <field name="ziggu_type"/>
                                 <field name="ziggu_project_id"/>
                                 <field name="ziggu_phase_id"/>
-                                <field name="ziggu_lot_id"/>
+                                <!-- <field name="ziggu_lot_id"/> -->
                                 <field name="ziggu_start_date"/>
                                 <field name="ziggu_end_date"/>
                             </group>
@@ -272,6 +272,7 @@
                 <list string="Decision Type">
                     <field name="name"/>
                     <field name="ziggu_decision_type_category_id"/>
+                    <field name="weeks_after_start"/>
                     <field name="active"/>
                 </list>
             </field>
@@ -287,6 +288,7 @@
                             <group string="Basis">
                                 <field name="name"/>
                                 <field name="ziggu_decision_type_category_id"/>
+                                <field name="weeks_after_start"/>
                                 <field name="active"/>
                             </group>
                             <group>
@@ -402,7 +404,7 @@
                                 <field name="ziggu_type"/>
                                 <field name="ziggu_project_id"/>
                                 <field name="ziggu_phase_id"/>
-                                <field name="ziggu_lot_id"/>
+                                <!-- <field name="ziggu_lot_id"/> -->
                                 <field name="ziggu_building_id"/>
                                 <field name="ziggu_status"/>
                                 <field name="ziggu_number"/>
@@ -882,7 +884,7 @@
                                 <field name="ziggu_type"/>
                                 <field name="ziggu_project_id"/>
                                 <field name="ziggu_building_id"/>
-                                <field name="ziggu_lot_id"/>
+                                <!-- <field name="ziggu_lot_id"/> -->
                             </group>
                             <group string="Ziggu">
                                 <field name="ziggu_unit_id"/>

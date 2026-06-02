@@ -10,9 +10,9 @@
                     <button name="action_ziggu_buildings" type="object" class="oe_stat_button" icon="fa-building">
                         <field name="ziggu_building_ids" widget="statinfo" string="Buildings"/>
                     </button>
-                    <button name="action_ziggu_lots" type="object" class="oe_stat_button" icon="fa-map">
+                    <!-- <button name="action_ziggu_lots" type="object" class="oe_stat_button" icon="fa-map">
                         <field name="ziggu_lot_ids" widget="statinfo" string="Lots"/>
-                    </button>
+                    </button> -->
                     <button name="action_ziggu_units" type="object" class="oe_stat_button" icon="fa-home">
                         <field name="ziggu_unit_ids" widget="statinfo" string="Units"/>
                     </button>

@@ -7,6 +7,7 @@ Changes:
 """
 
 from odoo import fields, models, _
+from datetime import timedelta
 
 class project_project(models.Model):
     _inherit = "project.project"
@@ -118,6 +119,7 @@ class project_project(models.Model):
                         "ziggu_decision_type_id": dt.id,
                         "steensterk_decision_type_id": dtype.id,
                         "name": dtype.name,
+                        "ziggu_due_date": project.date_start + timedelta(weeks=dtype.weeks_after_start) - timedelta(days=1)
                     })
 
         return {

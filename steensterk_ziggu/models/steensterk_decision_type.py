@@ -9,7 +9,9 @@ class steensterk_decision_type(models.Model):
     _order = "name"
 
     name = fields.Char("Naam", required=True, index=True)
+    weeks_after_start = fields.Integer('Weken na Start Project', required=True)
 
     ziggu_decision_type_category_id = fields.Many2one("ziggu.decision.type.category", "Decision Type Category", index=True)
 
     active = fields.Boolean("Active", default=True)
+    

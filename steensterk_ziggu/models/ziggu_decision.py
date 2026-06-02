@@ -75,10 +75,14 @@ class ziggu_decision(models.Model):
 		self.ensure_one()
 
 		return {
-			"decisionTypeId": self.ziggu_decision_type_id.ziggu_id,
-			"title": self.name,
-			# "description": self.description or "",
-			"due_date": self.ziggu_due_date.strftime("%Y-%m-%d") if self.ziggu_due_date else None,
-			"project_id": self.ziggu_project_id.ziggu_id,
-			"unit_id": self.ziggu_unit_id.ziggu_id or False,
+			"data": {
+				"attributes": {
+					"decisionTypeId": self.ziggu_decision_type_id.ziggu_id,
+					"title": self.name,
+					# "description": self.description or "",
+					"due_date": self.ziggu_due_date.strftime("%Y-%m-%d") if self.ziggu_due_date else None,
+					"project_id": self.ziggu_project_id.ziggu_id,
+					"unit_id": self.ziggu_unit_id.ziggu_id or False,
+				}
+			}
 		}

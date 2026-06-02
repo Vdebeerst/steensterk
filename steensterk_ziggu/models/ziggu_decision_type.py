@@ -51,7 +51,11 @@ class ziggu_decision_type(models.Model):
 		self.ensure_one()
 
 		return {
-			"name": self.name,
-			"description": self.ziggu_description_html or "",
-			"project_id": self.ziggu_project_id.ziggu_id,
+			"data": {
+				"attributes": {
+					"name": self.name,
+					"description": self.ziggu_description_html or "",
+					"project_id": self.ziggu_project_id.ziggu_id,
+				}
+			}
 		}

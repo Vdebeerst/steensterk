@@ -154,6 +154,10 @@ class ZigguGenericSync(models.AbstractModel):
             verify=False,
         )
 
+        _logger.warning("ZIGGU URL=%s", url)
+        _logger.warning("ZIGGU PAYLOAD=%s", payload)
+        _logger.warning("ZIGGU RESPONSE=%s", response.text)
+
         response.raise_for_status()
 
         if response.content:

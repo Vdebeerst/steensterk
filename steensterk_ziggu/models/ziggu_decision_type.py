@@ -33,14 +33,14 @@ class ziggu_decision_type(models.Model):
 
 			if rec.ziggu_id:
 				result = sync._send_record(
-					"PUT",
-					f"decision-types/{rec.ziggu_id}",
+					"PATCH",
+					f"decision_types/{rec.ziggu_id}",
 					payload,
 				)
 			else:
 				result = sync._send_record(
 					"POST",
-					"decision-types",
+					"decision_types",
 					payload,
 				)
 

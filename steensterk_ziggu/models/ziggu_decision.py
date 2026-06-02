@@ -57,7 +57,7 @@ class ziggu_decision(models.Model):
 
 			if rec.ziggu_id:
 				result = sync._send_record(
-					"PUT",
+					"PATCH",
 					f"decisions/{rec.ziggu_id}",
 					payload,
 				)

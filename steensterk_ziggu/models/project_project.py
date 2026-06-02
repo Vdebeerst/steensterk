@@ -99,7 +99,8 @@ class project_project(models.Model):
 			for dtype in SteensterkType.search([]):
 				exists = DecisionType.search_count([
 					("ziggu_project_id", "=", project.id),
-					("steensterk_decision_type_id", "=", dtype.id),
+					# ("steensterk_decision_type_id", "=", dtype.id),
+					("name", "=", dtype.name),
 				])
 				if not exists:
 					dt = DecisionType.create({

@@ -96,6 +96,9 @@ class project_project(models.Model):
 		DecisionType = self.env["ziggu.decision.type"]
 
 		for project in self:
+			if project.ziggu_decision_ids:
+				continue 
+			
 			for dtype in SteensterkType.search([]):
 				exists = DecisionType.search_count([
 					("ziggu_project_id", "=", project.id),

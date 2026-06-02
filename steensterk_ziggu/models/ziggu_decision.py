@@ -81,9 +81,15 @@ class ziggu_decision(models.Model):
 					rec.name,
 				)
 
-			if result and result.get("id"):
-				rec.ziggu_id = str(result["id"])
-				
+			if result:
+				ziggu_id = (
+					result.get("id")
+					or result.get("data", {}).get("id")
+				)
+
+				if ziggu_id:
+					rec.ziggu_id = str(ziggu_id)
+
 			_logger.warning(
 				"AFTER WRITE ziggu_id=%s",
 				rec.ziggu_id,

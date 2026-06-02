@@ -46,16 +46,6 @@ class ziggu_decision_type(models.Model):
 					payload,
 				)
 
-			_logger.warning("RESULT=%s", result)
-
-			if result and result.get("id"):
-				rec.ziggu_id = str(result["id"])
-				_logger.warning(
-					"SET ziggu_id=%s for %s",
-					rec.ziggu_id,
-					rec.name,
-				)
-
 			if result:
 				ziggu_id = (
 					result.get("id")
@@ -64,11 +54,6 @@ class ziggu_decision_type(models.Model):
 
 				if ziggu_id:
 					rec.ziggu_id = str(ziggu_id)
-
-			_logger.warning(
-				"AFTER WRITE ziggu_id=%s",
-				rec.ziggu_id,
-			)
 
 	def _prepare_ziggu_payload(self):
 		self.ensure_one()

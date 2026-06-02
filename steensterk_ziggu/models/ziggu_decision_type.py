@@ -53,4 +53,5 @@ class ziggu_decision_type(models.Model):
 		return {
 			"name": self.name,
 			"description": self.ziggu_description_html or "",
+			"projectId": self.ziggu_project_id.ziggu_id,
 		}

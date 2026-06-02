@@ -74,15 +74,25 @@ class ziggu_decision(models.Model):
 	def _prepare_ziggu_payload(self):
 		self.ensure_one()
 
+		unit_id = False
+
+		if self.ziggu_unit_id and self.ziggu_unit_id.ziggu_id:
+			unit_id = self.ziggu_unit_id.ziggu_id
+		elif (
+			self.ziggu_project_id
+			and self.ziggu_project_id.ziggu_unit_ids
+			and self.ziggu_project_id.ziggu_unit_ids[0].ziggu_id
+		):
+			unit_id = self.ziggu_project_id.ziggu_unit_ids[0].ziggu_id
+
 		return {
 			"data": {
 				"attributes": {
-					"decisionTypeId": self.ziggu_decision_type_id.ziggu_id,
-					"title": self.name,
-					# "description": self.description or "",
-					"due_date": self.ziggu_due_date.strftime("%Y-%m-%d") if self.ziggu_due_date else None,
-					"project_id": self.ziggu_project_id.ziggu_id,
-					"unit_id": self.ziggu_unit_id.ziggu_id or False,
+					"decision_type_id": self.ziggu_decision_type_id.ziggu_id,
+					"unit_id": unit_id,
+					"due_date": self.ziggu_due_date.strftime("%Y-%m-%dT00:00:00Z") if self.ziggu_due_date else None,
+					"published_customer": self.ziggu_published_customer,
+					"published_partners": self.ziggu_published_partners,
 				}
 			}
 		}

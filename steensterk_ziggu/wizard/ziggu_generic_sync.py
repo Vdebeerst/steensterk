@@ -2,6 +2,7 @@
 
 import logging
 from datetime import datetime
+import time
 
 import requests
 
@@ -138,3 +139,38 @@ class ZigguGenericSync(models.AbstractModel):
 
         _logger.info("Ziggu sync %s -> %s klaar: %s aangemaakt, %s bijgewerkt", endpoint, model_name, created, updated)
         return {"created": created, "updated": updated}
+
+    def _send_record(self, method, endpoint, payload):
+        url = "%s/%s" % (
+            self._ziggu_base_url(),
+            endpoint.strip("/")
+        )
+
+        for attempt in range(5):
+            response = requests.request(
+                method,
+                url,
+                headers=self._ziggu_headers(),
+                json=payload,
+                timeout=30,
+                verify=False,
+            )
+
+            if response.status_code != 429:
+                break
+
+            retry_after = int(response.headers.get("Retry-After", 5))
+
+            _logger.warning(
+                "Ziggu rate limit hit, waiting %s seconds",
+                retry_after,
+            )
+
+            time.sleep(retry_after)
+
+        response.raise_for_status()
+
+        if response.content:
+            return response.json()
+
+        return {}

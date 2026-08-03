@@ -1,0 +1,1 @@
+# Translation file placeholder for WA Desktop Connector 0.3.0

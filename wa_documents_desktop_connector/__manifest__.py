@@ -1,0 +1,2 @@
+{'name': 'WA Documents Desktop Connector', 'version': '19.0.1.0.0', 'summary': 'Open Odoo Documents in the Windows connector', 'author': 'Wim Audenaert', 'license': 'OPL-1', 'depends': ['wa_documents_desktop_api', 'documents', 'documents_spreadsheet'], 'data': ['data/actions.xml', 'data/download_menu.xml'], 'installable': True, 'application': False, 'assets': {'web.assets_backend': ['wa_documents_desktop_connector/static/src/js/open_document_action.js',
+        'wa_documents_desktop_connector/static/src/js/documents_kanban_model_patch.js']}}

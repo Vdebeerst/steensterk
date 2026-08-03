@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_cash_planning_flow_type_list" model="ir.ui.view">
+        <field name="name">cash.planning.flow.type.list</field>
+        <field name="model">cash.planning.flow.type</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="direction"/>
+                <field name="sign"/>
+                <field name="include_in_opening_balance"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_cash_planning_flow_type_form" model="ir.ui.view">
+        <field name="name">cash.planning.flow.type.form</field>
+        <field name="model">cash.planning.flow.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="sequence"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="direction"/>
+                            <field name="sign"/>
+                            <field name="include_in_opening_balance"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Accounts">
+                            <field name="account_line_ids">
+                                <list editable="bottom">
+                                    <field name="company_id"/>
+                                    <field name="account_id"/>
+                                    <field name="note"/>
+                                    <field name="active"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Rules">
+                            <field name="rule_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="name"/>
+                                    <field name="company_id"/>
+                                    <field name="match_type"/>
+                                    <field name="account_code"/>
+                                    <field name="account_type"/>
+                                    <field name="auto_create_mapping"/>
+                                    <field name="active"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_cash_planning_flow_type_search" model="ir.ui.view">
+        <field name="name">cash.planning.flow.type.search</field>
+        <field name="model">cash.planning.flow.type</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="code"/>
+                <!-- <filter name="active" string="Active" domain="[('active','=',True)]"/>
+                <filter name="inactive" string="Inactive" domain="[('active','=',False)]"/> -->
+                <!-- <separator/>
+                <filter string="Cash In" domain="[('direction','=','in')]"/>
+                <filter string="Cash Out" domain="[('direction','=','out')]"/> -->
+                <!-- <group expand="0" string="Group By">
+                    <filter name="group_direction" string="Direction" context="{'group_by':'direction'}"/>
+                </group> -->
+            </search>
+        </field>
+    </record>
+    <record id="action_cash_planning_flow_type" model="ir.actions.act_window">
+        <field name="name">Cash Flow Types</field>
+        <field name="res_model">cash.planning.flow.type</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

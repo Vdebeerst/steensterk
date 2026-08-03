@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cash_planning_flow_type_user,cash.planning.flow.type user,model_cash_planning_flow_type,account.group_account_user,1,1,1,1
+access_cash_planning_flow_type_manager,cash.planning.flow.type manager,model_cash_planning_flow_type,account.group_account_manager,1,1,1,1
+access_cash_planning_flow_rule_user,cash.planning.flow.rule user,model_cash_planning_flow_rule,account.group_account_user,1,1,1,1
+access_cash_planning_flow_rule_manager,cash.planning.flow.rule manager,model_cash_planning_flow_rule,account.group_account_manager,1,1,1,1
+access_cash_planning_account_line_user,cash.planning.account.line user,model_cash_planning_account_line,account.group_account_user,1,1,1,1
+access_cash_planning_account_line_manager,cash.planning.account.line manager,model_cash_planning_account_line,account.group_account_manager,1,1,1,1
+access_cash_planning_fixed_payment_user,cash.planning.fixed.payment user,model_cash_planning_fixed_payment,account.group_account_user,1,1,1,1
+access_cash_planning_fixed_payment_manager,cash.planning.fixed.payment manager,model_cash_planning_fixed_payment,account.group_account_manager,1,1,1,1

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Dynamic API Endpoints &amp; Webhooks | Developers Pro</title>
+</head>
+
+<body style="margin:0; padding:0; background-color:#f4f5f7; color:#1a1a1a; font-family:Arial,Helvetica,sans-serif;">
+
+<div style="max-width:1400px; margin:0 auto; padding:0;">
+<div style="background-color:#ffffff;">
+
+    <!-- HERO SECTION -->
+    <div style="padding:40px 32px 32px 32px; text-align:center;">
+        <img src="logo.png" alt="Developers Pro Logo"
+             style="width:380px; height:auto; display:block; margin:0 auto 24px auto;">
+
+        <h1 style="margin:0 0 12px 0; font-size:42px; line-height:1.1; font-weight:900; color:#1a1a1a;">
+            Dynamic API <span style="color:#ab4be6;">Endpoints</span> &amp; Webhooks
+        </h1>
+
+        <p style="margin:0 auto 20px auto; font-size:17px; line-height:1.7; max-width:700px; color:#555555;">
+            Create fully dynamic REST API endpoints and webhooks for any Odoo model — <b style="color:#ab4be6;">no code required</b>. Manage API keys, field-level access, rate limiting, and request logging all from the Odoo UI.
+        </p>
+
+        <span style="display:inline-block; padding:6px 14px; margin:4px; border-radius:20px; font-size:12px; font-weight:700; color:#ab4be6; background-color:#f3e8fc;">REST API</span>
+        <span style="display:inline-block; padding:6px 14px; margin:4px; border-radius:20px; font-size:12px; font-weight:700; color:#3d7a00; background-color:#edffd6;">Webhooks</span>
+        <span style="display:inline-block; padding:6px 14px; margin:4px; border-radius:20px; font-size:12px; font-weight:700; color:#1a1a1a; background-color:#f0f0f0;">No Code Needed</span>
+        <span style="display:inline-block; padding:6px 14px; margin:4px; border-radius:20px; font-size:12px; font-weight:700; color:#0077b6; background-color:#e0f2fe;">API Key Auth</span>
+    </div>
+
+    <!-- LINE -->
+    <div style="height:2px; background-color:#eeeeee; margin:0 32px;"></div>
+
+    <!-- WHAT THIS MODULE DOES -->
+    <div style="padding:32px 32px 24px 32px; text-align:center;">
+        <p style="margin:0 0 4px 0; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:#ab4be6;">Overview</p>
+        <h2 style="margin:0 0 8px 0; font-size:28px; font-weight:900; color:#1a1a1a;">What This Module Does</h2>
+        <p style="margin:0 auto 28px auto; font-size:15px; line-height:1.8; max-width:750px; color:#555555;">
+            Expose any Odoo model as a <b style="color:#ab4be6;">REST API endpoint</b> with full CRUD support. Configure field-level access, authentication, webhooks, and logging — all through the Odoo backend interface.
+        </p>
+
+        <!-- Card 1 -->
+        <div style="display:inline-block; vertical-align:top; width:250px; margin:8px 10px; padding:24px 18px; border:1px solid #eeeeee; border-radius:14px; text-align:center;">
+            <div style="width:40px; height:40px; border-radius:10px; background-color:#f3e8fc; display:inline-flex; align-items:center; justify-content:center; margin-bottom:12px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ab4be6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="8" cy="6" r="1.5" fill="#ab4be6"/><circle cx="8" cy="12" r="1.5" fill="#ab4be6"/><circle cx="8" cy="18" r="1.5" fill="#ab4be6"/></svg>
+            </div>
+            <div style="font-size:15px; font-weight:800; color:#1a1a1a; margin-bottom:6px;">Dynamic Endpoints</div>
+            <div style="font-size:13px; line-height:1.7; color:#666666;">Create GET, POST, PUT &amp; DELETE API endpoints for any Odoo model directly from the UI — no Python code needed.</div>
+        </div>
+
+        <!-- Card 2 -->
+        <div style="display:inline-block; vertical-align:top; width:250px; margin:8px 10px; padding:24px 18px; border:1px solid #eeeeee; border-radius:14px; text-align:center;">
+            <div style="width:40px; height:40px; border-radius:10px; background-color:#edffd6; display:inline-flex; align-items:center; justify-content:center; margin-bottom:12px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3d7a00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/><circle cx="12" cy="16" r="1" fill="#3d7a00"/></svg>
+            </div>
+            <div style="font-size:15px; font-weight:800; color:#1a1a1a; margin-bottom:6px;">API Key Security</div>
+            <div style="font-size:13px; line-height:1.7; color:#666666;">Generate and manage API keys with per-key rate limiting, endpoint restrictions, and usage tracking built in.</div>
+        </div>
+
+        <!-- Card 3 -->
+        <div style="display:inline-block; vertical-align:top; width:250px; margin:8px 10px; padding:24px 18px; border:1px solid #eeeeee; border-radius:14px; text-align:center;">
+            <div style="width:40px; height:40px; border-radius:10px; background-color:#e0f2fe; display:inline-flex; align-items:center; justify-content:center; margin-bottom:12px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+            </div>
+            <div style="font-size:15px; font-weight:800; color:#1a1a1a; margin-bottom:6px;">Webhooks</div>
+            <div style="font-size:13px; line-height:1.7; color:#666666;">Trigger outgoing webhooks on create, update, or delete events with HMAC signature verification and custom headers.</div>
+        </div>
+    </div>
+
+    <!-- LINE -->
+    <div style="height:2px; background-color:#eeeeee; margin:0 32px;"></div>
+
+    <!-- KEY FEATURES -->
+    <div style="padding:32px 32px 24px 32px; text-align:center;">
+        <p style="margin:0 0 4px 0; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:#ab4be6;">Details</p>
+        <h2 style="margin:0 0 8px 0; font-size:28px; font-weight:900; color:#1a1a1a;">Key Features</h2>
+        <p style="margin:0 auto 28px auto; font-size:15px; line-height:1.8; max-width:700px; color:#555555;">
+            Everything you need to integrate Odoo with external systems.
+        </p>
+
+        <!-- Row 1 -->
+        <div style="display:inline-block; vertical-align:top; width:250px; margin:8px 10px; padding:18px 16px; border:1px solid #eeeeee; border-radius:14px; text-align:center;">
+            <div style="width:28px; height:28px; border-radius:8px; background-color:#f3e8fc; display:inline-flex; align-items:center; justify-content:center; margin-bottom:8px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ab4be6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <div style="font-size:14px; font-weight:800; color:#1a1a1a; margin-bottom:4px;">Field-Level Access</div>
+            <div style="font-size:12px; line-height:1.7; color:#666666;">Control which fields are readable and writable per endpoint</div>
+        </div>
+
+        <div style="display:inline-block; vertical-align:top; width:250px; margin:8px 10px; padding:18px 16px; border:1px solid #eeeeee; border-radius:14px; text-align:center;">
+            <div style="width:28px; height:28px; border-radius:8px; background-color:#edffd6; display:inline-flex; align-items:center; justify-content:center; margin-bottom:8px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3d7a00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <div style="font-size:14px; font-weight:800; color:#1a1a1a; margin-bottom:4px;">Rate Limiting</div>
+            <div style="font-size:12px; line-height:1.7; color:#666666;">Set per-key API call limits per minute to protect your server</div>
+        </div>
+
+        <div style="display:inline-block; vertical-align:top; width:250px; margin:8px 10px; padding:18px 16px; border:1px solid #eeeeee; border-radius:14px; text-align:center;">
+            <div style="width:28px; height:28px; border-radius:8px; background-color:#e0f2fe; display:inline-flex; align-items:center; justify-content:center; margin-bottom:8px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <div style="font-size:14px; font-weight:800; color:#1a1a1a; margin-bottom:4px;">Request Logging</div>
+            <div style="font-size:12px; line-height:1.7; color:#666666;">Full request/response logging with IP, duration, and status tracking</div>
+        </div>
+
+        <!-- Row 2 -->
+        <div style="display:inline-block; vertical-align:top; width:250px; margin:8px 10px; padding:18px 16px; border:1px solid #eeeeee; border-radius:14px; text-align:center;">
+            <div style="width:28px; height:28px; border-radius:8px; background-color:#f3e8fc; display:inline-flex; align-items:center; justify-content:center; margin-bottom:8px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ab4be6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+            </div>
+            <div style="font-size:14px; font-weight:800; color:#1a1a1a; margin-bottom:4px;">Field Aliases</div>
+            <div style="font-size:12px; line-height:1.7; color:#666666;">Expose internal fields under custom API names for clean interfaces</div>
+        </div>
+
+        <div style="display:inline-block; vertical-align:top; width:250px; margin:8px 10px; padding:18px 16px; border:1px solid #eeeeee; border-radius:14px; text-align:center;">
+            <div style="width:28px; height:28px; border-radius:8px; background-color:#edffd6; display:inline-flex; align-items:center; justify-content:center; margin-bottom:8px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3d7a00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <div style="font-size:14px; font-weight:800; color:#1a1a1a; margin-bottom:4px;">CORS Support</div>
+            <div style="font-size:12px; line-height:1.7; color:#666666;">All /api/* endpoints support CORS for browser-based clients</div>
+        </div>
+
+        <div style="display:inline-block; vertical-align:top; width:250px; margin:8px 10px; padding:18px 16px; border:1px solid #eeeeee; border-radius:14px; text-align:center;">
+            <div style="width:28px; height:28px; border-radius:8px; background-color:#e0f2fe; display:inline-flex; align-items:center; justify-content:center; margin-bottom:8px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            </div>
+            <div style="font-size:14px; font-weight:800; color:#1a1a1a; margin-bottom:4px;">Auto Documentation</div>
+            <div style="font-size:12px; line-height:1.7; color:#666666;">Built-in /api/docs endpoint lists all active APIs with full details</div>
+        </div>
+    </div>
+
+    <!-- LINE -->
+    <div style="height:2px; background-color:#eeeeee; margin:0 32px;"></div>
+
+    <!-- HOW IT WORKS -->
+    <div style="padding:32px 32px 24px 32px; text-align:center;">
+        <p style="margin:0 0 4px 0; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:#ab4be6;">Quick Start</p>
+        <h2 style="margin:0 0 8px 0; font-size:28px; font-weight:900; color:#1a1a1a;">How It Works</h2>
+        <p style="margin:0 auto 28px auto; font-size:15px; line-height:1.8; max-width:700px; color:#555555;">
+            Get your API running in three simple steps.
+        </p>
+
+        <!-- Step 1 -->
+        <div style="display:inline-block; vertical-align:top; width:250px; margin:8px 10px; padding:24px 18px; border:1px solid #eeeeee; border-radius:14px; text-align:center;">
+            <div style="width:40px; height:40px; border-radius:50%; background-color:#ab4be6; display:inline-flex; align-items:center; justify-content:center; margin-bottom:12px;">
+                <span style="font-size:18px; font-weight:900; color:#ffffff;"></span>
+            </div>
+            <div style="font-size:15px; font-weight:800; color:#1a1a1a; margin-bottom:6px;">Create Endpoint</div>
+            <div style="font-size:13px; line-height:1.7; color:#666666;">Pick a model, set a route like <b>/api/v1/partners</b>, choose HTTP methods, and select fields to expose.</div>
+        </div>
+
+        <!-- Step 2 -->
+        <div style="display:inline-block; vertical-align:top; width:250px; margin:8px 10px; padding:24px 18px; border:1px solid #eeeeee; border-radius:14px; text-align:center;">
+            <div style="width:40px; height:40px; border-radius:50%; background-color:#00A09D; display:inline-flex; align-items:center; justify-content:center; margin-bottom:12px;">
+                <span style="font-size:18px; font-weight:900; color:#ffffff;"></span>
+            </div>
+            <div style="font-size:15px; font-weight:800; color:#1a1a1a; margin-bottom:6px;">Generate API Key</div>
+            <div style="font-size:13px; line-height:1.7; color:#666666;">Create an API key, set rate limits, and optionally restrict it to specific endpoints.</div>
+        </div>
+
+        <!-- Step 3 -->
+        <div style="display:inline-block; vertical-align:top; width:250px; margin:8px 10px; padding:24px 18px; border:1px solid #eeeeee; border-radius:14px; text-align:center;">
+            <div style="width:40px; height:40px; border-radius:50%; background-color:#ab4be6; display:inline-flex; align-items:center; justify-content:center; margin-bottom:12px;">
+                <span style="font-size:18px; font-weight:900; color:#ffffff;"></span>
+            </div>
+            <div style="font-size:15px; font-weight:800; color:#1a1a1a; margin-bottom:6px;">Start Calling</div>
+            <div style="font-size:13px; line-height:1.7; color:#666666;">Use your API key in the <b>X-API-Key</b> header and make GET, POST, PUT, or DELETE requests.</div>
+        </div>
+    </div>
+
+    <!-- LINE -->
+    <div style="height:2px; background-color:#eeeeee; margin:0 32px;"></div>
+
+    <!-- API EXAMPLES -->
+    <div style="padding:32px 32px 24px 32px; text-align:center;">
+        <p style="margin:0 0 4px 0; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:#ab4be6;">Examples</p>
+        <h2 style="margin:0 0 24px 0; font-size:28px; font-weight:900; color:#1a1a1a;">API Response Format</h2>
+
+        <!-- GET Example -->
+        <div style="margin:0 auto 20px auto; border:1px solid #eeeeee; border-radius:14px; overflow:hidden; text-align:left;">
+            <div style="padding:12px 16px; font-weight:800; font-size:14px; color:#1a1a1a; border-bottom:1px solid #eeeeee;">
+                <span style="display:inline-block; padding:2px 10px; border-radius:6px; font-size:12px; font-weight:700; color:#ffffff; background-color:#3d7a00; margin-right:8px;">GET</span>
+                /api/v1/partners
+            </div>
+            <pre style="margin:0; padding:16px 20px; background-color:#f8f9fa; font-size:13px; line-height:1.6; color:#333333; overflow-x:auto;">{
+  "data": [
+    {"id": 1, "name": "John Doe", "email": "john@example.com"},
+    {"id": 2, "name": "Jane Smith", "email": "jane@example.com"}
+  ],
+  "total": 150,
+  "limit": 20,
+  "offset": 0
+}</pre>
+        </div>
+
+        <!-- POST Example -->
+        <div style="margin:0 auto 20px auto; border:1px solid #eeeeee; border-radius:14px; overflow:hidden; text-align:left;">
+            <div style="padding:12px 16px; font-weight:800; font-size:14px; color:#1a1a1a; border-bottom:1px solid #eeeeee;">
+                <span style="display:inline-block; padding:2px 10px; border-radius:6px; font-size:12px; font-weight:700; color:#ffffff; background-color:#0077b6; margin-right:8px;">POST</span>
+                /api/v1/partners
+            </div>
+            <pre style="margin:0; padding:16px 20px; background-color:#f8f9fa; font-size:13px; line-height:1.6; color:#333333; overflow-x:auto;">{
+  "data": {"id": 42, "name": "New Partner", "email": "new@example.com"},
+  "id": 42
+}</pre>
+        </div>
+
+        <!-- Webhook Example -->
+        <div style="margin:0 auto; border:1px solid #eeeeee; border-radius:14px; overflow:hidden; text-align:left;">
+            <div style="padding:12px 16px; font-weight:800; font-size:14px; color:#1a1a1a; border-bottom:1px solid #eeeeee;">
+                <span style="display:inline-block; padding:2px 10px; border-radius:6px; font-size:12px; font-weight:700; color:#ffffff; background-color:#ab4be6; margin-right:8px;">WEBHOOK</span>
+                Outgoing Payload
+            </div>
+            <pre style="margin:0; padding:16px 20px; background-color:#f8f9fa; font-size:13px; line-height:1.6; color:#333333; overflow-x:auto;">{
+  "event": "create",
+  "model": "res.partner",
+  "record_id": 42,
+  "data": {"id": 42, "name": "New Partner"},
+  "timestamp": "2026-03-11T10:30:00.123456"
+}</pre>
+        </div>
+    </div>
+
+    <!-- LINE -->
+    <div style="height:2px; background-color:#eeeeee; margin:0 32px;"></div>
+
+    <!-- AUTHENTICATION -->
+    <div style="padding:32px 32px 24px 32px; text-align:center;">
+        <p style="margin:0 0 4px 0; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:#ab4be6;">Security</p>
+        <h2 style="margin:0 0 8px 0; font-size:28px; font-weight:900; color:#1a1a1a;">Authentication Methods</h2>
+        <p style="margin:0 auto 28px auto; font-size:15px; line-height:1.8; max-width:700px; color:#555555;">
+            Three ways to authenticate your API requests.
+        </p>
+
+        <div style="display:inline-block; vertical-align:top; width:250px; margin:8px 10px; padding:18px 16px; border:1px solid #eeeeee; border-radius:14px; text-align:center;">
+            <div style="width:28px; height:28px; border-radius:8px; background-color:#f3e8fc; display:inline-flex; align-items:center; justify-content:center; margin-bottom:8px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ab4be6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+            </div>
+            <div style="font-size:14px; font-weight:800; color:#1a1a1a; margin-bottom:4px;">X-API-Key Header</div>
+            <div style="font-size:12px; line-height:1.7; color:#666666;">Pass your API key in the X-API-Key request header</div>
+        </div>
+
+        <div style="display:inline-block; vertical-align:top; width:250px; margin:8px 10px; padding:18px 16px; border:1px solid #eeeeee; border-radius:14px; text-align:center;">
+            <div style="width:28px; height:28px; border-radius:8px; background-color:#edffd6; display:inline-flex; align-items:center; justify-content:center; margin-bottom:8px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3d7a00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            </div>
+            <div style="font-size:14px; font-weight:800; color:#1a1a1a; margin-bottom:4px;">Bearer Token</div>
+            <div style="font-size:12px; line-height:1.7; color:#666666;">Use Authorization: Bearer &lt;key&gt; header format</div>
+        </div>
+
+        <div style="display:inline-block; vertical-align:top; width:250px; margin:8px 10px; padding:18px 16px; border:1px solid #eeeeee; border-radius:14px; text-align:center;">
+            <div style="width:28px; height:28px; border-radius:8px; background-color:#e0f2fe; display:inline-flex; align-items:center; justify-content:center; margin-bottom:8px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            <div style="font-size:14px; font-weight:800; color:#1a1a1a; margin-bottom:4px;">Query Parameter</div>
+            <div style="font-size:12px; line-height:1.7; color:#666666;">Pass api_key as a URL query parameter</div>
+        </div>
+    </div>
+
+    <!-- LINE -->
+    <div style="height:2px; background-color:#eeeeee; margin:0 32px;"></div>
+
+    <!-- SCREENSHOTS -->
+    <div style="padding:32px 32px 24px 32px; text-align:center;">
+        <p style="margin:0 0 4px 0; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:#ab4be6;">Preview</p>
+        <h2 style="margin:0 0 24px 0; font-size:28px; font-weight:900; color:#1a1a1a;">Screenshots</h2>
+
+        <div style="margin:0 auto 20px auto; border:1px solid #eeeeee; border-radius:14px; overflow:hidden;">
+            <div style="padding:12px 16px; font-weight:800; font-size:14px; color:#1a1a1a; border-bottom:1px solid #eeeeee;">
+                API Endpoints — List View
+            </div>
+            <img src="screenshot1.png" alt="API Endpoints List View" style="width:100%; height:auto; display:block;">
+        </div>
+
+        <div style="margin:0 auto 20px auto; border:1px solid #eeeeee; border-radius:14px; overflow:hidden;">
+            <div style="padding:12px 16px; font-weight:800; font-size:14px; color:#1a1a1a; border-bottom:1px solid #eeeeee;">
+                Endpoint Configuration — Form View with Field Access Control
+            </div>
+            <img src="screenshot2.png" alt="Endpoint Form View" style="width:100%; height:auto; display:block;">
+        </div>
+
+        <div style="margin:0 auto 20px auto; border:1px solid #eeeeee; border-radius:14px; overflow:hidden;">
+            <div style="padding:12px 16px; font-weight:800; font-size:14px; color:#1a1a1a; border-bottom:1px solid #eeeeee;">
+                Webhook Configuration — Outgoing Event Triggers
+            </div>
+            <img src="screenshot3.png" alt="Webhook Configuration" style="width:100%; height:auto; display:block;">
+        </div>
+
+        <div style="margin:0 auto; border:1px solid #eeeeee; border-radius:14px; overflow:hidden;">
+            <div style="padding:12px 16px; font-weight:800; font-size:14px; color:#1a1a1a; border-bottom:1px solid #eeeeee;">
+                API Logs — Request &amp; Response Tracking
+            </div>
+            <img src="screenshot4.png" alt="API Logs View" style="width:100%; height:auto; display:block;">
+        </div>
+          <div style="margin:0 auto; border:1px solid #eeeeee; border-radius:14px; overflow:hidden;">
+            <div style="padding:12px 16px; font-weight:800; font-size:14px; color:#1a1a1a; border-bottom:1px solid #eeeeee;">
+                Postman — Request
+            </div>
+            <img src="screenshot5.png" alt="PostMan View" style="width:100%; height:auto; display:block;">
+        </div>
+    </div>
+
+    <!-- LINE -->
+    <div style="height:2px; background-color:#eeeeee; margin:0 32px;"></div>
+
+    <!-- OUR SERVICES -->
+    <div style="padding:32px 32px 24px 32px; text-align:center;">
+        <p style="margin:0 0 4px 0; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:#ab4be6;">What We Do</p>
+        <h2 style="margin:0 0 8px 0; font-size:28px; font-weight:900; color:#1a1a1a;">Our Odoo Services</h2>
+        <p style="margin:0 auto 28px auto; font-size:15px; line-height:1.8; max-width:750px; color:#555555;">
+            End-to-end Odoo expertise — from initial setup to long-term support. We help businesses get the most out of their Odoo investment.
+        </p>
+
+        <!-- Row 1 -->
+        <div style="display:inline-block; vertical-align:top; width:250px; margin:8px 10px; padding:24px 18px; border:1px solid #eeeeee; border-radius:14px; text-align:center;">
+            <div style="width:40px; height:40px; border-radius:10px; background-color:#f3e8fc; display:inline-flex; align-items:center; justify-content:center; margin-bottom:12px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ab4be6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <div style="font-size:15px; font-weight:800; color:#1a1a1a; margin-bottom:6px;">Odoo Implementation</div>
+            <div style="font-size:13px; line-height:1.7; color:#666666;">Full Odoo ERP setup from scratch — requirements analysis, configuration, data migration, user training, and go-live support.</div>
+        </div>
+
+        <div style="display:inline-block; vertical-align:top; width:250px; margin:8px 10px; padding:24px 18px; border:1px solid #eeeeee; border-radius:14px; text-align:center;">
+            <div style="width:40px; height:40px; border-radius:10px; background-color:#edffd6; display:inline-flex; align-items:center; justify-content:center; margin-bottom:12px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3d7a00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <div style="font-size:15px; font-weight:800; color:#1a1a1a; margin-bottom:6px;">Custom Development</div>
+            <div style="font-size:13px; line-height:1.7; color:#666666;">Custom modules, reports, workflows, and business logic tailored to your unique processes and industry requirements.</div>
+        </div>
+
+        <div style="display:inline-block; vertical-align:top; width:250px; margin:8px 10px; padding:24px 18px; border:1px solid #eeeeee; border-radius:14px; text-align:center;">
+            <div style="width:40px; height:40px; border-radius:10px; background-color:#e0f2fe; display:inline-flex; align-items:center; justify-content:center; margin-bottom:12px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+            </div>
+            <div style="font-size:15px; font-weight:800; color:#1a1a1a; margin-bottom:6px;">Odoo Customization</div>
+            <div style="font-size:13px; line-height:1.7; color:#666666;">Adapt existing Odoo modules to fit your workflows — custom fields, views, access rules, automated actions, and UI tweaks.</div>
+        </div>
+
+        <!-- Row 2 -->
+        <div style="display:inline-block; vertical-align:top; width:250px; margin:8px 10px; padding:24px 18px; border:1px solid #eeeeee; border-radius:14px; text-align:center;">
+            <div style="width:40px; height:40px; border-radius:10px; background-color:#f3e8fc; display:inline-flex; align-items:center; justify-content:center; margin-bottom:12px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ab4be6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+            </div>
+            <div style="font-size:15px; font-weight:800; color:#1a1a1a; margin-bottom:6px;">Third-Party Integration</div>
+            <div style="font-size:13px; line-height:1.7; color:#666666;">Connect Odoo with payment gateways, shipping carriers, eCommerce platforms, CRMs, APIs, and other external systems.</div>
+        </div>
+
+        <div style="display:inline-block; vertical-align:top; width:250px; margin:8px 10px; padding:24px 18px; border:1px solid #eeeeee; border-radius:14px; text-align:center;">
+            <div style="width:40px; height:40px; border-radius:10px; background-color:#edffd6; display:inline-flex; align-items:center; justify-content:center; margin-bottom:12px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3d7a00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            </div>
+            <div style="font-size:15px; font-weight:800; color:#1a1a1a; margin-bottom:6px;">Odoo Support</div>
+            <div style="font-size:13px; line-height:1.7; color:#666666;">Ongoing maintenance, bug fixes, performance optimization, version upgrades, and dedicated technical support for your Odoo instance.</div>
+        </div>
+
+        <div style="display:inline-block; vertical-align:top; width:250px; margin:8px 10px; padding:24px 18px; border:1px solid #eeeeee; border-radius:14px; text-align:center;">
+            <div style="width:40px; height:40px; border-radius:10px; background-color:#e0f2fe; display:inline-flex; align-items:center; justify-content:center; margin-bottom:12px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div style="font-size:15px; font-weight:800; color:#1a1a1a; margin-bottom:6px;">Training &amp; Consulting</div>
+            <div style="font-size:13px; line-height:1.7; color:#666666;">User training, admin workshops, best practice consulting, and strategic guidance to maximize your Odoo ROI.</div>
+        </div>
+    </div>
+
+    <!-- LINE -->
+    <div style="height:2px; background-color:#eeeeee; margin:0 32px;"></div>
+
+    <!-- FOOTER -->
+    <div style="padding:32px 32px 28px 32px; text-align:center;">
+        <img src="logo.png" alt="Developers Pro" style="width:320px; height:auto; display:block; margin:0 auto 16px auto;">
+
+        <div style="font-size:22px; font-weight:900; margin-bottom:6px; color:#1a1a1a;">Developers Pro</div>
+
+        <p style="margin:0 auto 20px auto; font-size:14px; line-height:1.8; max-width:600px; color:#666666;">
+            We build smart Odoo solutions — custom modules, integrations, and workflow improvements tailored to your business needs.
+        </p>
+
+        <!-- Email Button -->
+        <a href="mailto:developerspro.uk@gmail.com"
+           style="display:inline-block; padding:12px 28px; margin:4px 6px; border-radius:8px; text-decoration:none; font-size:14px; font-weight:800; color:#ffffff; background-color:#ab4be6;">Email Us</a>
+
+        <!-- WhatsApp Button -->
+       <a href="https:developerspro.co.uk"
+           style="display:inline-block; padding:12px 28px; margin:4px 6px; border-radius:8px; text-decoration:none; font-size:14px; font-weight:800; color:#ffffff; background-color:#25D366;">Contact Us</a>
+        <br>
+        <div style="margin-top:20px; font-size:12px; color:#aaaaaa;">
+            &copy; Developers Pro — Odoo Solutions &amp; Custom Development
+        </div>
+    </div>
+
+    <!-- BOTTOM BAR -->
+    <div style="height:4px; background-color:#ab4be6;"></div>
+
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wa_sync_log_admin,wa.desktop.sync.log admin,model_wa_desktop_sync_log,base.group_system,1,1,1,1

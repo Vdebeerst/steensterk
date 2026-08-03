@@ -1,0 +1,84 @@
+<!-- custom_addons/ziggu_partner_sync/views/res_config_settings_views.xml -->
+<odoo>
+    <record id="res_config_settings_view_form_ziggu" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.ziggu</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app string="Ziggu" name="ziggu" logo="/steensterk_ziggu/static/description/icon.png">
+                    <block title="Ziggu instellingen">
+                        <group>
+                            <field name="ziggu_base_url" placeholder="https://api.ziggu.io/v1"/>
+                            <field name="ziggu_client_id"/>
+                            <field name="ziggu_access_token" password="True"/>
+                            <field name="ziggu_project_template_id"/>
+                        </group>
+                        <group colspan="4" col="2">
+                            <group>
+                                <separator string="GET"/><newline/>
+                                <field name="ziggu_get_attachment_categories"/>
+                                <field name="ziggu_get_buildings"/>
+                                <field name="ziggu_get_companies"/>
+                                <field name="ziggu_get_customers"/>
+                                <field name="ziggu_get_decision_type_categories"/>
+                                <field name="ziggu_get_decision_types"/>
+                                <field name="ziggu_get_decisions"/>
+                                <field name="ziggu_get_documents"/>
+                                <field name="ziggu_get_employees"/>
+                                <field name="ziggu_get_fractions"/>
+                                <field name="ziggu_get_installments"/>
+                                <field name="ziggu_get_issue_categories"/>
+                                <field name="ziggu_get_issue_list_types"/>
+                                <field name="ziggu_get_issue_lists"/>
+                                <field name="ziggu_get_issue_statuses"/>
+                                <field name="ziggu_get_issues"/>
+                                <field name="ziggu_get_lots"/>
+                                <field name="ziggu_get_messages"/>
+                                <field name="ziggu_get_partners"/>
+                                <field name="ziggu_get_phases"/>
+                                <field name="ziggu_get_projects"/>
+                                <field name="ziggu_get_proposals"/>
+                                <field name="ziggu_get_spaces"/>
+                                <field name="ziggu_get_ticket_categories"/>
+                                <field name="ziggu_get_tickets"/>
+                                <field name="ziggu_get_unit_customers"/>
+                                <field name="ziggu_get_units"/>
+                            </group>
+                            <group>
+                                <separator string="PUT"/><newline/>
+                                <field name="ziggu_put_attachment_categories"/>
+                                <field name="ziggu_put_buildings"/>
+                                <field name="ziggu_put_companies"/>
+                                <field name="ziggu_put_customers"/>
+                                <field name="ziggu_put_decision_type_categories"/>
+                                <field name="ziggu_put_decision_types"/>
+                                <field name="ziggu_put_decisions"/>
+                                <field name="ziggu_put_documents"/>
+                                <field name="ziggu_put_employees"/>
+                                <field name="ziggu_put_fractions"/>
+                                <field name="ziggu_put_installments"/>
+                                <field name="ziggu_put_issue_categories"/>
+                                <field name="ziggu_put_issue_list_types"/>
+                                <field name="ziggu_put_issue_lists"/>
+                                <field name="ziggu_put_issue_statuses"/>
+                                <field name="ziggu_put_issues"/>
+                                <field name="ziggu_put_lots"/>
+                                <field name="ziggu_put_messages"/>
+                                <field name="ziggu_put_partners"/>
+                                <field name="ziggu_put_phases"/>
+                                <field name="ziggu_put_projects"/>
+                                <field name="ziggu_put_proposals"/>
+                                <field name="ziggu_put_spaces"/>
+                                <field name="ziggu_put_ticket_categories"/>
+                                <field name="ziggu_put_tickets"/>
+                                <field name="ziggu_put_unit_customers"/>
+                                <field name="ziggu_put_units"/>
+                            </group>
+                        </group>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>

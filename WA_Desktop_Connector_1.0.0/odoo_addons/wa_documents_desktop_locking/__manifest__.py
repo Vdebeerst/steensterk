@@ -1,0 +1,1 @@
+{'name': 'WA Documents Desktop Locking', 'version': '19.0.1.0.0', 'summary': 'Exclusive desktop edit locks', 'author': 'Wim Audenaert', 'license': 'OPL-1', 'depends': ['wa_documents_desktop_api'], 'data': ['security/ir.model.access.csv'], 'installable': True, 'application': False}

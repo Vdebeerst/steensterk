@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="sh_invoice_tags_user_id" model="res.groups">
+        <field name="name">Enable Update Invoice Mass Tags</field>
+        <field name="user_ids" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]" />
+    </record>
+    
+    <record model="ir.rule" id="sh_invoice_tags_comp_rule">
+        <field name="name">Invoice Tag multi-company</field>
+        <field name="model_id" ref="model_sh_invoice_tags" />
+        <field name="global" eval="True" />
+        <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+    </record>
+</odoo>

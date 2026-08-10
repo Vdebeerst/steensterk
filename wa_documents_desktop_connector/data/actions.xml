@@ -1,0 +1,7 @@
+<odoo>
+  <record id="action_open_on_desktop" model="ir.actions.client">
+    <field name="name">Open on Desktop</field><field name="tag">wa_documents_desktop_connector.open</field>
+    <field name="binding_model_id" ref="documents.model_documents_document"/>
+    <field name="binding_type">action</field><field name="binding_view_types">list,kanban</field>
+  </record>
+</odoo>

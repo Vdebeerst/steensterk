@@ -1,0 +1,1 @@
+{'name': 'WA Documents Desktop Sync', 'version': '19.0.1.0.0', 'summary': 'Conflict-aware desktop uploads', 'author': 'Wim Audenaert', 'license': 'OPL-1', 'depends': ['wa_documents_desktop_locking'], 'data': ['security/ir.model.access.csv', 'views/sync_log_views.xml'], 'installable': True, 'application': False}

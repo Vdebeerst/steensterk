@@ -1,0 +1,21 @@
+name: Build Windows installer
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Install Inno Setup
+        run: choco install innosetup --no-progress -y
+      - name: Build
+        shell: powershell
+        run: .\windows\build_installer.ps1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: WA-Desktop-Connector-Setup
+          path: windows/dist/WA_Desktop_Connector_Setup_0.2.0.exe

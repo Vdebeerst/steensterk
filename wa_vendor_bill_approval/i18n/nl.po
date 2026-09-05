@@ -1,0 +1,325 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#   * wa_vendor_bill_approval
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: wa_vendor_bill_approval
+msgid "Vendor Bill Approval"
+msgstr "Goedkeuring leveranciersfacturen"
+
+#. module: wa_vendor_bill_approval
+msgid "Approval Levels"
+msgstr "Goedkeuringsniveaus"
+
+#. module: wa_vendor_bill_approval
+#: model_terms:ir.ui.view,arch_db:wa_vendor_bill_approval.vendor_bill_approval_line_view_form
+#: model_terms:ir.ui.view,arch_db:wa_vendor_bill_approval.vendor_bill_approval_line_view_list
+msgid "Approval Level"
+msgstr "Goedkeuringsniveau"
+
+#. module: wa_vendor_bill_approval
+#: model:ir.model.fields,field_description:wa_vendor_bill_approval.field_vendor_bill_approval_line__approver_ids
+msgid "Approvers"
+msgstr "Goedkeurders"
+
+#. module: wa_vendor_bill_approval
+msgid "Optional"
+msgstr "Optioneel"
+
+#. module: wa_vendor_bill_approval
+msgid "Approval Status"
+msgstr "Goedkeuringsstatus"
+
+#. module: wa_vendor_bill_approval
+msgid "Current Approval Level"
+msgstr "Huidig goedkeuringsniveau"
+
+#. module: wa_vendor_bill_approval
+msgid "Approvals"
+msgstr "Goedkeuringen"
+
+#. module: wa_vendor_bill_approval
+msgid "Not Submitted"
+msgstr "Niet ingediend"
+
+#. module: wa_vendor_bill_approval
+msgid "Waiting for Approval"
+msgstr "Wacht op goedkeuring"
+
+#. module: wa_vendor_bill_approval
+msgid "Approved"
+msgstr "Goedgekeurd"
+
+#. module: wa_vendor_bill_approval
+msgid "Rejected"
+msgstr "Afgekeurd"
+
+#. module: wa_vendor_bill_approval
+msgid "Upcoming"
+msgstr "Volgend"
+
+#. module: wa_vendor_bill_approval
+msgid "Pending"
+msgstr "In afwachting"
+
+#. module: wa_vendor_bill_approval
+msgid "Skipped"
+msgstr "Overgeslagen"
+
+#. module: wa_vendor_bill_approval
+msgid "Approved By"
+msgstr "Goedgekeurd door"
+
+#. module: wa_vendor_bill_approval
+msgid "Submit for Approval"
+msgstr "Ter goedkeuring indienen"
+
+#. module: wa_vendor_bill_approval
+#: model_terms:ir.ui.view,arch_db:wa_vendor_bill_approval.vendor_bill_approval_line_view_form
+msgid "Approve"
+msgstr "Goedkeuren"
+
+#. module: wa_vendor_bill_approval
+#: model_terms:ir.ui.view,arch_db:wa_vendor_bill_approval.vendor_bill_approval_line_view_form
+msgid "Approve without Extra Approval"
+msgstr "Goedkeuren zonder extra goedkeuring"
+
+#. module: wa_vendor_bill_approval
+#: model_terms:ir.ui.view,arch_db:wa_vendor_bill_approval.vendor_bill_approval_line_view_form
+msgid "Approve and Request Extra Approval"
+msgstr "Goedkeuren en extra goedkeuring vragen"
+
+#. module: wa_vendor_bill_approval
+#: model_terms:ir.ui.view,arch_db:wa_vendor_bill_approval.vendor_bill_approval_line_view_form
+msgid "Reject"
+msgstr "Afkeuren"
+
+#. module: wa_vendor_bill_approval
+msgid "Reset Approval"
+msgstr "Goedkeuring opnieuw instellen"
+
+#. module: wa_vendor_bill_approval
+msgid "Undo Approval"
+msgstr "Goedkeuring ongedaan maken"
+
+#. module: wa_vendor_bill_approval
+msgid "The most recent approval will be undone. Do you want to continue?"
+msgstr "De meest recente goedkeuring wordt ongedaan gemaakt. Wilt u doorgaan?"
+
+#. module: wa_vendor_bill_approval
+msgid "Only the most recent completed approval can be undone by its approver or an Accounting Manager."
+msgstr "Alleen de meest recente voltooide goedkeuring kan door de goedkeurder of een Accounting Manager ongedaan worden gemaakt."
+
+#. module: wa_vendor_bill_approval
+msgid "Approval undone"
+msgstr "Goedkeuring ongedaan gemaakt"
+
+#. module: wa_vendor_bill_approval
+msgid "Approval level '%s' was undone by %s."
+msgstr "Goedkeuringsniveau '%s' werd ongedaan gemaakt door %s."
+
+#. module: wa_vendor_bill_approval
+msgid "Reject Vendor Bill"
+msgstr "Leveranciersfactuur afkeuren"
+
+#. module: wa_vendor_bill_approval
+msgid "Reason"
+msgstr "Reden"
+
+#. module: wa_vendor_bill_approval
+msgid "Cancel"
+msgstr "Annuleren"
+
+#. module: wa_vendor_bill_approval
+msgid "Enter the reason for rejection..."
+msgstr "Geef de reden van afkeuring in..."
+
+#. module: wa_vendor_bill_approval
+msgid "Require configurable approval levels before vendor bills can be posted."
+msgstr "Vereis configureerbare goedkeuringsniveaus voordat leveranciersfacturen kunnen worden geboekt."
+
+#. module: wa_vendor_bill_approval
+msgid "Any selected approver can approve the level. For an optional level, the preceding approver decides whether it is required."
+msgstr "Elke geselecteerde goedkeurder kan het niveau goedkeuren. Voor een optioneel niveau beslist de vorige goedkeurder of het vereist is."
+
+#. module: wa_vendor_bill_approval
+msgid "If enabled, the preceding approver decides whether this level is required."
+msgstr "Indien ingeschakeld, beslist de vorige goedkeurder of dit niveau vereist is."
+
+#. module: wa_vendor_bill_approval
+msgid "At least one approver is required for every approval level."
+msgstr "Voor elk goedkeuringsniveau is minstens één goedkeurder vereist."
+
+#. module: wa_vendor_bill_approval
+msgid "Approval is not enabled for this vendor bill."
+msgstr "Goedkeuring is niet ingeschakeld voor deze leveranciersfactuur."
+
+#. module: wa_vendor_bill_approval
+msgid "Only draft vendor bills can be submitted for approval."
+msgstr "Alleen conceptleveranciersfacturen kunnen ter goedkeuring worden ingediend."
+
+#. module: wa_vendor_bill_approval
+msgid "This vendor bill has already been submitted for approval."
+msgstr "Deze leveranciersfactuur werd al ter goedkeuring ingediend."
+
+#. module: wa_vendor_bill_approval
+msgid "Configure at least one approval level before submitting vendor bills."
+msgstr "Configureer minstens één goedkeuringsniveau voordat leveranciersfacturen worden ingediend."
+
+#. module: wa_vendor_bill_approval
+msgid "Every approval level must have at least one approver."
+msgstr "Elk goedkeuringsniveau moet minstens één goedkeurder hebben."
+
+#. module: wa_vendor_bill_approval
+msgid "Vendor bill submitted for approval."
+msgstr "Leveranciersfactuur ter goedkeuring ingediend."
+
+#. module: wa_vendor_bill_approval
+msgid "Vendor bill fully approved."
+msgstr "Leveranciersfactuur volledig goedgekeurd."
+
+#. module: wa_vendor_bill_approval
+msgid "This vendor bill is not waiting for approval."
+msgstr "Deze leveranciersfactuur wacht niet op goedkeuring."
+
+#. module: wa_vendor_bill_approval
+msgid "You are not an approver for the current approval level."
+msgstr "U bent geen goedkeurder voor het huidige goedkeuringsniveau."
+
+#. module: wa_vendor_bill_approval
+msgid "The next approval level is not optional."
+msgstr "Het volgende goedkeuringsniveau is niet optioneel."
+
+#. module: wa_vendor_bill_approval
+msgid "Only draft vendor bills can have their approval reset."
+msgstr "Alleen bij conceptleveranciersfacturen kan de goedkeuring opnieuw worden ingesteld."
+
+#. module: wa_vendor_bill_approval
+msgid "Vendor bill approval reset."
+msgstr "De goedkeuring van de leveranciersfactuur werd opnieuw ingesteld."
+
+#. module: wa_vendor_bill_approval
+msgid "Vendor bills must be fully approved before they can be posted."
+msgstr "Leveranciersfacturen moeten volledig goedgekeurd zijn voordat ze kunnen worden geboekt."
+
+#. module: wa_vendor_bill_approval
+msgid "Reset the approval before changing an approved or submitted vendor bill."
+msgstr "Stel de goedkeuring opnieuw in voordat u een goedgekeurde of ingediende leveranciersfactuur wijzigt."
+
+#. module: wa_vendor_bill_approval
+msgid "Reset the approval before changing the lines of an approved or submitted vendor bill."
+msgstr "Stel de goedkeuring opnieuw in voordat u de regels van een goedgekeurde of ingediende leveranciersfactuur wijzigt."
+
+#. module: wa_vendor_bill_approval
+msgid "Reset the approval before adding lines to an approved or submitted vendor bill."
+msgstr "Stel de goedkeuring opnieuw in voordat u regels toevoegt aan een goedgekeurde of ingediende leveranciersfactuur."
+
+#. module: wa_vendor_bill_approval
+msgid "All existing approvals will be removed. Do you want to continue?"
+msgstr "Alle bestaande goedkeuringen worden verwijderd. Wilt u doorgaan?"
+
+#. module: wa_vendor_bill_approval
+msgid "Approval reset"
+msgstr "Goedkeuring opnieuw ingesteld"
+
+#. module: wa_vendor_bill_approval
+msgid "Approved by %s"
+msgstr "Goedgekeurd door %s"
+
+#. module: wa_vendor_bill_approval
+msgid "Rejected by %s"
+msgstr "Afgekeurd door %s"
+
+#. module: wa_vendor_bill_approval
+msgid "Approve vendor bill: %s"
+msgstr "Leveranciersfactuur goedkeuren: %s"
+
+#. module: wa_vendor_bill_approval
+msgid "Vendor bill %s is waiting for your approval."
+msgstr "Leveranciersfactuur %s wacht op uw goedkeuring."
+
+#. module: wa_vendor_bill_approval
+msgid "Approval level '%s' approved by %s."
+msgstr "Goedkeuringsniveau '%s' goedgekeurd door %s."
+
+#. module: wa_vendor_bill_approval
+msgid "Approval level '%s' rejected by %s.<br/>Reason: %s"
+msgstr "Goedkeuringsniveau '%s' afgekeurd door %s.<br/>Reden: %s"
+
+#. module: wa_vendor_bill_approval
+msgid "Vendor Bill Approver"
+msgstr "Goedkeurder leveranciersfacturen"
+
+#. module: wa_vendor_bill_approval
+#: model:ir.model.fields,field_description:wa_vendor_bill_approval.field_vendor_bill_approval_line__partner_id
+msgid "Vendor"
+msgstr "Leverancier"
+
+#. module: wa_vendor_bill_approval
+#: model:ir.actions.act_window,name:wa_vendor_bill_approval.action_vendor_bill_approval_inbox
+#. odoo-javascript
+#: code:addons/wa_vendor_bill_approval/static/src/js/approval_dashboard_card.js:0
+msgid "Vendor Bills"
+msgstr "Leveranciersfacturen"
+
+#. module: wa_vendor_bill_approval
+#: model_terms:ir.ui.view,arch_db:wa_vendor_bill_approval.vendor_bill_approval_line_view_search
+#. odoo-javascript
+#: code:addons/wa_vendor_bill_approval/static/src/js/approval_dashboard_card.js:0
+msgid "To Review"
+msgstr "Te beoordelen"
+
+#. module: wa_vendor_bill_approval
+#. odoo-javascript
+#: code:addons/wa_vendor_bill_approval/static/src/js/approval_dashboard_card.js:0
+msgid "To Review (%s)"
+msgstr "Te beoordelen (%s)"
+
+#. module: wa_vendor_bill_approval
+#: model_terms:ir.ui.view,arch_db:wa_vendor_bill_approval.vendor_bill_approval_line_view_form
+msgid "Invoice document"
+msgstr "Factuurdocument"
+
+#. module: wa_vendor_bill_approval
+msgid "This vendor bill has no main attachment."
+msgstr "Deze leveranciersfactuur heeft geen hoofddocument."
+
+#. module: wa_vendor_bill_approval
+msgid "You are not allowed to view this vendor bill."
+msgstr "U mag deze leveranciersfactuur niet bekijken."
+
+#. module: wa_vendor_bill_approval
+msgid "No vendor bill was selected."
+msgstr "Er werd geen leveranciersfactuur geselecteerd."
+
+#. module: wa_vendor_bill_approval
+#: model:ir.model.fields,field_description:wa_vendor_bill_approval.field_vendor_bill_approval_line__reference
+msgid "Reference"
+msgstr "Referentie"
+
+#. module: wa_vendor_bill_approval
+#: model:ir.model.fields,field_description:wa_vendor_bill_approval.field_vendor_bill_approval_line__invoice_number
+msgid "Number"
+msgstr "Nummer"
+
+#. module: wa_vendor_bill_approval
+#: model:ir.model.fields,field_description:wa_vendor_bill_approval.field_vendor_bill_approval_line__invoice_date
+msgid "Invoice/Bill Date"
+msgstr "Factuurdatum"
+
+#. module: wa_vendor_bill_approval
+#: model:ir.model.fields,field_description:wa_vendor_bill_approval.field_vendor_bill_approval_line__invoice_date_due
+msgid "Due Date"
+msgstr "Vervaldatum"
+
+#. module: wa_vendor_bill_approval
+#: model:ir.model.fields,field_description:wa_vendor_bill_approval.field_vendor_bill_approval_line__amount_total
+msgid "Total"
+msgstr "Totaal"

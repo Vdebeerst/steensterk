@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record
+        id="account_move_view_form_vendor_bill_approval"
+        model="ir.ui.view"
+    >
+        <field name="name">
+            account.move.form.vendor.bill.approval
+        </field>
+        <field name="model">account.move</field>
+        <field
+            name="inherit_id"
+            ref="account.view_move_form"
+        />
+
+        <field name="arch" type="xml">
+            <xpath
+                expr="//header"
+                position="inside"
+            >
+                <button
+                    name="action_submit_vendor_bill_for_approval"
+                    type="object"
+                    string="Submit for Approval"
+                    class="oe_highlight"
+                    invisible="not vendor_bill_approval_required or state != 'draft' or vendor_bill_approval_state not in ('not_submitted', 'rejected')"
+                />
+
+                <button
+                    name="action_approve_vendor_bill"
+                    type="object"
+                    string="Approve"
+                    class="oe_highlight"
+                    invisible="not can_approve_vendor_bill or has_optional_next_approval"
+                />
+
+                <button
+                    name="action_approve_vendor_bill"
+                    type="object"
+                    string="Approve without Extra Approval"
+                    class="oe_highlight"
+                    invisible="not can_approve_vendor_bill or not has_optional_next_approval"
+                />
+
+                <button
+                    name="action_approve_vendor_bill_and_request_optional"
+                    type="object"
+                    string="Approve and Request Extra Approval"
+                    invisible="not can_approve_vendor_bill or not has_optional_next_approval"
+                />
+
+                <button
+                    name="action_open_vendor_bill_reject_wizard"
+                    type="object"
+                    string="Reject"
+                    invisible="not can_approve_vendor_bill"
+                />
+
+                <button
+                    name="action_undo_vendor_bill_approval"
+                    type="object"
+                    string="Undo Approval"
+                    confirm="The most recent approval will be undone. Do you want to continue?"
+                    invisible="not can_undo_vendor_bill_approval"
+                />
+
+                <button
+                    name="action_reset_vendor_bill_approval"
+                    type="object"
+                    string="Reset Approval"
+                    confirm="All existing approvals will be removed. Do you want to continue?"
+                    invisible="not vendor_bill_approval_required or state != 'draft' or vendor_bill_approval_state not in ('waiting', 'approved', 'rejected')"
+                />
+            </xpath>
+
+            <xpath
+                expr="//field[@name='invoice_date']"
+                position="after"
+            >
+                <field
+                    name="vendor_bill_approval_required"
+                    invisible="1"
+                />
+                <field
+                    name="can_approve_vendor_bill"
+                    invisible="1"
+                />
+                <field
+                    name="can_undo_vendor_bill_approval"
+                    invisible="1"
+                />
+                <field
+                    name="has_optional_next_approval"
+                    invisible="1"
+                />
+                <field
+                    name="vendor_bill_approval_state"
+                    widget="badge"
+                    invisible="not vendor_bill_approval_required"
+                    readonly="1"
+                />
+                <field
+                    name="current_vendor_bill_approval_line_id"
+                    invisible="vendor_bill_approval_state != 'waiting'"
+                    readonly="1"
+                />
+            </xpath>
+
+            <xpath
+                expr="//notebook"
+                position="inside"
+            >
+                <page
+                    string="Approvals"
+                    name="vendor_bill_approvals"
+                    invisible="not vendor_bill_approval_required"
+                >
+                    <field
+                        name="vendor_bill_approval_line_ids"
+                        nolabel="1"
+                        readonly="1"
+                    >
+                        <list
+                            decoration-success="state == 'approved'"
+                            decoration-danger="state == 'rejected'"
+                            decoration-muted="state == 'skipped'"
+                            decoration-info="state == 'pending'"
+                        >
+                            <field name="sequence"/>
+                            <field name="name"/>
+                            <field
+                                name="approver_ids"
+                                widget="many2many_tags"
+                            />
+                            <field name="optional"/>
+                            <field
+                                name="state"
+                                widget="badge"
+                            />
+                            <field name="approved_by_id"/>
+                            <field name="approval_date"/>
+                            <field
+                                name="rejection_reason"
+                                optional="show"
+                            />
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

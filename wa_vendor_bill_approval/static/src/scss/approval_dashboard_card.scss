@@ -1,0 +1,45 @@
+.o_kanban_renderer .o_wa_vendor_bill_card {
+    align-items: stretch;
+    display: grid !important;
+    grid-template-columns: 80px 1fr;
+    min-height: 88px;
+    order: -1000;
+    padding: 12px 18px;
+}
+
+.o_wa_vendor_bill_icon {
+    align-self: center;
+    height: 64px;
+    justify-self: center;
+    transform: translateX(-18px);
+    width: 64px;
+}
+
+.o_wa_vendor_bill_icon img {
+    height: 64px;
+    object-fit: contain;
+    width: 64px;
+}
+
+.o_wa_vendor_bill_content {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transform: translateY(-4px);
+}
+
+.o_wa_vendor_bill_content strong {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.o_wa_vendor_bill_content .btn {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 17px;
+    margin-top: 46px;
+    padding: 4px 10px;
+    position: relative;
+    top: 8px;
+}

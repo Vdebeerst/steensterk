@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="vendor_bill_reject_wizard_view_form" model="ir.ui.view">
+        <field name="name">vendor.bill.reject.wizard.form</field>
+        <field name="model">vendor.bill.reject.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Reject Vendor Bill">
+                <group>
+                    <field
+                        name="move_id"
+                        invisible="approval_line_id"
+                    />
+                    <field
+                        name="approval_line_id"
+                        invisible="not approval_line_id"
+                    />
+                    <field
+                        name="reason"
+                        placeholder="Enter the reason for rejection..."
+                    />
+                </group>
+                <footer>
+                    <button
+                        name="action_reject"
+                        type="object"
+                        string="Reject"
+                        class="btn-primary"
+                    />
+                    <button
+                        string="Cancel"
+                        special="cancel"
+                        class="btn-secondary"
+                    />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

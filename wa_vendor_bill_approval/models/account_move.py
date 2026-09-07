@@ -118,44 +118,28 @@ class AccountMove(models.Model):
     def action_submit_vendor_bill_for_approval(self):
         for move in self:
             if not move.vendor_bill_approval_required:
-                raise UserError(
-                    _("Approval is not enabled for this vendor bill.")
-                )
+                raise UserError(_("Approval is not enabled for this vendor bill."))
 
-            if move.state != "draft":
-                raise UserError(
-                    _("Only draft vendor bills can be submitted for approval.")
-                )
+            if move.state not in ("draft", "posted"):
+                raise UserError(_("Only draft or posted vendor bills can be submitted for approval."))
 
-            if move.vendor_bill_approval_state not in (
-                "not_submitted",
-                "rejected",
-            ):
-                raise UserError(
-                    _("This vendor bill has already been submitted for approval.")
-                )
+            if move.payment_state == "paid":
+                raise UserError(_("Paid vendor bills cannot be submitted for approval."))
 
-            levels = move.company_id.vendor_bill_approval_level_ids.filtered(
-                "active"
-            ).sorted(
+            if move.vendor_bill_approval_state not in ("not_submitted", "rejected"):
+                raise UserError(_("This vendor bill has already been submitted for approval."))
+
+            levels = move.company_id.vendor_bill_approval_level_ids.filtered("active").sorted(
                 key=lambda level: (level.sequence, level.id)
             )
 
             if not levels:
-                raise UserError(
-                    _(
-                        "Configure at least one approval level "
-                        "before submitting vendor bills."
-                    )
-                )
+                raise UserError(_("Configure at least one approval level before submitting vendor bills."))
 
             if any(not level.approver_ids for level in levels):
-                raise UserError(
-                    _("Every approval level must have at least one approver.")
-                )
+                raise UserError(_("Every approval level must have at least one approver."))
 
             move.vendor_bill_approval_line_ids.sudo().unlink()
-
             lines = self.env["vendor.bill.approval.line"].sudo()
 
             for index, level in enumerate(levels):
@@ -164,30 +148,17 @@ class AccountMove(models.Model):
                     "level_id": level.id,
                     "name": level.name,
                     "sequence": level.sequence,
-                    "approver_ids": [
-                        (6, 0, level.approver_ids.ids)
-                    ],
+                    "approver_ids": [(6, 0, level.approver_ids.ids)],
                     "optional": level.optional,
-                    "state": (
-                        "pending"
-                        if index == 0
-                        else "upcoming"
-                    ),
+                    "state": "pending" if index == 0 else "upcoming",
                 })
 
-            move.with_context(
-                skip_vendor_bill_approval_lock=True
-            ).write({
+            move.with_context(skip_vendor_bill_approval_lock=True).write({
                 "vendor_bill_approval_state": "waiting",
             })
 
-            lines.filtered(
-                lambda line: line.state == "pending"
-            )._schedule_activities()
-
-            move.message_post(
-                body=_("Vendor bill submitted for approval.")
-            )
+            lines.filtered(lambda line: line.state == "pending")._schedule_activities()
+            move.message_post(body=_("Vendor bill submitted for approval."))
 
         return True
 
@@ -423,27 +394,30 @@ class AccountMove(models.Model):
         return True
 
     def action_post(self):
-        blocked = self.filtered(
-            lambda move: (
-                move.vendor_bill_approval_required
-                and move.vendor_bill_approval_state != "approved"
-            )
-        )
+        return super(AccountMove, self.with_context(skip_vendor_bill_approval_lock=True)).action_post()
+    
+    # def action_post(self):
+    #     blocked = self.filtered(
+    #         lambda move: (
+    #             move.vendor_bill_approval_required
+    #             and move.vendor_bill_approval_state != "approved"
+    #         )
+    #     )
 
-        if blocked:
-            raise ValidationError(
-                _(
-                    "Vendor bills must be fully approved "
-                    "before they can be posted."
-                )
-            )
+    #     if blocked:
+    #         raise ValidationError(
+    #             _(
+    #                 "Vendor bills must be fully approved "
+    #                 "before they can be posted."
+    #             )
+    #         )
 
-        return super(
-            AccountMove,
-            self.with_context(
-                skip_vendor_bill_approval_lock=True
-            ),
-        ).action_post()
+    #     return super(
+    #         AccountMove,
+    #         self.with_context(
+    #             skip_vendor_bill_approval_lock=True
+    #         ),
+    #     ).action_post()
 
     def write(self, vals):
         protected_fields = {

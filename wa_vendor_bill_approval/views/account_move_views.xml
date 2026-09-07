@@ -1,29 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record
-        id="account_move_view_form_vendor_bill_approval"
-        model="ir.ui.view"
-    >
-        <field name="name">
-            account.move.form.vendor.bill.approval
-        </field>
+    <record id="account_move_view_form_vendor_bill_approval" model="ir.ui.view">
+        <field name="name">account.move.form.vendor.bill.approval</field>
         <field name="model">account.move</field>
-        <field
-            name="inherit_id"
-            ref="account.view_move_form"
-        />
+        <field name="inherit_id" ref="account.view_move_form"/>
 
         <field name="arch" type="xml">
-            <xpath
-                expr="//header"
-                position="inside"
-            >
+            <xpath expr="//header" position="inside">
                 <button
                     name="action_submit_vendor_bill_for_approval"
                     type="object"
                     string="Submit for Approval"
                     class="oe_highlight"
-                    invisible="not vendor_bill_approval_required or state != 'draft' or vendor_bill_approval_state not in ('not_submitted', 'rejected')"
+                    invisible="not vendor_bill_approval_required or state not in ('draft', 'posted') or payment_state == 'paid' or vendor_bill_approval_state not in ('not_submitted', 'rejected')"
                 />
 
                 <button
@@ -69,30 +58,15 @@
                     type="object"
                     string="Reset Approval"
                     confirm="All existing approvals will be removed. Do you want to continue?"
-                    invisible="not vendor_bill_approval_required or state != 'draft' or vendor_bill_approval_state not in ('waiting', 'approved', 'rejected')"
+                    invisible="not vendor_bill_approval_required or state not in ('draft', 'posted') or vendor_bill_approval_state not in ('waiting', 'approved', 'rejected')"
                 />
             </xpath>
 
-            <xpath
-                expr="//field[@name='invoice_date']"
-                position="after"
-            >
-                <field
-                    name="vendor_bill_approval_required"
-                    invisible="1"
-                />
-                <field
-                    name="can_approve_vendor_bill"
-                    invisible="1"
-                />
-                <field
-                    name="can_undo_vendor_bill_approval"
-                    invisible="1"
-                />
-                <field
-                    name="has_optional_next_approval"
-                    invisible="1"
-                />
+            <xpath expr="//field[@name='invoice_date']" position="after">
+                <field name="vendor_bill_approval_required" invisible="1"/>
+                <field name="can_approve_vendor_bill" invisible="1"/>
+                <field name="can_undo_vendor_bill_approval" invisible="1"/>
+                <field name="has_optional_next_approval" invisible="1"/>
                 <field
                     name="vendor_bill_approval_state"
                     widget="badge"
@@ -106,10 +80,7 @@
                 />
             </xpath>
 
-            <xpath
-                expr="//notebook"
-                position="inside"
-            >
+            <xpath expr="//notebook" position="inside">
                 <page
                     string="Approvals"
                     name="vendor_bill_approvals"
@@ -128,21 +99,12 @@
                         >
                             <field name="sequence"/>
                             <field name="name"/>
-                            <field
-                                name="approver_ids"
-                                widget="many2many_tags"
-                            />
+                            <field name="approver_ids" widget="many2many_tags"/>
                             <field name="optional"/>
-                            <field
-                                name="state"
-                                widget="badge"
-                            />
+                            <field name="state" widget="badge"/>
                             <field name="approved_by_id"/>
                             <field name="approval_date"/>
-                            <field
-                                name="rejection_reason"
-                                optional="show"
-                            />
+                            <field name="rejection_reason" optional="show"/>
                         </list>
                     </field>
                 </page>

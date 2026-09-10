@@ -495,48 +495,48 @@ class AccountMoveLine(models.Model):
 
         return super().create(vals_list)
 
-    def _check_vendor_bill_approval_lock(self):
-        if self.env.context.get(
-            "skip_vendor_bill_approval_lock"
-        ):
-            return
+    # def _check_vendor_bill_approval_lock(self):
+    #     if self.env.context.get(
+    #         "skip_vendor_bill_approval_lock"
+    #     ):
+    #         return
 
-        locked = self.move_id.filtered(
-            lambda move: (
-                move.state == "draft"
-                and move.vendor_bill_approval_required
-                and move.vendor_bill_approval_state
-                in ("waiting", "approved")
-            )
-        )
+    #     locked = self.move_id.filtered(
+    #         lambda move: (
+    #             move.state == "draft"
+    #             and move.vendor_bill_approval_required
+    #             and move.vendor_bill_approval_state
+    #             in ("waiting", "approved")
+    #         )
+    #     )
 
-        if locked:
-            raise ValidationError(
-                _(
-                    "Reset the approval before changing the lines "
-                    "of an approved or submitted vendor bill."
-                )
-            )
+    #     if locked:
+    #         raise ValidationError(
+    #             _(
+    #                 "Reset the approval before changing the lines "
+    #                 "of an approved or submitted vendor bill."
+    #             )
+    #         )
 
-    def write(self, vals):
-        protected_fields = {
-            # "name",
-            # "account_id",
-            "quantity",
-            "price_unit",
-            "discount",
-            "tax_ids",
-            "analytic_distribution",
-            "partner_id",
-            "currency_id",
-            "date_maturity",
-        }
+    # def write(self, vals):
+    #     protected_fields = {
+    #         # "name",
+    #         # "account_id",
+    #         "quantity",
+    #         "price_unit",
+    #         "discount",
+    #         "tax_ids",
+    #         "analytic_distribution",
+    #         "partner_id",
+    #         "currency_id",
+    #         "date_maturity",
+    #     }
 
-        if protected_fields.intersection(vals):
-            self._check_vendor_bill_approval_lock()
+    #     if protected_fields.intersection(vals):
+    #         self._check_vendor_bill_approval_lock()
 
-        return super().write(vals)
+    #     return super().write(vals)
 
-    def unlink(self):
-        self._check_vendor_bill_approval_lock()
-        return super().unlink()
+    # def unlink(self):
+    #     self._check_vendor_bill_approval_lock()
+    #     return super().unlink()

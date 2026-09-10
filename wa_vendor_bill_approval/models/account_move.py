@@ -447,13 +447,13 @@ class AccountMove(models.Model):
                 )
             )
 
-            if locked:
-                raise ValidationError(
-                    _(
-                        "Reset the approval before changing "
-                        "an approved or submitted vendor bill."
-                    )
-                )
+            # if locked:
+            #     raise ValidationError(
+            #         _(
+            #             "Reset the approval before changing "
+            #             "an approved or submitted vendor bill."
+            #         )
+            #     )
 
         return super().write(vals)
 

@@ -432,20 +432,20 @@ class AccountMove(models.Model):
             "invoice_line_ids",
         }
 
-        if (
-            not self.env.context.get(
-                "skip_vendor_bill_approval_lock"
-            )
-            and protected_fields.intersection(vals)
-        ):
-            locked = self.filtered(
-                lambda move: (
-                    move.state == "draft"
-                    and move.vendor_bill_approval_required
-                    and move.vendor_bill_approval_state
-                    in ("waiting", "approved")
-                )
-            )
+        # if (
+        #     not self.env.context.get(
+        #         "skip_vendor_bill_approval_lock"
+        #     )
+        #     and protected_fields.intersection(vals)
+        # ):
+        #     locked = self.filtered(
+        #         lambda move: (
+        #             move.state == "draft"
+        #             and move.vendor_bill_approval_required
+        #             and move.vendor_bill_approval_state
+        #             in ("waiting", "approved")
+        #         )
+        #     )
 
             # if locked:
             #     raise ValidationError(
@@ -520,8 +520,8 @@ class AccountMoveLine(models.Model):
 
     def write(self, vals):
         protected_fields = {
-            "name",
-            "account_id",
+            # "name",
+            # "account_id",
             "quantity",
             "price_unit",
             "discount",

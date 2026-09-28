@@ -111,4 +111,48 @@
             </xpath>
         </field>
     </record>
+
+    <record id="account_move_view_in_invoice_bill_list_vendor_bill_approval" model="ir.ui.view">
+        <field name="name">account.move.in.invoice.bill.list.vendor.bill.approval</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_in_invoice_bill_tree"/>
+        <field name="arch" type="xml">
+            <field name="status_in_payment" position="before">
+                <field name="vendor_bill_approval_state"
+                       widget="badge"
+                       optional="show"
+                       decoration-info="vendor_bill_approval_state == 'waiting'"
+                       decoration-success="vendor_bill_approval_state == 'approved'"
+                       decoration-danger="vendor_bill_approval_state == 'rejected'"/>
+                <field name="next_vendor_bill_approver_ids"
+                       widget="many2many_tags"
+                       optional="show"
+                       options="{'no_open': True}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="account_move_view_search_vendor_bill_approval" model="ir.ui.view">
+        <field name="name">account.move.search.vendor.bill.approval</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <field name="vendor_bill_approval_state"/>
+                <separator/>
+                <filter name="vendor_bill_approval_not_submitted"
+                        string="Not Submitted"
+                        domain="[('vendor_bill_approval_state', '=', 'not_submitted')]"/>
+                <filter name="vendor_bill_approval_waiting"
+                        string="Waiting for Approval"
+                        domain="[('vendor_bill_approval_state', '=', 'waiting')]"/>
+                <filter name="vendor_bill_approval_approved"
+                        string="Approved"
+                        domain="[('vendor_bill_approval_state', '=', 'approved')]"/>
+                <filter name="vendor_bill_approval_rejected"
+                        string="Rejected"
+                        domain="[('vendor_bill_approval_state', '=', 'rejected')]"/>
+            </xpath>
+        </field>
+    </record>
 </odoo>

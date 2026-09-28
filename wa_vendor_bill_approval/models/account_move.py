@@ -48,6 +48,8 @@ class AccountMove(models.Model):
         compute="_compute_vendor_bill_approval_required",
     )
 
+    next_vendor_bill_approver_ids = fields.Many2many("res.users", compute="_compute_vendor_bill_approval", string="Next Approvers")
+
     @api.depends(
         "move_type",
         "company_id.vendor_bill_approval_enabled",
@@ -74,6 +76,7 @@ class AccountMove(models.Model):
             )[:1]
 
             move.current_vendor_bill_approval_line_id = current
+            move.next_vendor_bill_approver_ids = current.approver_ids
 
             move.can_approve_vendor_bill = bool(
                 current
@@ -114,6 +117,62 @@ class AccountMove(models.Model):
                 next_line
                 and next_line.optional
             )
+            
+    # @api.depends(
+    #     "vendor_bill_approval_line_ids.state",
+    #     "vendor_bill_approval_line_ids.sequence",
+    #     "vendor_bill_approval_line_ids.approver_ids",
+    #     "vendor_bill_approval_line_ids.approved_by_id",
+    # )
+    # def _compute_vendor_bill_approval(self):
+    #     for move in self:
+    #         current = move.vendor_bill_approval_line_ids.filtered(
+    #             lambda line: line.state == "pending"
+    #         ).sorted(
+    #             key=lambda line: (line.sequence, line.id)
+    #         )[:1]
+
+    #         move.current_vendor_bill_approval_line_id = current
+
+    #         move.can_approve_vendor_bill = bool(
+    #             current
+    #             and self.env.user in current.approver_ids
+    #         )
+
+    #         approved_lines = move.vendor_bill_approval_line_ids.filtered(
+    #             lambda line: line.state == "approved"
+    #         ).sorted(
+    #             key=lambda line: (line.sequence, line.id),
+    #             reverse=True,
+    #         )
+
+    #         last_approved = approved_lines[:1]
+
+    #         move.can_undo_vendor_bill_approval = bool(
+    #             move.state == "draft"
+    #             and move.vendor_bill_approval_state in ("waiting", "approved")
+    #             and last_approved
+    #             and (
+    #                 last_approved.approved_by_id == self.env.user
+    #                 or self.env.user.has_group(
+    #                     "account.group_account_manager"
+    #                 )
+    #             )
+    #         )
+
+    #         if current:
+    #             next_line = move.vendor_bill_approval_line_ids.filtered(
+    #                 lambda line: line.state == "upcoming"
+    #             ).sorted(
+    #                 key=lambda line: (line.sequence, line.id)
+    #             )[:1]
+    #         else:
+    #             next_line = self.env["vendor.bill.approval.line"]
+
+    #         move.has_optional_next_approval = bool(
+    #             next_line
+    #             and next_line.optional
+    #         )
 
     def action_submit_vendor_bill_for_approval(self):
         for move in self:

@@ -20,10 +20,15 @@ class ShInvoiceTags(models.Model):
 
     company_id = fields.Many2one('res.company',string='Company',required=True,default=lambda self: self.env.company)
 
-    @api.constrains('name')
+    @api.constrains('name', 'company_id')
     def _check_unique_name(self):
-        """Ensure invoice tag names are unique within the system."""
+        """Ensure invoice tag names are unique per company."""
         for rec in self:
-            dup = self.search([('name', '=', rec.name),('id', '!=', rec.id)], limit=1)
+            dup = self.search([
+                ('name', '=', rec.name),
+                ('company_id', '=', rec.company_id.id),
+                ('id', '!=', rec.id),
+            ], limit=1)
             if dup:
-                raise ValidationError(_("Tag name already exists!"))
+                raise ValidationError(_("Tag name already exists for this company!"))
+            

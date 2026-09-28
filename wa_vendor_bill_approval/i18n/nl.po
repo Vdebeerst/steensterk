@@ -323,3 +323,32 @@ msgstr "Vervaldatum"
 #: model:ir.model.fields,field_description:wa_vendor_bill_approval.field_vendor_bill_approval_line__amount_total
 msgid "Total"
 msgstr "Totaal"
+
+#. module: wa_vendor_bill_approval
+#: model:ir.model.fields,field_description:wa_vendor_bill_approval.field_account_move__next_vendor_bill_approver_ids
+msgid "Next Approvers"
+msgstr "Volgende goedkeurders"
+
+#. module: wa_vendor_bill_approval
+#: model:ir.model.fields.selection,name:wa_vendor_bill_approval.selection__account_move__vendor_bill_approval_state__not_submitted
+#: model_terms:ir.ui.view,arch_db:wa_vendor_bill_approval.account_move_view_search_vendor_bill_approval
+msgid "Not Submitted"
+msgstr "Niet ingediend"
+
+#. module: wa_vendor_bill_approval
+#: model:ir.model.fields.selection,name:wa_vendor_bill_approval.selection__account_move__vendor_bill_approval_state__waiting
+#: model_terms:ir.ui.view,arch_db:wa_vendor_bill_approval.account_move_view_search_vendor_bill_approval
+msgid "Waiting for Approval"
+msgstr "Wacht op goedkeuring"
+
+#. module: wa_vendor_bill_approval
+#: model:ir.model.fields.selection,name:wa_vendor_bill_approval.selection__account_move__vendor_bill_approval_state__approved
+#: model_terms:ir.ui.view,arch_db:wa_vendor_bill_approval.account_move_view_search_vendor_bill_approval
+msgid "Approved"
+msgstr "Goedgekeurd"
+
+#. module: wa_vendor_bill_approval
+#: model:ir.model.fields.selection,name:wa_vendor_bill_approval.selection__account_move__vendor_bill_approval_state__rejected
+#: model_terms:ir.ui.view,arch_db:wa_vendor_bill_approval.account_move_view_search_vendor_bill_approval
+msgid "Rejected"
+msgstr "Afgekeurd"

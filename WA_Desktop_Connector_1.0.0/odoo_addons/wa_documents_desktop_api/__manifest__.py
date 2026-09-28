@@ -1,0 +1,1 @@
+{'name': 'WA Documents Desktop API', 'version': '19.0.1.0.0', 'summary': 'Secure desktop metadata and download API', 'author': 'Wim Audenaert', 'license': 'OPL-1', 'depends': ['documents'], 'data': ['security/ir.model.access.csv'], 'installable': True, 'application': False}

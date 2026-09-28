@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_cash_planning_fixed_payment_list" model="ir.ui.view">
+        <field name="name">cash.planning.fixed.payment.list</field>
+        <field name="model">cash.planning.fixed.payment</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="company_id"/>
+                <field name="flow_type_id"/>
+                <field name="journal_id"/>
+                <field name="amount" sum="Total"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="frequency"/>
+                <field name="next_date"/>
+                <field name="end_date"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_cash_planning_fixed_payment_form" model="ir.ui.view">
+        <field name="name">cash.planning.fixed.payment.form</field>
+        <field name="model">cash.planning.fixed.payment</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="company_id"/>
+                            <field name="flow_type_id"/>
+                            <field name="journal_id"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="amount"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="frequency"/>
+                            <field name="next_date"/>
+                            <field name="end_date"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="note"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_cash_planning_fixed_payment_search" model="ir.ui.view">
+        <field name="name">cash.planning.fixed.payment.search</field>
+        <field name="model">cash.planning.fixed.payment</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="flow_type_id"/>
+                <field name="journal_id"/>
+                <field name="company_id"/>
+                <filter name="active" string="Active" domain="[('active','=',True)]"/>
+                <!-- <group expand="0" string="Group By">
+                    <filter name="group_company" string="Company" context="{'group_by':'company_id'}"/>
+                    <filter name="group_type" string="Cash Flow Type" context="{'group_by':'flow_type_id'}"/>
+                    <filter name="group_frequency" string="Frequency" context="{'group_by':'frequency'}"/>
+                </group> -->
+            </search>
+        </field>
+    </record>
+    <record id="action_cash_planning_fixed_payment" model="ir.actions.act_window">
+        <field name="name">Fixed Payments</field>
+        <field name="res_model">cash.planning.fixed.payment</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

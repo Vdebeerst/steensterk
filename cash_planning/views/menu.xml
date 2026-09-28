@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_cash_planning_root" name="Cash Planning" sequence="85" groups="account.group_account_user"/>
+    <menuitem id="menu_cash_planning_configuration" name="Configuratie" parent="menu_cash_planning_root" sequence="10" groups="account.group_account_user"/>
+    <menuitem id="menu_cash_planning_flow_types" name="Cash Flow Types" parent="menu_cash_planning_configuration" action="action_cash_planning_flow_type" sequence="10"/>
+    <menuitem id="menu_cash_planning_flow_accounts" name="Cash Flow Accounts" parent="menu_cash_planning_configuration" action="action_cash_planning_account_line" sequence="20"/>
+    <menuitem id="menu_cash_planning_flow_rules" name="Cash Flow Rules" parent="menu_cash_planning_configuration" action="action_cash_planning_flow_rule" sequence="30"/>
+    <menuitem id="menu_cash_planning_fixed_payments" name="Fixed Payments" parent="menu_cash_planning_root" action="action_cash_planning_fixed_payment" sequence="20"/>
+</odoo>

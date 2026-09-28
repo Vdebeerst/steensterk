@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+
+    <t t-name="eh_account_dashboard.Dashboard">
+        <div class="o_action_manager eh_dashboard_root">
+            <div class="eh_dashboard_topbar">
+                <div class="eh_dashboard_title">
+                    <h1>Financial Dashboard</h1>
+                    <div class="eh_dashboard_company"
+                         t-if="state.snapshot?.company">
+                        <t t-esc="state.snapshot.company.name"/>
+                    </div>
+                </div>
+                <div class="eh_dashboard_controls">
+                    <select class="form-select form-select-sm"
+                            t-on-change="onChangePeriod"
+                            t-att-value="state.snapshot?.period?.mode || 'mtd'">
+                        <option value="mtd">Month to date</option>
+                        <option value="qtd">Quarter to date</option>
+                        <option value="ytd">Year to date</option>
+                        <option value="last_30">Last 30 days</option>
+                        <option value="last_90">Last 90 days</option>
+                        <option value="custom">Custom range</option>
+                    </select>
+                    <label class="eh_dashboard_check">
+                        <input type="checkbox"
+                               t-on-change="onTogglePosted"
+                               t-att-checked="state.snapshot?.period?.posted_only"/>
+                        Posted only
+                    </label>
+                    <button class="btn btn-sm btn-outline-secondary"
+                            t-on-click="onClickRefresh">
+                        <i class="fa fa-refresh me-1"/> Refresh
+                    </button>
+                </div>
+            </div>
+
+            <div t-if="state.error" class="alert alert-danger mx-3" role="alert">
+                <t t-esc="state.error"/>
+            </div>
+
+            <div t-if="state.loading and !state.snapshot"
+                 class="eh_dashboard_skeleton">
+                <div class="eh_dashboard_skeleton_card"/>
+                <div class="eh_dashboard_skeleton_card"/>
+                <div class="eh_dashboard_skeleton_card"/>
+            </div>
+
+            <div t-if="state.snapshot" class="eh_dashboard_body">
+
+                <section class="eh_dashboard_section">
+                    <header class="eh_dashboard_section_header">
+                        Liquidity &amp; working capital
+                    </header>
+                    <div class="eh_dashboard_grid eh_dashboard_grid_3">
+                        <KpiTile
+                            caption="'Cash position'"
+                            value="formatMoney(state.snapshot.liquidity.cash_position)"
+                            secondary="state.snapshot.liquidity.cash_journal_count + ' journal(s)'"
+                            statusClass="'eh_dash_status_ok'"
+                            icon="'fa-money'"
+                            drilldownLabel="'View journals'"
+                            onDrilldown.bind="() => this.onClickDrilldown('action_drilldown_cash')"
+                            t-props="deltaProps('cash_position', { higherIsBetter: true })"/>
+                        <KpiTile
+                            caption="'Receivables'"
+                            value="formatMoney(state.snapshot.liquidity.receivable_total)"
+                            secondary="state.snapshot.liquidity.receivable_overdue
+                                ? 'Overdue ' + formatMoney(state.snapshot.liquidity.receivable_overdue)
+                                  + ' (max ' + state.snapshot.liquidity.receivable_days_overdue_max + ' days)'
+                                : 'No overdue items'"
+                            statusClass="state.snapshot.liquidity.receivable_overdue
+                                ? 'eh_dash_status_danger'
+                                : 'eh_dash_status_info'"
+                            icon="'fa-arrow-down'"
+                            drilldownLabel="'View open receivables'"
+                            onDrilldown.bind="() => this.onClickDrilldown('action_drilldown_receivables')"
+                            t-props="deltaProps('receivable_total', { higherIsBetter: false })"/>
+                        <KpiTile
+                            caption="'Payables'"
+                            value="formatMoney(state.snapshot.liquidity.payable_total)"
+                            secondary="state.snapshot.liquidity.payable_overdue
+                                ? 'Overdue ' + formatMoney(state.snapshot.liquidity.payable_overdue)
+                                : 'No overdue bills'"
+                            statusClass="state.snapshot.liquidity.payable_overdue
+                                ? 'eh_dash_status_warn'
+                                : 'eh_dash_status_neutral'"
+                            icon="'fa-arrow-up'"
+                            drilldownLabel="'View open payables'"
+                            onDrilldown.bind="() => this.onClickDrilldown('action_drilldown_payables')"
+                            t-props="deltaProps('payable_total', { higherIsBetter: true })"/>
+                    </div>
+                </section>
+
+                <section class="eh_dashboard_section">
+                    <header class="eh_dashboard_section_header">
+                        Cash trend (last 30 days)
+                    </header>
+                    <div class="eh_dashboard_chart_card">
+                        <Sparkline
+                            series="cashTrend"
+                            formatLabel.bind="formatMoney"/>
+                    </div>
+                </section>
+
+                <section class="eh_dashboard_section">
+                    <header class="eh_dashboard_section_header">
+                        Period profit &amp; loss
+                    </header>
+                    <div class="eh_dashboard_grid eh_dashboard_grid_3">
+                        <KpiTile
+                            caption="'Revenue'"
+                            value="formatMoney(state.snapshot.pnl.revenue)"
+                            statusClass="'eh_dash_status_info'"
+                            icon="'fa-line-chart'"
+                            drilldownLabel="'View entries'"
+                            onDrilldown.bind="() => this.onClickDrilldown('action_drilldown_period_revenue')"
+                            t-props="deltaProps('revenue', { higherIsBetter: true })"/>
+                        <KpiTile
+                            caption="'Expense'"
+                            value="formatMoney(state.snapshot.pnl.expense)"
+                            statusClass="'eh_dash_status_neutral'"
+                            icon="'fa-shopping-cart'"
+                            drilldownLabel="'View entries'"
+                            onDrilldown.bind="() => this.onClickDrilldown('action_drilldown_period_expense')"
+                            t-props="deltaProps('expense', { higherIsBetter: false })"/>
+                        <KpiTile
+                            caption="'Net'"
+                            value="formatMoney(state.snapshot.pnl.net)"
+                            statusClass="netStatus(state.snapshot.pnl.net)"
+                            icon="'fa-trophy'"
+                            t-props="deltaProps('net', { higherIsBetter: true })"/>
+                    </div>
+                </section>
+
+                <section class="eh_dashboard_section">
+                    <header class="eh_dashboard_section_header">
+                        Revenue trend (last 30 days)
+                    </header>
+                    <div class="eh_dashboard_chart_card">
+                        <Sparkline
+                            series="revenueTrend"
+                            formatLabel.bind="formatMoney"/>
+                    </div>
+                </section>
+
+                <section class="eh_dashboard_section">
+                    <header class="eh_dashboard_section_header">
+                        Expense trend (last 30 days)
+                    </header>
+                    <div class="eh_dashboard_chart_card">
+                        <Sparkline
+                            series="expenseTrend"
+                            formatLabel.bind="formatMoney"/>
+                    </div>
+                </section>
+
+                <section class="eh_dashboard_section"
+                         t-if="state.snapshot.modules.approval
+                            or state.snapshot.modules.collections
+                            or state.snapshot.modules.budget">
+                    <header class="eh_dashboard_section_header">Suite operations</header>
+                    <div class="eh_dashboard_grid eh_dashboard_grid_3">
+                        <KpiTile t-if="state.snapshot.modules.approval"
+                            caption="'Pending approvals'"
+                            value="formatInt(state.snapshot.operations.pending_approval_count)"
+                            secondary="state.snapshot.operations.pending_approval_count
+                                ? 'Review queue available'
+                                : 'No pending items'"
+                            statusClass="state.snapshot.operations.pending_approval_count
+                                ? 'eh_dash_status_warn'
+                                : 'eh_dash_status_ok'"
+                            icon="'fa-check-circle'"
+                            drilldownLabel="'Review queue'"
+                            onDrilldown.bind="() => this.onClickDrilldown('action_drilldown_pending_approvals')"/>
+                        <KpiTile t-if="state.snapshot.modules.collections"
+                            caption="'Active collections'"
+                            value="formatInt(state.snapshot.operations.active_collections_count)"
+                            secondary="'Total overdue ' + formatMoney(state.snapshot.operations.active_collections_total)"
+                            statusClass="state.snapshot.operations.active_collections_count
+                                ? 'eh_dash_status_danger'
+                                : 'eh_dash_status_neutral'"
+                            icon="'fa-phone'"
+                            drilldownLabel="'Open workbench'"
+                            onDrilldown.bind="() => this.onClickDrilldown('action_drilldown_active_collections')"/>
+                        <KpiTile t-if="state.snapshot.modules.budget"
+                            caption="'Active budgets'"
+                            value="formatInt(state.snapshot.operations.active_budget_count)"
+                            secondary="state.snapshot.operations.overrun_budget_count
+                                ? formatInt(state.snapshot.operations.overrun_budget_count) + ' overrun'
+                                : 'All within budget'"
+                            statusClass="state.snapshot.operations.overrun_budget_count
+                                ? 'eh_dash_status_danger'
+                                : 'eh_dash_status_ok'"
+                            icon="'fa-tachometer'"
+                            drilldownLabel="'View budgets'"
+                            onDrilldown.bind="() => this.onClickDrilldown('action_drilldown_overrun_budgets')"/>
+                    </div>
+                </section>
+
+                <section class="eh_dashboard_section">
+                    <header class="eh_dashboard_section_header">
+                        Continuous control monitoring
+                    </header>
+                    <div t-att-class="'eh_dashboard_alert ' + controlsBadgeClass">
+                        <i t-if="state.snapshot.controls.total"
+                           class="fa fa-exclamation-triangle me-2"/>
+                        <i t-else=""
+                           class="fa fa-shield me-2"/>
+                        <strong t-if="state.snapshot.controls.total">
+                            <t t-esc="state.snapshot.controls.total"/>
+                        </strong>
+                        <span class="ms-1">
+                            <t t-if="state.snapshot.controls.total">
+                                active control signals across the suite.
+                            </t>
+                            <t t-else="">
+                                No outstanding control signals.
+                            </t>
+                        </span>
+                    </div>
+                    <div class="eh_dashboard_grid eh_dashboard_grid_3">
+                        <KpiTile t-if="state.snapshot.modules.credit_limit"
+                            caption="'Credit limit signals'"
+                            value="formatInt(state.snapshot.controls.credit_limit_breach_count)"
+                            secondary="formatInt(state.snapshot.controls.credit_limit_override_count_30d) + ' overrides last 30 days'"
+                            statusClass="state.snapshot.controls.credit_limit_breach_count
+                                ? 'eh_dash_status_warn'
+                                : 'eh_dash_status_ok'"
+                            icon="'fa-credit-card'"
+                            drilldownLabel="'View override log'"
+                            onDrilldown.bind="() => this.onClickDrilldown('action_drilldown_credit_overrides')"/>
+                        <KpiTile t-if="state.snapshot.modules.sepa_dd"
+                            caption="'SEPA dormancy watch'"
+                            value="formatInt(state.snapshot.controls.dormant_mandate_count)"
+                            secondary="'Mandates idle &gt; 33 months'"
+                            statusClass="state.snapshot.controls.dormant_mandate_count
+                                ? 'eh_dash_status_warn'
+                                : 'eh_dash_status_ok'"
+                            icon="'fa-clock-o'"
+                            drilldownLabel="'Review mandates'"
+                            onDrilldown.bind="() => this.onClickDrilldown('action_drilldown_dormant_mandates')"/>
+                        <KpiTile t-if="state.snapshot.modules.close_workflow"
+                            caption="'Period close in progress'"
+                            value="formatInt(state.snapshot.controls.in_progress_close_count)"
+                            secondary="'Open period-close runs'"
+                            statusClass="state.snapshot.controls.in_progress_close_count
+                                ? 'eh_dash_status_info'
+                                : 'eh_dash_status_neutral'"
+                            icon="'fa-tasks'"
+                            drilldownLabel="'Open runs'"
+                            onDrilldown.bind="() => this.onClickDrilldown('action_drilldown_open_close_runs')"/>
+                        <KpiTile t-if="state.snapshot.modules.year_end"
+                            caption="'Year-end runs'"
+                            value="formatInt(state.snapshot.controls.open_year_end_run_count)"
+                            secondary="'Open or computed but unposted'"
+                            statusClass="state.snapshot.controls.open_year_end_run_count
+                                ? 'eh_dash_status_info'
+                                : 'eh_dash_status_neutral'"
+                            icon="'fa-flag-checkered'"
+                            drilldownLabel="'Open runs'"
+                            onDrilldown.bind="() => this.onClickDrilldown('action_drilldown_open_year_end')"/>
+                        <KpiTile t-if="state.snapshot.modules.fx"
+                            caption="'FX revaluation pending'"
+                            value="formatInt(state.snapshot.controls.pending_fx_run_count)"
+                            secondary="'Computed but unposted runs'"
+                            statusClass="state.snapshot.controls.pending_fx_run_count
+                                ? 'eh_dash_status_info'
+                                : 'eh_dash_status_neutral'"
+                            icon="'fa-exchange'"
+                            drilldownLabel="'Open runs'"
+                            onDrilldown.bind="() => this.onClickDrilldown('action_drilldown_pending_fx')"/>
+                    </div>
+                </section>
+
+                <footer class="eh_dashboard_footer">
+                    ERP Heritage Accounting Suite
+                </footer>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="eh_account_dashboard.KpiTile">
+        <div t-att-class="'eh_dash_kpi ' + props.statusClass">
+            <div class="eh_dash_kpi_caption">
+                <i t-att-class="'fa me-1 ' + props.icon"/>
+                <t t-esc="props.caption"/>
+            </div>
+            <div class="eh_dash_kpi_value">
+                <t t-esc="props.value"/>
+            </div>
+            <div class="eh_dash_kpi_delta"
+                 t-if="props.delta !== undefined and props.delta !== null">
+                <span t-att-class="'eh_dash_delta_badge ' + deltaClass">
+                    <i t-att-class="'fa me-1 ' + deltaArrow"/>
+                    <t t-esc="props.deltaLabel || props.delta"/>
+                    <t t-if="props.deltaPct !== undefined and props.deltaPct !== null">
+                        (<t t-esc="props.deltaPct"/>%)
+                    </t>
+                </span>
+                <span class="eh_dash_delta_caption">vs prior period</span>
+            </div>
+            <div class="eh_dash_kpi_secondary"
+                 t-if="props.secondary">
+                <t t-esc="props.secondary"/>
+            </div>
+            <button t-if="props.drilldownLabel and props.onDrilldown"
+                    class="eh_dash_kpi_drill btn btn-sm btn-link p-0"
+                    t-on-click="props.onDrilldown">
+                <t t-esc="props.drilldownLabel"/>
+                <i class="fa fa-chevron-right ms-1"/>
+            </button>
+        </div>
+    </t>
+
+    <t t-name="eh_account_dashboard.Sparkline">
+        <div class="eh_dash_spark_wrap">
+            <t t-if="!plottable">
+                <div class="eh_dash_spark_empty">
+                    Not enough data points to draw a trend.
+                </div>
+            </t>
+            <t t-else="">
+                <svg class="eh_dash_spark"
+                     t-att-viewBox="viewBox"
+                     preserveAspectRatio="none"
+                     t-att-style="'height:' + height + 'px;'">
+                    <polyline t-att-class="'eh_dash_spark_line ' + accentClass"
+                              t-att-points="geometry.polyline"/>
+                    <circle t-att-cx="geometry.last.x"
+                            t-att-cy="geometry.last.y"
+                            r="3"
+                            t-att-class="'eh_dash_spark_dot ' + accentClass"/>
+                </svg>
+                <div class="eh_dash_spark_legend">
+                    <span class="eh_dash_spark_label">
+                        Latest: <strong t-esc="formatValue(geometry.lastValue)"/>
+                    </span>
+                    <span class="eh_dash_spark_label">
+                        Period high: <strong t-esc="formatValue(geometry.max)"/>
+                    </span>
+                    <span class="eh_dash_spark_label">
+                        Period low: <strong t-esc="formatValue(geometry.min)"/>
+                    </span>
+                </div>
+            </t>
+        </div>
+    </t>
+
+</templates>

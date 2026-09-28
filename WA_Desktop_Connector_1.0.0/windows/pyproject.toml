@@ -1,0 +1,13 @@
+[build-system]
+requires=["setuptools>=75","wheel"]
+build-backend="setuptools.build_meta"
+[project]
+name="wa-desktop-connector"
+version = "1.0.0"
+description="WA Desktop Connector for Odoo Documents"
+requires-python=">=3.12"
+dependencies=["watchdog>=5,<7","pystray>=0.19,<1","Pillow>=10,<12"]
+[project.scripts]
+wa-desktop-connector="wa_desktop_connector_core.app:main"
+[tool.setuptools.packages.find]
+where=["src"]

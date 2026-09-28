@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_vendor_bill_approval_level_manager,vendor.bill.approval.level manager,model_vendor_bill_approval_level,account.group_account_manager,1,1,1,1
+access_vendor_bill_approval_level_user,vendor.bill.approval.level user,model_vendor_bill_approval_level,account.group_account_user,1,0,0,0
+access_vendor_bill_approval_line_user,vendor.bill.approval.line user,model_vendor_bill_approval_line,account.group_account_user,1,0,0,0
+access_vendor_bill_reject_wizard_user,vendor.bill.reject.wizard user,model_vendor_bill_reject_wizard,account.group_account_user,1,1,1,1
+access_vendor_bill_approval_line_approver,vendor.bill.approval.line approver,model_vendor_bill_approval_line,group_vendor_bill_approver,1,0,0,0
+access_vendor_bill_reject_wizard_approver,vendor.bill.reject.wizard approver,model_vendor_bill_reject_wizard,group_vendor_bill_approver,1,1,1,1

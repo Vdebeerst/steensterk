@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="api_endpoint_tree" model="ir.ui.view">
+        <field name="name">api.endpoint.tree</field>
+        <field name="model">api.endpoint</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="route"/>
+                <field name="model_name"/>
+                <field name="method_get" widget="boolean_toggle"/>
+                <field name="method_post" widget="boolean_toggle"/>
+                <field name="method_put" widget="boolean_toggle"/>
+                <field name="method_delete" widget="boolean_toggle"/>
+                <field name="auth_type"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'active'"
+                       decoration-warning="state == 'draft'"
+                       decoration-danger="state == 'disabled'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="api_endpoint_form" model="ir.ui.view">
+        <field name="name">api.endpoint.form</field>
+        <field name="model">api.endpoint</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_activate" string="Activate"
+                            type="object" class="btn-primary"
+                            invisible="state == 'active'"/>
+                    <button name="action_disable" string="Disable"
+                            type="object"
+                            invisible="state != 'active'"/>
+                    <button name="action_draft" string="Reset to Draft"
+                            type="object"
+                            invisible="state == 'draft'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,active"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Endpoint Name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="route" placeholder="/api/v1/partners"/>
+                            <field name="model_id" options="{'no_create': True}"/>
+                            <field name="model_name" invisible="1"/>
+                            <field name="auth_type"/>
+                        </group>
+                        <group>
+                            <field name="method_get"/>
+                            <field name="method_post"/>
+                            <field name="method_put"/>
+                            <field name="method_delete"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="domain"/>
+                            <field name="default_limit"/>
+                            <field name="max_limit"/>
+                        </group>
+                        <group>
+                            <field name="log_requests"/>
+                            <field name="description" placeholder="Describe what this endpoint does..."/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Fields" name="fields">
+                            <button name="action_populate_fields" string="Auto-Populate Fields"
+                                    type="object" class="btn-secondary mb-2"/>
+                            <field name="field_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="field_id"
+                                           domain="[('model_id', '=', parent.model_id)]"/>
+                                    <field name="field_name"/>
+                                    <field name="field_type"/>
+                                    <field name="readable" widget="boolean_toggle"/>
+                                    <field name="writable" widget="boolean_toggle"/>
+                                    <field name="required_on_create" widget="boolean_toggle"/>
+                                    <field name="alias" placeholder="API alias name"/>
+                                    <field name="related_model_id" column_invisible="1"/>
+                                    <field name="sub_field_ids" widget="many2many_tags"
+                                           domain="[('model_id', '=', related_model_id)]"
+                                           placeholder="Sub-fields (e.g. name, email)"
+                                           optional="hide"
+                                           invisible="field_type != 'many2one'"/>
+                                    <field name="custom_serialize_code"
+                                           optional="hide"
+                                           invisible="field_type not in ('many2many', 'one2many')"
+                                           placeholder="result = [{'id': r.id, 'name': r.name} for r in records]"/>
+                                </list>
+                                <form>
+                                    <group>
+                                        <group>
+                                            <field name="field_id"/>
+                                            <field name="field_name"/>
+                                            <field name="field_type"/>
+                                            <field name="sequence"/>
+                                        </group>
+                                        <group>
+                                            <field name="readable"/>
+                                            <field name="writable"/>
+                                            <field name="required_on_create"/>
+                                            <field name="alias"/>
+                                        </group>
+                                    </group>
+                                    <group invisible="field_type != 'many2one'">
+                                        <field name="related_model_id" readonly="1"/>
+                                        <field name="sub_field_ids" widget="many2many_tags"
+                                               domain="[('model_id', '=', related_model_id)]"/>
+                                    </group>
+                                    <group invisible="field_type not in ('many2many', 'one2many')"
+                                           string="Custom Serialization Code">
+                                        <field name="custom_serialize_code" nolabel="1"
+                                               widget="code"
+                                               placeholder="# Available variables:&#10;#   records - the recordset&#10;#   env - Odoo environment&#10;# Set 'result' to your output&#10;&#10;result = [{'id': r.id, 'name': r.name, 'email': r.email} for r in records]"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="Logs" name="logs">
+                            <field name="log_ids" readonly="1">
+                                <list>
+                                    <field name="create_date"/>
+                                    <field name="method"/>
+                                    <field name="path"/>
+                                    <field name="response_code"/>
+                                    <field name="duration_ms" widget="float"/>
+                                    <field name="status" widget="badge"
+                                           decoration-success="status == 'success'"
+                                           decoration-danger="status == 'error'"/>
+                                    <field name="ip_address"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_api_endpoint" model="ir.actions.act_window">
+        <field name="name">API Endpoints</field>
+        <field name="res_model">api.endpoint</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first dynamic API endpoint
+            </p>
+            <p>
+                Define REST API endpoints for any Odoo model with field-level access control.
+            </p>
+        </field>
+    </record>
+</odoo>

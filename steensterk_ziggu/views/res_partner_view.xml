@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="ziggu_res_partner_form" model="ir.ui.view">
+            <field name="name">ziggu.res.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Ziggu" name="ziggu">
+                        <group colspan="4" col="2">
+                            <group>
+                                <field name="ziggu_id" readonly="True"/>
+                                <field name="ziggu_mobile"/>
+                            </group>
+                            <group>
+                                <field name="ziggu_type" readonly="True"/>
+                                <field name="ziggu_created_at" readonly="True"/>
+                                <field name="ziggu_updated_at" readonly="True"/>
+                            </group>
+                        </group>
+                        <field name="ziggu_note" readonly="True"/>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+    </data>
+</odoo>

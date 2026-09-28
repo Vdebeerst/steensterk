@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record
+        id="res_config_settings_view_form_vendor_bill_approval"
+        model="ir.ui.view"
+    >
+        <field name="name">
+            res.config.settings.view.form.vendor.bill.approval
+        </field>
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="account.res_config_settings_view_form"
+        />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//app[@name='account']"
+                position="inside"
+            >
+                <block
+                    title="Vendor Bill Approval"
+                    name="vendor_bill_approval_settings"
+                >
+                    <setting
+                        id="vendor_bill_approval"
+                        string="Vendor Bill Approval"
+                        company_dependent="1"
+                        help="Require configurable approval levels before vendor bills can be posted."
+                    >
+                        <field
+                            name="vendor_bill_approval_enabled"
+                        />
+
+                        <div
+                            class="content-group mt16"
+                            invisible="not vendor_bill_approval_enabled"
+                        >
+                            <label
+                                for="vendor_bill_approval_level_ids"
+                                string="Approval Levels"
+                                class="o_light_label"
+                            />
+
+                            <field
+                                name="vendor_bill_approval_level_ids"
+                                nolabel="1"
+                                context="{'default_company_id': company_id}"
+                            >
+                                <list editable="bottom">
+                                    <field
+                                        name="sequence"
+                                        widget="handle"
+                                    />
+                                    <field name="name"/>
+                                    <field
+                                        name="approver_ids"
+                                        widget="many2many_tags"
+                                    />
+                                    <field name="optional"/>
+                                    <field
+                                        name="active"
+                                        optional="hide"
+                                    />
+                                    <field
+                                        name="company_id"
+                                        column_invisible="True"
+                                    />
+                                </list>
+                            </field>
+
+                            <div class="text-muted">
+                                Any selected approver can approve
+                                the level. For an optional level,
+                                the preceding approver decides
+                                whether it is required.
+                            </div>
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

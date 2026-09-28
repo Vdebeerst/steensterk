@@ -1,0 +1,16 @@
+<odoo>
+    <record id="action_download_wa_desktop_connector" model="ir.actions.act_url">
+        <field name="name">Download WA Desktop Connector</field>
+        <field name="url">/wa_desktop_connector/download/installer</field>
+        <field name="target">self</field>
+    </record>
+
+    <menuitem
+        id="menu_download_wa_desktop_connector"
+        name="Download WA Desktop Connector"
+        parent="documents.menu_root"
+        action="action_download_wa_desktop_connector"
+        sequence="95"
+        groups="base.group_user"
+    />
+</odoo>

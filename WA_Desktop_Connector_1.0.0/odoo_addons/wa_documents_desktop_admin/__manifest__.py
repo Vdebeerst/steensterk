@@ -1,0 +1,1 @@
+{'name': 'WA Documents Desktop Admin', 'version': '19.0.1.0.0', 'summary': 'Administration and settings', 'author': 'Wim Audenaert', 'license': 'OPL-1', 'depends': ['wa_documents_desktop_connector', 'wa_documents_desktop_sync'], 'data': ['views/res_config_settings_views.xml', 'views/menu.xml'], 'installable': True, 'application': False}

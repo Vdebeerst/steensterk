@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ACTIONS (SERVER) -->
+    <record id="model_account_invoice_update_mass_tag_action" model="ir.actions.server">
+        <field name="name">Update Mass Tags</field>
+        <field name="model_id" ref="sh_invoice_tags.model_account_move" />
+        <field name="binding_model_id" ref="account.model_account_move" />
+        <field name="group_ids" eval="[(4, ref('sh_invoice_tags.sh_invoice_tags_user_id'))]" />
+        <field name="state">code</field>
+        <field name="binding_view_types">list</field>
+        <field name="code"> action = model.action_mass_tag_update()</field>
+    </record>
+
+    <!-- Invoice Tags Tree -->
+    <record id="sh_invoice_tags_tree" model="ir.ui.view">
+        <field name="name">sh.invoice.tags.list</field>
+        <field name="model">sh.invoice.tags</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="name" />
+                <field name="color" widget="color_picker" />
+                <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company" />
+            </list>
+        </field>
+    </record>
+
+    <!-- Invoice Tags Action -->
+    <record id="sh_invoice_tags_action" model="ir.actions.act_window">
+        <field name="name">Invoice Tags</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sh.invoice.tags</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <!-- Invoice Tags Menu -->
+    <menuitem id="sh_invoice_tags_menu" action="sh_invoice_tags_action" name="Invoice Tags" parent="account.account_invoicing_menu" />
+</odoo>

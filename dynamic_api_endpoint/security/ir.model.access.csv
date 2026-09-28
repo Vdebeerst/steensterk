@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_api_endpoint_user,api.endpoint.user,model_api_endpoint,group_api_user,1,0,0,0
+access_api_endpoint_manager,api.endpoint.manager,model_api_endpoint,group_api_manager,1,1,1,1
+access_api_endpoint_field_user,api.endpoint.field.user,model_api_endpoint_field,group_api_user,1,0,0,0
+access_api_endpoint_field_manager,api.endpoint.field.manager,model_api_endpoint_field,group_api_manager,1,1,1,1
+access_api_key_user,api.key.user,model_api_key,group_api_user,1,0,0,0
+access_api_key_manager,api.key.manager,model_api_key,group_api_manager,1,1,1,1
+access_api_webhook_user,api.webhook.user,model_api_webhook,group_api_user,1,0,0,0
+access_api_webhook_manager,api.webhook.manager,model_api_webhook,group_api_manager,1,1,1,1
+access_api_webhook_header_user,api.webhook.header.user,model_api_webhook_header,group_api_user,1,0,0,0
+access_api_webhook_header_manager,api.webhook.header.manager,model_api_webhook_header,group_api_manager,1,1,1,1
+access_api_log_user,api.log.user,model_api_log,group_api_user,1,0,0,0
+access_api_log_manager,api.log.manager,model_api_log,group_api_manager,1,1,1,1

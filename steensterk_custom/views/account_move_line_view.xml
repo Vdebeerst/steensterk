@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="steensterk_account_move_line_list" model="ir.ui.view">
+            <field name="name">steensterk.account.move.line.list</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account.view_move_line_tree"/>
+            <field name="arch" type="xml">
+                <field name="ref" position="after">
+                    <!-- <field name="move_ref" optional="hide"/> -->
+                    <field name="move_payment_ref" optional="hide"/>
+                </field>
+            </field>
+        </record>
+        
+        <record id="steensterk_account_move_line_search" model="ir.ui.view">
+            <field name="name">steensterk.account.move.line.search</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account.view_account_move_line_filter"/>
+            <field name="arch" type="xml">
+                <field name="ref" position="after">
+                    <!-- <field name="move_ref" optional="hide"/> -->
+                    <field name="move_payment_ref"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="steensterk_account_move_line_payment_list" model="ir.ui.view">
+            <field name="name">steensterk.account.move.line.payment.list</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account_accountant.view_account_move_line_list_bank_rec_widget"/>
+            <field name="arch" type="xml">
+                <field name="ref" position="after">
+                    <!-- <field name="move_ref" optional="hide"/> -->
+                    <field name="move_payment_ref" optional="hide"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="steensterk_account_move_line_payment_search" model="ir.ui.view">
+            <field name="name">steensterk.account.move.line.payment.search</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account_accountant.view_account_move_line_search_bank_rec_widget"/>
+            <field name="arch" type="xml">
+                <field name="currency_id" position="before">
+                    <field name="balance" string="Amount" filter_domain="['|', ('credit', '=', raw_value), ('debit', '=', raw_value)]"/>
+                </field>
+            </field>
+        </record>
+        
+    </data>
+</odoo>
+
+<!-- <field name="balance" string="Amount" filter_domain="['|', ('credit', '=', raw_value), ('debit', '=', raw_value)]"/> -->

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Root Menu -->
+    <menuitem id="menu_api_root"
+              name="API Manager"
+              web_icon="dynamic_api_endpoint,static/description/icon.png"
+              sequence="90"/>
+
+    <!-- Sub Menus -->
+    <menuitem id="menu_api_endpoints"
+              name="Endpoints"
+              parent="menu_api_root"
+              action="action_api_endpoint"
+              sequence="10"/>
+
+    <menuitem id="menu_api_webhooks"
+              name="Webhooks"
+              parent="menu_api_root"
+              action="action_api_webhook"
+              sequence="20"/>
+
+    <menuitem id="menu_api_keys"
+              name="API Keys"
+              parent="menu_api_root"
+              action="action_api_key"
+              sequence="30"/>
+
+    <menuitem id="menu_api_logs"
+              name="Logs"
+              parent="menu_api_root"
+              action="action_api_log"
+              sequence="40"/>
+</odoo>

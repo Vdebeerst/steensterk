@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="steensterk_project_task_form" model="ir.ui.view">
+            <field name="name">steensterk.project.task.form</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="department_id"/>
+                    <field name="planned_weeks"/>
+                </field>
+                <field name="depend_on_ids" position="before">
+                    <group colspan="4" col="2">
+                        <group>
+                            <field name="weeks_delay"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                </field>
+            </field>
+        </record>
+
+        <record id="steensterk_project_task_search" model="ir.ui.view">
+            <field name="name">steensterk.project.task.search</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_search_form_base"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="department_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="steensterk_project_task_gantt" model="ir.ui.view">
+            <field name="name">steensterk.project.task.gant</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project_enterprise.project_task_view_gantt_inherited_project_sharing_task"/>
+            <field name="arch" type="xml">
+                <gantt position="attributes">
+                    <attribute name="default_group_by">department_id</attribute>
+                </gantt>
+                <field name="partner_id" position="after">
+                    <field name="department_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="steensterk_project_task_gantt" model="ir.ui.view">
+            <field name="name">steensterk.project.task.gant</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project_enterprise.project_task_view_gantt"/>
+            <field name="arch" type="xml">
+                <gantt position="attributes">
+                    <attribute name="default_group_by">department_id</attribute>
+                </gantt>
+            </field>
+        </record>
+
+    </data>
+</odoo>

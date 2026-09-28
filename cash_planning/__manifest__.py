@@ -1,0 +1,20 @@
+{
+    "name": "Cash Planning",
+    "version": "19.0.1.0.0",
+    "category": "Accounting/Accounting",
+    "summary": "Configurable cash planning foundation",
+    "author": "Wim Audenaert",
+    "license": "LGPL-3",
+    "depends": ["account"],
+    "data": [
+        "security/ir.model.access.csv",
+        "data/cash_flow_type_data.xml",
+        "views/cash_flow_type_views.xml",
+        "views/cash_flow_rule_views.xml",
+        "views/cash_flow_account_views.xml",
+        "views/cash_fixed_payment_views.xml",
+        "views/menu.xml",
+    ],
+    "application": True,
+    "installable": True,
+}

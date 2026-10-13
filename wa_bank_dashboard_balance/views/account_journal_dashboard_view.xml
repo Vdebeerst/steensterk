@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_journal_dashboard_combined_balance" model="ir.ui.view">
+        <field name="name">account.journal.dashboard.combined.balance</field>
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.account_journal_dashboard_kanban_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//t[@t-name='JournalBodyBankCash']//div[@id='dashboard_bank_cash_balance']/following-sibling::div[1]/span" position="replace">
+                <span dir="ltr"><t t-out="journal_type == 'bank' and dashboard.wa_combined_balance or dashboard.account_balance"/></span>
+            </xpath>
+            <xpath expr="//t[@t-name='JournalBodyBankCash']//div[@id='dashboard_bank_cash_misc_total']/.." position="attributes">
+                <attribute name="t-if">dashboard.nb_misc_operations &gt; 0 and (journal_type != 'bank' or !dashboard.wa_combined_balance)</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

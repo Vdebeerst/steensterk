@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+    <t t-name="steensterk_analytic_ledger.LedgerAccountFilter" t-inherit="account_reports.AccountReportFiltersCustomizable" t-inherit-mode="extension">
+        <xpath expr="//div[@id='filter_rounding_unit']" position="before">
+            <t t-if="controller.options.filter_ledger_accounts">
+                <div id="filter_ledger_accounts">
+                    <Dropdown menuClass="'account_report_filter ledger_accounts'">
+                        <button class="btn btn-secondary"><i class="fa fa-filter me-1"/>Grootboekrekeningen</button>
+                        <t t-set-slot="content">
+                            <div class="dropdown-item gap-2 align-items-center">
+                                <label>Grootboekrekeningen</label>
+                                <MultiRecordSelector t-props="getMultiRecordSelectorProps('account.account', 'ledger_account_ids')"/>
+                            </div>
+                        </t>
+                    </Dropdown>
+                </div>
+            </t>
+        </xpath>
+    </t>
+</templates>

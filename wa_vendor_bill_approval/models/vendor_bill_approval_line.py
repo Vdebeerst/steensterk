@@ -127,13 +127,13 @@ class VendorBillApprovalLine(models.Model):
 
     def _schedule_activities(self):
         activity_type = self.env.ref("mail.mail_activity_data_todo")
-        model_id = self.env["ir.model"]._get_id("account.move")
+        model_id = self.env["ir.model"]._get_id("vendor.bill.approval.line")
         for line in self:
             for user in line.approver_ids:
                 self.env["mail.activity"].sudo().create({
                     "activity_type_id": activity_type.id,
                     "res_model_id": model_id,
-                    "res_id": line.move_id.id,
+                    "res_id": line.id,
                     "user_id": user.id,
                     "summary": self.env._("Approve vendor bill: %s", line.name),
                     "note": self.env._("Vendor bill %s is waiting for your approval.", line.move_id.display_name),

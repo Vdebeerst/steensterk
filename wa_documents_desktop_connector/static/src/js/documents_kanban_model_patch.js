@@ -24,9 +24,9 @@ patch(DocumentsKanbanRecord.prototype, {
             title: _t("Open document"),
             body: _t("How do you want to open this document?"),
             confirmLabel: _t("Open in desktop app"),
-            cancelLabel: _t("Open in Odoo"),
+            cancelLabel: _t("Cancel"),
             confirm: () => openDesktop(this.model.env, this.data.id),
-            cancel: () => super.onClickPreview(...arguments),
+            cancel: () => {},
         });
     },
 });

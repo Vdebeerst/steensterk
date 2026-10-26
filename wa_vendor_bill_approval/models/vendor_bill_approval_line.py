@@ -4,6 +4,7 @@ from odoo.exceptions import UserError
 
 class VendorBillApprovalLine(models.Model):
     _name = "vendor.bill.approval.line"
+    _inherit = ["mail.thread"]
     _description = "Vendor Bill Approval"
     _order = "sequence, id"
     _check_company_auto = True

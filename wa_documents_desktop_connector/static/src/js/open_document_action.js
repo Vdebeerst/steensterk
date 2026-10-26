@@ -46,7 +46,7 @@ registry.category("actions").add("wa_documents_desktop_connector.open", async (e
         title: _t("Open document"),
         body: _t("How do you want to open this document?"),
         confirmLabel: _t("Open in desktop app"),
-        cancelLabel: _t("Open in Odoo"),
+        cancelLabel: _t("Cancel"),
         confirm: () => openDesktop(env, id),
         cancel: () => {},
     });

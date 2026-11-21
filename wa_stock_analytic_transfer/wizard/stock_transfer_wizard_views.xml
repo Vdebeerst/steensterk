@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_wa_stock_transfer_wizard_form" model="ir.ui.view">
+        <field name="name">wa.stock.transfer.wizard.form</field>
+        <field name="model">wa.stock.transfer.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Create Monthly Stock Transfer">
+                <group>
+                    <field name="company_id"/>
+                    <field name="month"/>
+                    <field name="journal_id"/>
+                    <field name="counterpart_account_id"/>
+                </group>
+                <group string="Preview">
+                    <field name="line_count" readonly="1"/>
+                    <field name="currency_id" invisible="1"/>
+                    <field name="total_amount" readonly="1"/>
+                </group>
+                <div class="alert alert-warning" role="alert">
+                    This creates a draft journal entry from all unprocessed posted source lines for the selected month. Review before posting.
+                </div>
+                <footer>
+                    <button name="action_create_move" type="object" string="Create Draft Entry" class="btn-primary" confirm="Create the draft stock transfer entry?"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_wa_stock_transfer_wizard" model="ir.actions.act_window">
+        <field name="name">Create Monthly Stock Transfer</field>
+        <field name="res_model">wa.stock.transfer.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <menuitem id="menu_wa_stock_transfer" name="Monthly Stock Transfer"
+              parent="account.menu_finance_entries" action="action_wa_stock_transfer_wizard"
+              groups="account.group_account_manager" sequence="90"/>
+</odoo>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_form_wa_analytic_distribution" model="ir.ui.view">
+        <field name="name">account.account.form.wa.analytic.distribution</field>
+        <field name="model">account.account</field>
+        <field name="inherit_id" ref="account.view_account_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group string="Default Analytic Distribution" groups="analytic.group_analytic_accounting">
+                    <field name="wa_analytic_distribution" widget="analytic_distribution" options="{'force_applicability': 'optional'}"/>
+                    <button name="action_wa_update_all_distributions" type="object" string="Update All Journal Items" class="btn-secondary" groups="account.group_account_manager"/>
+                    <button name="action_wa_fill_missing_distributions" type="object" string="Fill Missing Analytic Distributions" class="btn-secondary" groups="account.group_account_manager"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

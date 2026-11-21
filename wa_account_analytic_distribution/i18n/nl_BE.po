@@ -1,0 +1,86 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: wa_account_analytic_distribution 19.0\n"
+"Language: nl_BE\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. module: wa_account_analytic_distribution
+#: code:addons/wa_account_analytic_distribution/models/account_account.py:0
+msgid "Default Analytic Distribution"
+msgstr "Standaard analytische verdeling"
+
+#. module: wa_account_analytic_distribution
+#: code:addons/wa_account_analytic_distribution/models/account_account.py:0
+msgid "Update All Journal Items"
+msgstr "Alle boekingsregels bijwerken"
+
+#. module: wa_account_analytic_distribution
+#: code:addons/wa_account_analytic_distribution/models/account_account.py:0
+msgid "Fill Missing Analytic Distributions"
+msgstr "Ontbrekende analytische verdelingen invullen"
+
+#. module: wa_account_analytic_distribution
+#: code:addons/wa_account_analytic_distribution/models/account_account.py:0
+msgid "Update Journal Item Analytic Distributions"
+msgstr "Analytische verdelingen van boekingsregels bijwerken"
+
+#. module: wa_account_analytic_distribution
+#: code:addons/wa_account_analytic_distribution/models/account_account.py:0
+msgid "All journal items"
+msgstr "Alle boekingsregels"
+
+#. module: wa_account_analytic_distribution
+#: code:addons/wa_account_analytic_distribution/models/account_account.py:0
+msgid "Only missing distributions"
+msgstr "Alleen ontbrekende verdelingen"
+
+#. module: wa_account_analytic_distribution
+#: code:addons/wa_account_analytic_distribution/models/account_account.py:0
+msgid "Replace entire distribution"
+msgstr "Volledige verdeling vervangen"
+
+#. module: wa_account_analytic_distribution
+#: code:addons/wa_account_analytic_distribution/models/account_account.py:0
+msgid "Update matching analytic plans and preserve other plans"
+msgstr "Overeenkomende analytische plannen bijwerken en andere behouden"
+
+#. module: wa_account_analytic_distribution
+#: code:addons/wa_account_analytic_distribution/models/account_account.py:0
+msgid "Journal Items to Update"
+msgstr "Bij te werken boekingsregels"
+
+#. module: wa_account_analytic_distribution
+#: code:addons/wa_account_analytic_distribution/models/account_account.py:0
+msgid "This operation can modify analytic distributions on posted journal items. Confirm before proceeding."
+msgstr "Deze bewerking kan analytische verdelingen van geboekte boekingsregels wijzigen. Bevestig om verder te gaan."
+
+#. module: wa_account_analytic_distribution
+#: code:addons/wa_account_analytic_distribution/models/account_account.py:0
+msgid "Confirm Update"
+msgstr "Bijwerken bevestigen"
+
+#. module: wa_account_analytic_distribution
+#: code:addons/wa_account_analytic_distribution/models/account_account.py:0
+msgid "Cancel"
+msgstr "Annuleren"
+
+#. module: wa_account_analytic_distribution
+#: code:addons/wa_account_analytic_distribution/models/account_account.py:0
+msgid "Configure an analytic distribution on this account for the active company first."
+msgstr "Stel eerst een analytische verdeling in op deze rekening voor het actieve bedrijf."
+
+#. module: wa_account_analytic_distribution
+#: code:addons/wa_account_analytic_distribution/models/account_account.py:0
+msgid "Configure an analytic distribution on this account for the selected company first."
+msgstr "Stel eerst een analytische verdeling in op deze rekening voor het geselecteerde bedrijf."
+
+#. module: wa_account_analytic_distribution
+#: code:addons/wa_account_analytic_distribution/models/account_account.py:0
+msgid "The selected company is not among your allowed companies."
+msgstr "Het geselecteerde bedrijf behoort niet tot uw toegestane bedrijven."
+
+#. module: wa_account_analytic_distribution
+#: code:addons/wa_account_analytic_distribution/models/account_account.py:0
+msgid "One or more analytic accounts in the distribution no longer exist."
+msgstr "Een of meer analytische rekeningen in de verdeling bestaan niet meer."

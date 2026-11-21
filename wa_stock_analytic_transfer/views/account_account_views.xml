@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_form_wa_stock_transfer" model="ir.ui.view">
+        <field name="name">account.account.form.wa.stock.transfer</field>
+        <field name="model">account.account</field>
+        <field name="inherit_id" ref="account.view_account_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group string="Monthly Stock Transfer" groups="account.group_account_manager">
+                    <field name="wa_analytic_distribution" widget="analytic_distribution"
+                           options="{'force_applicability': 'optional'}"
+                           groups="analytic.group_analytic_accounting"/>
+                    <field name="wa_stock_account_id"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

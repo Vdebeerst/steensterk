@@ -1,0 +1,116 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: wa_stock_analytic_transfer 19.0\n"
+"Language: nl_BE\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. module: wa_stock_analytic_transfer
+#: code:addons/wa_stock_analytic_transfer/models/account_account.py:0
+msgid "Stock Transfer Account"
+msgstr "Voorraadrekening voor overboeking"
+
+#. module: wa_stock_analytic_transfer
+#: code:addons/wa_stock_analytic_transfer/models/account_move_line.py:0
+msgid "Stock Transfer Source Line"
+msgstr "Bronboekingsregel voorraadboeking"
+
+#. module: wa_stock_analytic_transfer
+#: code:addons/wa_stock_analytic_transfer/wizard/stock_transfer_wizard.py:0
+msgid "Create Monthly Stock Transfer"
+msgstr "Maandelijkse voorraadboeking aanmaken"
+
+#. module: wa_stock_analytic_transfer
+#: code:addons/wa_stock_analytic_transfer/wizard/stock_transfer_wizard.py:0
+msgid "Month"
+msgstr "Maand"
+
+#. module: wa_stock_analytic_transfer
+#: code:addons/wa_stock_analytic_transfer/wizard/stock_transfer_wizard.py:0
+msgid "Miscellaneous Journal"
+msgstr "Diverse dagboek"
+
+#. module: wa_stock_analytic_transfer
+#: code:addons/wa_stock_analytic_transfer/wizard/stock_transfer_wizard.py:0
+msgid "Stock Variation Account (609500)"
+msgstr "Rekening voorraadwijzigingen (609500)"
+
+#. module: wa_stock_analytic_transfer
+#: code:addons/wa_stock_analytic_transfer/wizard/stock_transfer_wizard.py:0
+msgid "Source Lines"
+msgstr "Bronboekingsregels"
+
+#. module: wa_stock_analytic_transfer
+#: code:addons/wa_stock_analytic_transfer/wizard/stock_transfer_wizard.py:0
+msgid "Net Amount"
+msgstr "Nettobedrag"
+
+#. module: wa_stock_analytic_transfer
+#: code:addons/wa_stock_analytic_transfer/wizard/stock_transfer_wizard.py:0
+msgid "Monthly stock transfer %s"
+msgstr "Maandelijkse voorraadboeking %s"
+
+#. module: wa_stock_analytic_transfer
+#: code:addons/wa_stock_analytic_transfer/wizard/stock_transfer_wizard.py:0
+msgid "There are no unprocessed posted expense lines for this month."
+msgstr "Er zijn geen onverwerkte geboekte kostenregels voor deze maand."
+
+#. module: wa_stock_analytic_transfer
+#: code:addons/wa_stock_analytic_transfer/wizard/stock_transfer_wizard.py:0
+msgid "The selected company is not among your allowed companies."
+msgstr "Het geselecteerde bedrijf behoort niet tot uw toegestane bedrijven."
+
+#. module: wa_stock_analytic_transfer
+#: code:addons/wa_stock_analytic_transfer/wizard/stock_transfer_wizard.py:0
+msgid "Select a miscellaneous journal of the selected company."
+msgstr "Selecteer een dagboek Diverse boekingen van het gekozen bedrijf."
+
+#. module: wa_stock_analytic_transfer
+#: code:addons/wa_stock_analytic_transfer/wizard/stock_transfer_wizard.py:0
+msgid "Invalid stock account mapping for %s."
+msgstr "Ongeldige koppeling met voorraadrekening voor %s."
+
+#. module: wa_stock_analytic_transfer
+#: code:addons/wa_stock_analytic_transfer/wizard/stock_transfer_wizard.py:0
+msgid "The stock variation account cannot be a source account."
+msgstr "De rekening voorraadwijzigingen kan geen bronrekening zijn."
+
+#. module: wa_stock_analytic_transfer
+#: code:addons/wa_stock_analytic_transfer/wizard/stock_transfer_wizard.py:0
+msgid "The stock variation account is deprecated."
+msgstr "De rekening voorraadwijzigingen is buiten gebruik."
+
+#. module: wa_stock_analytic_transfer
+#: code:addons/wa_stock_analytic_transfer/wizard/stock_transfer_wizard.py:0
+msgid "Create Draft Entry"
+msgstr "Conceptboeking aanmaken"
+
+#. module: wa_stock_analytic_transfer
+#: code:addons/wa_stock_analytic_transfer/wizard/stock_transfer_wizard.py:0
+msgid "Cancel"
+msgstr "Annuleren"
+
+#. module: wa_stock_analytic_transfer
+#: code:addons/wa_stock_analytic_transfer/wizard/stock_transfer_wizard.py:0
+msgid "Monthly Stock Transfer"
+msgstr "Maandelijkse voorraadboeking"
+
+#. module: wa_stock_analytic_transfer
+#: code:addons/wa_stock_analytic_transfer/wizard/stock_transfer_wizard.py:0
+msgid "Create the draft stock transfer entry?"
+msgstr "De conceptvoorraadboeking aanmaken?"
+
+#. module: wa_stock_analytic_transfer
+#: code:addons/wa_stock_analytic_transfer/wizard/stock_transfer_wizard.py:0
+msgid "This creates a draft journal entry from all unprocessed posted source lines for the selected month. Review before posting."
+msgstr "Dit maakt een conceptboeking op basis van alle onverwerkte geboekte bronregels van de gekozen maand. Controleer de boeking voordat u ze boekt."
+
+#. module: wa_stock_analytic_transfer
+#: code:addons/wa_stock_analytic_transfer/models/account_move_line.py:0
+msgid "Original expense journal item that generated this stock transfer line."
+msgstr "Oorspronkelijke kostenboekingsregel waaruit deze voorraadboeking is aangemaakt."
+
+#. module: wa_stock_analytic_transfer
+#: model:ir.ui.view,arch_db:wa_stock_analytic_transfer.view_account_form_wa_stock_transfer
+msgid "Monthly Stock Transfer"
+msgstr "Maandelijkse voorraadboeking"
